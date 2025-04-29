@@ -1,0 +1,173 @@
+[
+    {
+        "name": "Alohomora",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Öffnet verschlossene Türen und Fenster.",
+        "bewegung": "Kurzer Bogen nach oben, dann nach unten",
+        "jahr": "1. Jahr",
+        "audio": "sounds/alohomora.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Arresto Momentum",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Verlangsamungszauber",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/arresto-momentum.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Colovaria",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Farbwechselzauber",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/colovaria.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Diminuendo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Schrumpfzauber",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/diminuendo.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Lumos",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Erzeugt Licht am Ende des Zauberstabs.",
+        "bewegung": "Kurzer Kreis im Uhrzeigersinn",
+        "jahr": "1. Jahr",
+        "audio": "sounds/lumos.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Periculum",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Funkenzauber",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/periculum.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Elasto",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Weichmachzauber",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/elasto.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Tergeo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Reinigungszauber",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/tergeo.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Wingardium Leviosa",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Schwebezauber",
+        "bewegung": "Wutschen und Wedeln",
+        "jahr": "1. Jahr",
+        "audio": "sounds/wingardium-leviosa.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Calvario",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Haarausfallfluch",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/calvario.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Finite Incantatem",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Ein Gegenzauber, der eine zur Zeit aktive Zauberwirkung beendet.",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/finite-incantatem.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Locomotor Mortis",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Beinklammerfluch",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/locomotor-mortis.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Petrificus Totalus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Ganzkörperklammerfluch",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/petrificus-totalus.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Schlug Schnecken",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Kotzfluch",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/schlug-schnecken.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Ventus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Wirbelwind-Hexung",
+        "bewegung": "",
+        "jahr": "1. Jahr",
+        "audio": "sounds/Ventus.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Expelliarmus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Entwaffnet den Gegner und schleudert dessen Zauberstab weg.",
+        "bewegung": "Gerade nach vorne stoßen",
+        "jahr": "2. Jahr",
+        "audio": "sounds/expelliarmus.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Protego",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Erzeugt ein magisches Schutzschild.",
+        "bewegung": "Kurzer Schwung nach vorne mit Halbkreis",
+        "jahr": "3. Jahr",
+        "audio": "sounds/protego.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Stupor",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Lässt das Ziel bewusstlos werden.",
+        "bewegung": "Schneller Schlag nach vorne",
+        "jahr": "4. Jahr",
+        "audio": "sounds/stupor.mp3",
+        "verfügbar": true
+    },
+    {
+        "name": "Accio",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Beschwört ein Objekt zum Zaubernden.",
+        "bewegung": "Ziehen mit dem Zauberstab in Richtung Körper",
+        "jahr": "4. Jahr",
+        "audio": "sounds/accio.mp3",
+        "verfügbar": true
+    }
+]
