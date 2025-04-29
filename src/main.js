@@ -14,7 +14,6 @@ import { setupGMView, setupPlayerView } from './board.js'
 //(Ideen): Spells.json als zusätzlichen Load und Save zulassen (Dan kann man auch individuelle Sounds hinzufügen oder löschen)
 // |-> Manipulation der json: Wie macht man das ohne die Json in der Extension für alle Leute die darauf zugreifen wollen zu ändern
 //change to english Documentation
-//releas?
 
 // Navigation und Content Struktur erstellen
 document.querySelector('#app').innerHTML = `
