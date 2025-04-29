@@ -5,7 +5,7 @@
         "beschreibung": "Öffnet verschlossene Türen und Fenster.",
         "bewegung": "Kurzer Bogen nach oben, dann nach unten",
         "jahr": "1. Jahr",
-        "audio": "sounds/alohomora.mp3",
+        "audio": "https://www.dropbox.com/scl/fi/eorjgwb11jwgh75qoh7sc/Alohomora.wav?rlkey=jzuu0fimv3t419ijw1orlv7fa&st=m2np8pzh&raw=1",
         "verfügbar": true
     },
     {
@@ -41,7 +41,7 @@
         "beschreibung": "Erzeugt Licht am Ende des Zauberstabs.",
         "bewegung": "Kurzer Kreis im Uhrzeigersinn",
         "jahr": "1. Jahr",
-        "audio": "sounds/lumos.mp3",
+        "audio": "https://www.dropbox.com/scl/fi/itb413qc3fcuevm1m01og/Lumos.wav?rlkey=qsl73zg0y5o5ltgc4wb6u2msn&st=0r1hkszb&raw=1",
         "verfügbar": true
     },
     {
@@ -77,7 +77,7 @@
         "beschreibung": "Schwebezauber",
         "bewegung": "Wutschen und Wedeln",
         "jahr": "1. Jahr",
-        "audio": "sounds/wingardium-leviosa.mp3",
+        "audio": "https://www.dropbox.com/scl/fi/73z039lgt5ff15mis1rza/Wingardium-Leviosa.wav?rlkey=nzd1tvza0vh8pg7ymfk59szpw&st=q3hkpl53&raw=1",
         "verfügbar": true
     },
     {
