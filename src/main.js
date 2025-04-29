@@ -1,6 +1,6 @@
-import './src/style.css'
+import './style.css'
 import OBR from "@owlbear-rodeo/sdk";
-import { setupGMView, setupPlayerView } from './src/board.js'
+import { setupGMView, setupPlayerView } from './board.js'
 
 //(check) JSON-Liste mit allen Spell-Sounds (und Dropbox-Links direkt mit raw=1)
 //(check) Suchfunktion oder DropDown nach Jahr oder kategorie (Verwandlung, Zauberkunst, ...)
