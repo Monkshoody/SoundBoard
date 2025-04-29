@@ -1,6 +1,6 @@
-import '/src/style.css'
+import './style.css'
 import OBR from "@owlbear-rodeo/sdk";
-import { setupGMView, setupPlayerView } from '/src/board.js'
+import { setupGMView, setupPlayerView } from './board.js'
 
 //(check) JSON-Liste mit allen Spell-Sounds (und Dropbox-Links direkt mit raw=1)
 //(check) Suchfunktion oder DropDown nach Jahr oder kategorie (Verwandlung, Zauberkunst, ...)
@@ -14,6 +14,7 @@ import { setupGMView, setupPlayerView } from '/src/board.js'
 //(Ideen): Spells.json als zusätzlichen Load und Save zulassen (Dan kann man auch individuelle Sounds hinzufügen oder löschen)
 // |-> Manipulation der json: Wie macht man das ohne die Json in der Extension für alle Leute die darauf zugreifen wollen zu ändern
 //change to english Documentation
+//release??
 
 // Navigation und Content Struktur erstellen
 document.querySelector('#app').innerHTML = `
