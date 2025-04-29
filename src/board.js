@@ -1,5 +1,5 @@
 import OBR from "@owlbear-rodeo/sdk";
-import spellData from "./spells.json"
+import spellData from "./src/spells.json"
 const METADATA_NAMESPACE = "spell-permissions";
 
 export async function setupGMView(container, players = []) {
