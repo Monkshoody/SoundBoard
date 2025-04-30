@@ -30,7 +30,7 @@ export async function setupGMView(container, players = []) {
   exportButton.classList.add("nav-button");
   exportButton.title = "save permissions";
   const exportIcon = document.createElement("img");
-  exportIcon.src = "./src/export.png";
+  exportIcon.src = "./export.png";
   exportIcon.alt = "export";
   exportIcon.classList.add("nav-icon");
   exportButton.appendChild(exportIcon);
@@ -52,7 +52,7 @@ export async function setupGMView(container, players = []) {
   importButton.classList.add("nav-button");
   importButton.title = "open permissions";
   const importIcon = document.createElement("img");
-  importIcon.src = "./src/import.png";
+  importIcon.src = "./import.png";
   importIcon.alt = "import";
   importIcon.classList.add("nav-icon");
   importButton.appendChild(importIcon);
@@ -214,11 +214,18 @@ export async function setupGMView(container, players = []) {
 }
 
 export async function setupPlayerView(container, playerName) {
+  const permissions = await loadPermissions();
+  container.innerHTML = "<p>Testanzeige</p>";
+
+
   function renderPlayerSpells(permissions) {
+    console.log("PlayerName:", playerName);
+    console.log("Spells für Spieler:", permissions[playerName]);
     container.innerHTML = ""; // Leeren
     const playerSpells = permissions[playerName] || [];
 
     playerSpells.forEach(spellName => {
+      console.log("spellData:", spellData);
       const spell = spellData.find(s => s.name === spellName);
       if (!spell) return;
 
@@ -235,7 +242,7 @@ export async function setupPlayerView(container, playerName) {
     });
   }
 
-  const permissions = await loadPermissions();
+  permissions = await loadPermissions();
   renderPlayerSpells(permissions);
 
   // Live-Update für Spieler
@@ -245,7 +252,6 @@ export async function setupPlayerView(container, playerName) {
     }
   });
 }
-
 
 async function loadPermissions() {
   const metadata = await OBR.scene.getMetadata();
