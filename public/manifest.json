@@ -1,13 +1,13 @@
 {
   "name": "SoundBoard",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "manifest_version": 1,
   "author": "Moonkshood",
-  "icon": "/public/logo.png",
+  "icon": "./public/logo.png",
   "description": "Provide sound effects, songs, backgroundmusic with access to all Players.",
   "action": {
     "title": "SoundBoard",
-    "icon": "/public/icon.svg",
+    "icon": "./public/icon.svg",
     "popover": "/",
     "height": 450,
     "width": 470

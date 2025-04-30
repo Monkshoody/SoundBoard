@@ -11,8 +11,8 @@
     {
         "name": "Arresto Momentum",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Der Verlangsamungszauber",
-        "bewegung": "",
+        "beschreibung": "Verlangsamungszauber: Verlangsamt die Bewegung von Personen oder Objekten.",
+        "bewegung": "Zügig abwärts streichen, dann abrupt abbremsen mit Kreis.",
         "jahr": "1. Jahr",
         "audio": "sounds/arresto-momentum.mp3",
         "verfügbar": true
@@ -20,8 +20,8 @@
     {
         "name": "Colovaria",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Farbwechselzauber",
-        "bewegung": "",
+        "beschreibung": "Farbwechselzauber: Verändert die Farbe eines Objekts oder Kleidungsstücks.",
+        "bewegung": "Zackige Wellenbewegung in der Luft.",
         "jahr": "1. Jahr",
         "audio": "sounds/colovaria.mp3",
         "verfügbar": true
@@ -29,8 +29,8 @@
     {
         "name": "Diminuendo",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Schrumpfzauber",
-        "bewegung": "",
+        "beschreibung": "Schrumpfzauber: Lässt das Ziel schrumpfen.",
+        "bewegung": "Vertikale Spirale von oben nach unten.",
         "jahr": "1. Jahr",
         "audio": "sounds/diminuendo.mp3",
         "verfügbar": true
@@ -38,7 +38,7 @@
     {
         "name": "Lumos",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Erzeugt Licht am Ende des Zauberstabs.",
+        "beschreibung": "Lässt die Spitze des Zauberstabs leuchten.",
         "bewegung": "Kurzer Kreis im Uhrzeigersinn",
         "jahr": "1. Jahr",
         "audio": "https://www.dropbox.com/scl/fi/itb413qc3fcuevm1m01og/Lumos.wav?rlkey=qsl73zg0y5o5ltgc4wb6u2msn&st=0r1hkszb&raw=1",
@@ -47,8 +47,8 @@
     {
         "name": "Periculum",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Funkenzauber",
-        "bewegung": "",
+        "beschreibung": "Funkenzauber: Schießt rote Funken zur Signalgebung in die Luft.",
+        "bewegung": "Schnelles „X“ in die Luft, dann nach oben schnipsen.",
         "jahr": "1. Jahr",
         "audio": "sounds/periculum.mp3",
         "verfügbar": true
@@ -56,8 +56,8 @@
     {
         "name": "Elasto",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Weichmachzauber",
-        "bewegung": "",
+        "beschreibung": "Weichmachzauber: Macht feste Materialien weich und biegsam.",
+        "bewegung": "Schlängelnde Bewegung, wie ein springendes Seil.",
         "jahr": "1. Jahr",
         "audio": "sounds/elasto.mp3",
         "verfügbar": true
@@ -65,8 +65,8 @@
     {
         "name": "Tergeo",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Reinigungszauber",
-        "bewegung": "",
+        "beschreibung": "Reinigungszauber: Saugt Flüssigkeiten oder Schmutz von Oberflächen auf.",
+        "bewegung": "Kreisbewegung im Uhrzeigersinn, dann nach unten zeigen.",
         "jahr": "1. Jahr",
         "audio": "sounds/tergeo.mp3",
         "verfügbar": true
@@ -74,8 +74,8 @@
     {
         "name": "Wingardium Leviosa",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Schwebezauber",
-        "bewegung": "Wutschen und Wedeln",
+        "beschreibung": "Schwebezauber: Lässt Objekte schweben und kontrolliert ihre Bewegung.",
+        "bewegung": "Schwungvoller Aufwärtsschwung, dann langsames Kreisen. (Wutschen und Wedeln)",
         "jahr": "1. Jahr",
         "audio": "https://www.dropbox.com/scl/fi/73z039lgt5ff15mis1rza/Wingardium-Leviosa.wav?rlkey=nzd1tvza0vh8pg7ymfk59szpw&st=q3hkpl53&raw=1",
         "verfügbar": true
@@ -83,8 +83,8 @@
     {
         "name": "Calvario",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Haarausfallfluch",
-        "bewegung": "",
+        "beschreibung": "Haarausfallfluch: Verursacht abrupten Haarausfall beim Ziel.",
+        "bewegung": "Zackige Linie nach unten, dann zurückreißen.",
         "jahr": "1. Jahr",
         "audio": "sounds/calvario.mp3",
         "verfügbar": true
@@ -92,8 +92,8 @@
     {
         "name": "Finite Incantatem",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Ein Gegenzauber, der eine zur Zeit aktive Zauberwirkung beendet.",
-        "bewegung": "",
+        "beschreibung": "Gegenzuber: Ein Gegenzauber, der eine zur Zeit aktive Zauberwirkung beendet.",
+        "bewegung": "Gerade Linie, dann quer durchstreichen.",
         "jahr": "1. Jahr",
         "audio": "sounds/finite-incantatem.mp3",
         "verfügbar": true
@@ -101,8 +101,8 @@
     {
         "name": "Locomotor Mortis",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Beinklammerfluch",
-        "bewegung": "",
+        "beschreibung": "Beinklammerfluch: Lässt die Beine des Ziels zusammenkleben.",
+        "bewegung": "Zwei kurze diagonale Striche kreuzen sich.",
         "jahr": "1. Jahr",
         "audio": "sounds/locomotor-mortis.mp3",
         "verfügbar": true
@@ -110,8 +110,8 @@
     {
         "name": "Petrificus Totalus",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Ganzkörperklammerfluch",
-        "bewegung": "",
+        "beschreibung": "Ganzkörperklammerfluch: Lähmt das Ziel vollständig.",
+        "bewegung": "Lange Linie nach oben, dann abrupt stoppen.",
         "jahr": "1. Jahr",
         "audio": "sounds/petrificus-totalus.mp3",
         "verfügbar": true
@@ -119,8 +119,8 @@
     {
         "name": "Schlug Schnecken",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Kotzfluch",
-        "bewegung": "",
+        "beschreibung": "Kotzfluch: Lässt das Ziel Schnecken erbrechen.",
+        "bewegung": "Kreis mit einem ruckartigen Ausschlag nach vorne.",
         "jahr": "1. Jahr",
         "audio": "sounds/schlug-schnecken.mp3",
         "verfügbar": true
@@ -128,8 +128,8 @@
     {
         "name": "Ventus",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Wirbelwind-Hexung",
-        "bewegung": "",
+        "beschreibung": "Wirbelwind-Hexung: Erzeugt einen kräftigen Windstoß oder Wirbelwind.",
+        "bewegung": "Schnelle Spiralbewegung nach vorne.",
         "jahr": "1. Jahr",
         "audio": "sounds/Ventus.mp3",
         "verfügbar": true

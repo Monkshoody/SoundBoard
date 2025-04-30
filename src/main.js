@@ -19,7 +19,7 @@ import { setupGMView, setupPlayerView } from './board.js'
 // Navigation und Content Struktur erstellen
 document.querySelector('#app').innerHTML = `
   <nav class="navbar">
-    <span class="brand">Spellboard Hier ein Test</span>
+    <span class="brand">Spellboard</span>
   </nav>
   <div id="contentArea"></div>
 `
