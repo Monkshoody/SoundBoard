@@ -32,7 +32,7 @@ export async function setupGMView(container, players = []) {
   exportButton.classList.add("nav-button");
   exportButton.title = "save permissions";
   const exportIcon = document.createElement("img");
-  exportIcon.src = "./public/export.png";
+  exportIcon.src = "./export.png";
   exportIcon.alt = "export";
   exportIcon.classList.add("nav-icon");
   exportButton.appendChild(exportIcon);
@@ -54,7 +54,7 @@ export async function setupGMView(container, players = []) {
   importButton.classList.add("nav-button");
   importButton.title = "open permissions";
   const importIcon = document.createElement("img");
-  importIcon.src = "./public/import.png";
+  importIcon.src = "./import.png";
   importIcon.alt = "import";
   importIcon.classList.add("nav-icon");
   importButton.appendChild(importIcon);
@@ -166,25 +166,33 @@ export async function setupGMView(container, players = []) {
     
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
+        console.log("Permissions[player]:", permissions[player], spell.name);
         checkbox.checked = permissions[player]?.includes(spell.name) || false;
         //checkbox.dataset.spell = spell.name;
         //checkbox.dataset.player = player; // Für spätere Save-Logik wichtig
         checkbox.addEventListener("change", async () => {
           // Button/Checkbox deaktivieren
+          console.log("In and checkbox.disabled:", checkbox.disabled);
           checkbox.disabled = true;
 
-          
           if (!permissions[player]) permissions[player] = [];
+          console.log("init: Permissions[player]:", permissions[player]);
           if (checkbox.checked) {
+            console.log("check: Permissions[player]:", permissions[player], spell.name);
             if (!permissions[player].includes(spell.name)) {
+              console.log("If Statement: Permissions[player]:", permissions[player]);
               permissions[player].push(spell.name);
             }
           } else {
+            console.log("Else-Statement: Permissions[player]:", permissions[player]);
             permissions[player] = permissions[player].filter(s => s !== spell.name);
           }
+          console.log("before savepermissions", permissions);
           await savePermissions(permissions);
+          console.log("after savepermissions", permissions);
           // Wieder aktivieren
           checkbox.disabled = false;
+          console.log("second checkbox.disabled:", checkbox.disabled);
         });
     
         label.appendChild(checkbox);
