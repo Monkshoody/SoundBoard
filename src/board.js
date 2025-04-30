@@ -260,6 +260,8 @@ async function loadPermissions() {
 }
 
 async function savePermissions(permissions) {
-  await OBR.scene.setMetadata({ [METADATA_NAMESPACE]: permissions });
+  // Neue Kopie erzeugen, damit die Änderung erkannt wird
+  const newPermissions = structuredClone(permissions);
+  await OBR.scene.setMetadata({ [METADATA_NAMESPACE]: newPermissions });
 }
 
