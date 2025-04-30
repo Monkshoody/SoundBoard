@@ -1,5 +1,6 @@
 import OBR from "@owlbear-rodeo/sdk";
 import spellData from "./spells.json";
+import { loadPermissions, savePermissions } from "./permissions.js";
 
 const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-Session Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-Session Namespace for distributing audio
@@ -18,6 +19,10 @@ async function playSoundForAll(audioFile) {
 // main function for the Game-Masters-View
 // I don't know what will happen if there are two GMs.
 export async function setupGMView(container, players = []) {
+
+  const permissions = await loadPermissions();
+  console.log("Permissions GM:", permissions);
+
   //begin of navbar
   // navigation-bar for headdline and import/export Buttons
   const navbar = document.getElementById("navbar") || document.createElement("nav");
@@ -164,6 +169,7 @@ export async function setupGMView(container, players = []) {
   let lastTimestamp = 0;
 
   OBR.scene.onMetadataChange((metadata) => {
+
     const trigger = metadata[SOUND_TRIGGER_KEY];
     console.log("Trigger:", trigger);
     if (!trigger) return;
