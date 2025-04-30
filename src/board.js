@@ -5,6 +5,9 @@ const METADATA_NAMESPACE = "spell-permissions";
 
 export async function setupGMView(container, players = []) {
 
+  const permissions = await loadPermissions();
+  console.log("Permissions GM:", permissions);
+
   const navbar = document.getElementById("navbar") || document.createElement("nav");
   navbar.classList.add("navbar");
   
@@ -34,7 +37,7 @@ export async function setupGMView(container, players = []) {
   exportIcon.classList.add("nav-icon");
   exportButton.appendChild(exportIcon);
   exportButton.addEventListener("click", async () => {
-    const permissions = await loadPermissions();
+    //const permissions = await loadPermissions();
     const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -78,8 +81,6 @@ export async function setupGMView(container, players = []) {
   navButtons.appendChild(importButton);
   navButtons.appendChild(exportButton);
 
-  const permissions = await loadPermissions();
-  console.log("Permissions GM:", permissions);
   let currentFilter = "Alle";
   let currentSearch = "";
 
