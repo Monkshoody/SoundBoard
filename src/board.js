@@ -30,7 +30,7 @@ export async function setupGMView(container, players = []) {
   exportButton.classList.add("nav-button");
   exportButton.title = "save permissions";
   const exportIcon = document.createElement("img");
-  exportIcon.src = "./export.png";
+  exportIcon.src = "./public/export.png";
   exportIcon.alt = "export";
   exportIcon.classList.add("nav-icon");
   exportButton.appendChild(exportIcon);
@@ -52,7 +52,7 @@ export async function setupGMView(container, players = []) {
   importButton.classList.add("nav-button");
   importButton.title = "open permissions";
   const importIcon = document.createElement("img");
-  importIcon.src = "./import.png";
+  importIcon.src = "./public/import.png";
   importIcon.alt = "import";
   importIcon.classList.add("nav-icon");
   importButton.appendChild(importIcon);
@@ -195,6 +195,7 @@ export async function setupGMView(container, players = []) {
     OBR.scene.onMetadataChange(({ metadata }) => {
       if (metadata[METADATA_NAMESPACE]) {
         // Du könntest hier z. B. neu rendern, wenn gewünscht
+        renderSpells();
       }
     });
   }
@@ -214,18 +215,18 @@ export async function setupGMView(container, players = []) {
 }
 
 export async function setupPlayerView(container, playerName) {
-  const permissions = await loadPermissions();
-  container.innerHTML = "<p>Testanzeige</p>";
-
 
   function renderPlayerSpells(permissions) {
     console.log("PlayerName:", playerName);
     console.log("Spells für Spieler:", permissions[playerName]);
+    if (!permissions[playerName] || permissions[playerName].length === 0) {
+      container.innerHTML = "<p>no sounds available</p>";
+      return;
+    }
     container.innerHTML = ""; // Leeren
     const playerSpells = permissions[playerName] || [];
 
     playerSpells.forEach(spellName => {
-      console.log("spellData:", spellData);
       const spell = spellData.find(s => s.name === spellName);
       if (!spell) return;
 
@@ -242,15 +243,16 @@ export async function setupPlayerView(container, playerName) {
     });
   }
 
-  permissions = await loadPermissions();
+  const permissions = await loadPermissions();
+  console.log("Permissions:", permissions);
   renderPlayerSpells(permissions);
 
   // Live-Update für Spieler
-  OBR.scene.onMetadataChange(async ({ metadata }) => {
+  OBR.scene.onMetadataChange(async ({ metadata = {} }) => {
     if (metadata[METADATA_NAMESPACE]) {
       renderPlayerSpells(metadata[METADATA_NAMESPACE]);
     }
-  });
+  });  
 }
 
 async function loadPermissions() {
