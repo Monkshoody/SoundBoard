@@ -5,10 +5,10 @@ import { setupGMView, setupPlayerView } from './board.js'
 //(check) JSON-Liste mit allen Spell-Sounds (und Dropbox-Links direkt mit raw=1)
 //(check) Suchfunktion oder DropDown nach Jahr oder kategorie (Verwandlung, Zauberkunst, ...)
 //(check) aufhübschen
+//(check) Player-View vs. GM-View
+//(check) permissions -> GM kann jedem Spieler individuelle Sounds zuweisen (Bsp. Spieler 1 kann Lumos & Expelliarmus, Spieler 2 kann noch nichts, Spieler 3 kann Expelliarmus & Stupor)
 //Extension Hosten:
 //(zu testen) Sounds abspielen für alle Spieler im Raum
-//(zu testen) Player-View vs. GM-View
-//(zu testen) permissions -> GM kann jedem Spieler individuelle Sounds zuweisen (Bsp. Spieler 1 kann Lumos & Expelliarmus, Spieler 2 kann noch nichts, Spieler 3 kann Expelliarmus & Stupor)
 //(ausstehend) Import/Export Funktion für diese permissons
 //Spells.json aus C:\Users\Wuest\OneDrive\Dokumente\Harry Potter PnP\Zauber\ verfollständigen und Spells aus C:\Users\Wuest\Documents\SoundBoard\src\ Überschreiben
 //(Ideen): Spells.json als zusätzlichen Load und Save zulassen (Dan kann man auch individuelle Sounds hinzufügen oder löschen)

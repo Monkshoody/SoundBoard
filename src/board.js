@@ -161,7 +161,8 @@ export async function setupPlayerView(container, playerName) {
 
   const permissions = await loadPermissions();
   renderPlayerSpells(permissions);
-
+  
+  // Live-Update für Spieler
   OBR.scene.onMetadataChange(async ({ metadata }) => {
     if (metadata[METADATA_NAMESPACE]) {
       renderPlayerSpells(metadata[METADATA_NAMESPACE]);
