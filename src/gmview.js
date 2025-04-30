@@ -8,15 +8,6 @@ export async function setupGMView(container, players = []) {
   // navigation-bar for headdline and import/export Buttons
   const navbar = document.getElementById("navbar") || document.createElement("nav");
   navbar.classList.add("navbar");
-  
-  //headline in navigation-bar
-  let brand = navbar.querySelector(".brand");
-  if (!brand) {
-    brand = document.createElement("span");
-    brand.classList.add("brand");
-    brand.textContent = "Spellboard";
-    navbar.appendChild(brand);
-  }
 
   // container for buttons in navigation-bar
   let navButtons = navbar.querySelector(".nav-buttons");
@@ -88,48 +79,69 @@ export async function setupGMView(container, players = []) {
 
   container.appendChild(spellsContainer);
 
-  // filter according to search
-  if (currentSearch.trim() !== "") {
-    const search = currentSearch.trim().toLowerCase();
-    filteredSpells = filteredSpells.filter(spell => spell.name.toLowerCase().includes(search));
-  }
+  // for rerendering while searching and filtering this function is used
+  function renderSpells() {
+    // clear the container for a new render
+    spellsContainer.innerHTML = '';
 
-  // filter according to combined filter
-  let filteredSpells = spellData.filter(spell => spell.verfügbar); // show generelly just available sounds
-  const selected = combinedSelect.value;
-  if (currentFilter !== "all") {
-    if (selected.startsWith("category: ")) {
-      const category = selected.replace("category: ", "");
-      filteredSpells = filteredSpells.filter(spell => spell.kategorie === category);
+    // show generelly just available sounds
+    let filteredSpells = spellData.filter(spell => spell.verfügbar);
+
+    // filter according to search
+    if (currentSearch.trim() !== "") {
+      const search = currentSearch.trim().toLowerCase();
+      filteredSpells = filteredSpells.filter(spell => spell.name.toLowerCase().includes(search));
     }
-    if (selected.startsWith("year: ")) {
-        const year = selected.replace("year: ", "");
-        filteredSpells = filteredSpells.filter(spell => spell.jahr === year);
+
+    // filter according to combined filter
+    const selected = combinedSelect.value;
+    if (currentFilter !== "all") {
+      if (selected.startsWith("category: ")) {
+        const category = selected.replace("category: ", "");
+        filteredSpells = filteredSpells.filter(spell => spell.kategorie === category);
+      }
+      if (selected.startsWith("year: ")) {
+          const year = selected.replace("year: ", "");
+          filteredSpells = filteredSpells.filter(spell => spell.jahr === year);
+      }
     }
-  }
 
-  if (filteredSpells.length === 0) {
-    spellsContainer.innerHTML = '<p>No sounds found.</p>';
-    //return;
-  }
+    if (filteredSpells.length === 0) {
+      spellsContainer.innerHTML = '<p>No sounds found.</p>';
+      //return;
+    }
 
-  // create cards for each filtered sound in the main container: spellsContainer
-  filteredSpells.forEach(spell => {
-    const spellCard = document.createElement('div');
-    spellCard.classList.add('spell-card');
+    // create cards for each filtered sound in the main container: spellsContainer
+    filteredSpells.forEach(spell => {
+      const spellCard = document.createElement('div');
+      spellCard.classList.add('spell-card');
 
-    spellsContainer.appendChild(spellCard);
-  
-    // create a sound button to play the sound
-    const button = document.createElement('button');
-    button.textContent = `${spell.name}`;
-    button.classList.add('spell-button');
-  
-    button.addEventListener('click', () => {
-      const audio = new Audio(spell.audio);
-      audio.play();
+      spellsContainer.appendChild(spellCard);
+    
+      // create a sound button to play the sound
+      const button = document.createElement('button');
+      button.textContent = `${spell.name}`;
+      button.classList.add('spell-button');
+    
+      button.addEventListener('click', () => {
+        const audio = new Audio(spell.audio);
+        audio.play();
+      });
+
+      spellCard.appendChild(button);
     });
+  }
 
-    spellCard.appendChild(button);
+  searchInput.addEventListener('input', (e) => {
+    currentSearch = e.target.value;
+    renderSpells();
   });
+  
+  combinedSelect.addEventListener('change', (e) => {
+    currentFilter = e.target.value;
+    renderSpells();
+  });
+
+  // initial rendering to dislpay all sounds
+  renderSpells();
 }
