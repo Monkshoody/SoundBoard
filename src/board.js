@@ -168,6 +168,10 @@ export async function setupGMView(container, players = []) {
         //checkbox.dataset.spell = spell.name;
         //checkbox.dataset.player = player; // Für spätere Save-Logik wichtig
         checkbox.addEventListener("change", async () => {
+          // Button/Checkbox deaktivieren
+          checkbox.disabled = true;
+
+          
           if (!permissions[player]) permissions[player] = [];
           if (checkbox.checked) {
             if (!permissions[player].includes(spell.name)) {
@@ -177,6 +181,8 @@ export async function setupGMView(container, players = []) {
             permissions[player] = permissions[player].filter(s => s !== spell.name);
           }
           await savePermissions(permissions);
+          // Wieder aktivieren
+          checkbox.disabled = false;
         });
     
         label.appendChild(checkbox);
