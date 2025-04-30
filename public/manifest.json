@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "manifest_version": 1,
   "author": "Moonkshood",
-  "icon": "./public/logo.png",
+  "icon": "./logo.png",
   "description": "Provide sound effects, songs, backgroundmusic with access to all Players.",
   "action": {
     "title": "SoundBoard",
