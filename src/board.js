@@ -8,7 +8,6 @@ export async function setupGMView(container, players = []) {
   const navbar = document.getElementById("navbar") || document.createElement("nav");
   navbar.classList.add("navbar");
   
-  // Falls nicht schon da:
   let brand = navbar.querySelector(".brand");
   if (!brand) {
     brand = document.createElement("span");
@@ -68,7 +67,7 @@ export async function setupGMView(container, players = []) {
         const newPermissions = JSON.parse(text);
         await savePermissions(newPermissions);
         alert("Import erfolgreich!");
-        renderSpells(); // oder komplette Ansicht neu laden
+        renderSpells(); // die komplette Ansicht neu laden
       } catch (err) {
         alert("Fehler beim Importieren der Datei.");
       }
