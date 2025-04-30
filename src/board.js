@@ -29,7 +29,7 @@ export async function setupGMView(container, players = []) {
   exportButton.classList.add("nav-button");
   exportButton.title = "save permissions";
   const exportIcon = document.createElement("img");
-  exportIcon.src = "/public/export.png";
+  exportIcon.src = "./export.png";
   exportIcon.alt = "export";
   exportIcon.classList.add("nav-icon");
   exportButton.appendChild(exportIcon);
@@ -51,7 +51,7 @@ export async function setupGMView(container, players = []) {
   importButton.classList.add("nav-button");
   importButton.title = "open permissions";
   const importIcon = document.createElement("img");
-  importIcon.src = "/public/import.png";
+  importIcon.src = "./import.png";
   importIcon.alt = "import";
   importIcon.classList.add("nav-icon");
   importButton.appendChild(importIcon);
