@@ -25,7 +25,7 @@ a:hover {
 
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   background-color: #333;
   padding: 10px;
@@ -37,10 +37,33 @@ a:hover {
   z-index: 1000;
 }
 
-.navbar .brand {
+.brand {
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.nav-button {
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.nav-button:hover {
+  background-color: #404040;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
 }
 
 body {

@@ -3,6 +3,81 @@ import spellData from "./spells.json"
 const METADATA_NAMESPACE = "spell-permissions";
 
 export async function setupGMView(container, players = []) {
+
+  const navbar = document.getElementById("navbar") || document.createElement("nav");
+  navbar.classList.add("navbar");
+  
+  // Falls nicht schon da:
+  let brand = navbar.querySelector(".brand");
+  if (!brand) {
+    brand = document.createElement("span");
+    brand.classList.add("brand");
+    brand.textContent = "Spellboard";
+    navbar.appendChild(brand);
+  }
+  
+  // Container für Buttons (falls nicht schon da)
+  let navButtons = navbar.querySelector(".nav-buttons");
+  if (!navButtons) {
+    navButtons = document.createElement("div");
+    navButtons.classList.add("nav-buttons");
+    navbar.appendChild(navButtons);
+  }
+
+  // Export-Button
+  const exportButton = document.createElement("button");
+  exportButton.classList.add("nav-button");
+  exportButton.title = "save permissions";
+  const exportIcon = document.createElement("img");
+  exportIcon.src = "/public/export.png";
+  exportIcon.alt = "export";
+  exportIcon.classList.add("nav-icon");
+  exportButton.appendChild(exportIcon);
+  exportButton.addEventListener("click", async () => {
+    const permissions = await loadPermissions();
+    const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "spell-permissions.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  // Import-Button
+  const importButton = document.createElement("button");
+  importButton.classList.add("nav-button");
+  importButton.title = "open permissions";
+  const importIcon = document.createElement("img");
+  importIcon.src = "/public/import.png";
+  importIcon.alt = "import";
+  importIcon.classList.add("nav-icon");
+  importButton.appendChild(importIcon);
+  importButton.addEventListener("click", async () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json";
+    input.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const text = await file.text();
+      try {
+        const newPermissions = JSON.parse(text);
+        await savePermissions(newPermissions);
+        alert("Import erfolgreich!");
+        renderSpells(); // oder komplette Ansicht neu laden
+      } catch (err) {
+        alert("Fehler beim Importieren der Datei.");
+      }
+    };
+    input.click();
+  });
+
+  navButtons.appendChild(importButton);
+  navButtons.appendChild(exportButton);
+
   const permissions = await loadPermissions();
   let currentFilter = "Alle";
   let currentSearch = "";
@@ -161,7 +236,7 @@ export async function setupPlayerView(container, playerName) {
 
   const permissions = await loadPermissions();
   renderPlayerSpells(permissions);
-  
+
   // Live-Update für Spieler
   OBR.scene.onMetadataChange(async ({ metadata }) => {
     if (metadata[METADATA_NAMESPACE]) {
