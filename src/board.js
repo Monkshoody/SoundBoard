@@ -79,6 +79,7 @@ export async function setupGMView(container, players = []) {
   navButtons.appendChild(exportButton);
 
   const permissions = await loadPermissions();
+  console.log("Permissions GM:", permissions);
   let currentFilter = "Alle";
   let currentSearch = "";
 
