@@ -1,8 +1,22 @@
 import OBR from "@owlbear-rodeo/sdk";
 import spellData from "./spells.json";
 
-const METADATA_NAMESPACE = "spell-permissions";
+const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-Session Namespace for distributing permissions to sounds
+const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-Session Namespace for distributing audio
 
+// audio function to dirtibute audio to all players in the room
+async function playSoundForAll(audioFile) {
+  const meta = await OBR.scene.getMetadata();
+  await OBR.scene.setMetadata({
+    [SOUND_TRIGGER_KEY]: {
+      audio: audioFile,
+      timestamp: Date.now()  // prevents Caching & ensures new triggering
+    }
+  });
+}
+
+// main function for the Game-Masters-View
+// I don't know what will happen if there are two GMs.
 export async function setupGMView(container, players = []) {
   //begin of navbar
   // navigation-bar for headdline and import/export Buttons
@@ -124,8 +138,10 @@ export async function setupGMView(container, players = []) {
       button.classList.add('spell-button');
     
       button.addEventListener('click', () => {
-        const audio = new Audio(spell.audio);
-        audio.play();
+        //const audio = new Audio(spell.audio);
+        //audio.play();
+        // distribute sound to all Players in the room
+        playSoundForAll(spell.audio);
       });
 
       spellCard.appendChild(button);
@@ -144,4 +160,18 @@ export async function setupGMView(container, players = []) {
 
   // initial rendering to dislpay all sounds
   renderSpells();
+
+  let lastTimestamp = 0;
+
+  OBR.scene.onMetadataChange((metadata) => {
+    const trigger = metadata[SOUND_TRIGGER_KEY];
+    console.log("Trigger:", trigger);
+    if (!trigger) return;
+
+    if (trigger.timestamp > lastTimestamp) {
+      lastTimestamp = trigger.timestamp;
+      const audio = new Audio(trigger.audio);
+      audio.play();
+    }
+  });
 }
