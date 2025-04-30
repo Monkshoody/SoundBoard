@@ -137,33 +137,38 @@ export async function setupGMView(container, players = []) {
   renderSpells();
 }
 
-export async function setupPlayerView(playerName) {
+export async function setupPlayerView(container, playerName) {
+  function renderPlayerSpells(permissions) {
+    container.innerHTML = ""; // Leeren
+    const playerSpells = permissions[playerName] || [];
+
+    playerSpells.forEach(spellName => {
+      const spell = spellData.find(s => s.name === spellName);
+      if (!spell) return;
+
+      const card = document.createElement("div");
+      card.className = "spell-card";
+
+      const button = document.createElement("button");
+      button.textContent = spell.name;
+      button.className = "spell-button";
+      button.addEventListener("click", () => new Audio(spell.audio).play());
+
+      card.appendChild(button);
+      container.appendChild(card);
+    });
+  }
+
   const permissions = await loadPermissions();
-  const playerSpells = permissions[playerName] || [];
+  renderPlayerSpells(permissions);
 
-  playerSpells.forEach(spellName => {
-    const spell = spellData.find(s => s.name === spellName);
-    if (!spell) return;
-
-    const card = document.createElement("div");
-    card.className = "spell-card";
-
-    const button = document.createElement("button");
-    button.textContent = spell.name;
-    button.className = "spell-button";
-    button.addEventListener("click", () => new Audio(spell.audio).play());
-
-    card.appendChild(button);
-    container.appendChild(card);
-  });
-
-  // Live-Update für Spieler, falls der GM Änderungen vornimmt
-  OBR.scene.onMetadataChange(({ metadata }) => {
+  OBR.scene.onMetadataChange(async ({ metadata }) => {
     if (metadata[METADATA_NAMESPACE]) {
-      setupPlayerView(playerName); // komplette Ansicht neu rendern
+      renderPlayerSpells(metadata[METADATA_NAMESPACE]);
     }
   });
 }
+
 
 async function loadPermissions() {
   const metadata = await OBR.scene.getMetadata();
