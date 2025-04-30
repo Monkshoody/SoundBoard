@@ -1,6 +1,7 @@
 import './style.css';
 import OBR from "@owlbear-rodeo/sdk";
-import { setupGMView, setupPlayerView } from './board.js';
+import setupGMView from './GMView.js';
+import setupPlayerView from './PlayerView.js'
 
 //(check) JSON-Liste mit allen Spell-Sounds (und Dropbox-Links direkt mit raw=1)
 //(check) Suchfunktion oder DropDown nach Jahr oder kategorie (Verwandlung, Zauberkunst, ...)
@@ -19,7 +20,7 @@ import { setupGMView, setupPlayerView } from './board.js';
 // Navigation und Content Struktur erstellen
 document.querySelector('#app').innerHTML = `
   <nav id="navbar" class="navbar">
-    <span class="brand">Spellboard</span>
+    <!--<span class="brand">Spellboard</span>-->
     <div class="nav-buttons"></div>
   </nav>
   <div id="contentArea"></div>
