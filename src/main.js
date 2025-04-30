@@ -15,7 +15,6 @@ import { setupGMView, setupPlayerView } from './board.js';
 // |-> Manipulation der json: Wie macht man das ohne die Json in der Extension für alle Leute die darauf zugreifen wollen zu ändern
 //change to english Documentation
 
-
 // Navigation und Content Struktur erstellen
 document.querySelector('#app').innerHTML = `
   <nav id="navbar" class="navbar">
