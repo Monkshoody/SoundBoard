@@ -1,29 +1,35 @@
 import OBR from "@owlbear-rodeo/sdk";
 import spellData from "./spells.json";
-import { loadPermissions, savePermissions } from "./permissions.js";
+import { loadPermissions, savePermissions, playSoundForAll } from "./permissions.js";
 
-const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-Session Namespace for distributing permissions to sounds
-const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-Session Namespace for distributing audio
+const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
+const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
+const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 
-// audio function to dirtibute audio to all players in the room
-async function playSoundForAll(audioFile) {
-  const meta = await OBR.scene.getMetadata();
-  await OBR.scene.setMetadata({
-    [SOUND_TRIGGER_KEY]: {
-      audio: audioFile,
-      timestamp: Date.now()  // prevents Caching & ensures new triggering
-    }
-  });
+var players = []; // global players array including names of all players in the room
+
+// wrapped OBR.party.getPlayers() function for recall during initialization and OBR.party.onchange()
+async function updatePlayers(players) {
+  const playersList = await OBR.party.getPlayers()
+  players = playersList.map(player => player.name);
+  //console.log("update Players performed:", players);
+  return players;
 }
 
 // main function for the Game-Masters-View
 // I don't know what will happen if there are two GMs.
-export async function setupGMView(container, players = []) {
+export async function setupGMView(container) {
 
+  // permissions defines who is able to see and play a sound. GM can checkbox the users to provide access to a sound.
+  // Thus, permissions is an array containing all players and the accoring sound access
   const permissions = await loadPermissions();
-  console.log("Permissions GM:", permissions);
+  //console.log("Permissions GM:", permissions);
+  // three possibilities: 1. GM is first one in room und thus alone. -> getPlayers() will be empty
+  //                      2. GM is with some, but not all players in room. -> getPlayers() will be partially full -> players needs update through OBR.party.onChange()
+  //                      3. GM is with all players in the room. -> getPlayers() will be full -> we should still update players through OBR.party.onChange()
+  players = await updatePlayers(players);
 
-  //begin of navbar
+  // begin of navbar
   // navigation-bar for headdline and import/export Buttons
   const navbar = document.getElementById("navbar") || document.createElement("nav");
   navbar.classList.add("navbar");
@@ -46,6 +52,18 @@ export async function setupGMView(container, players = []) {
   exportIcon.classList.add("nav-icon");
   exportButton.appendChild(exportIcon);
 
+  exportButton.addEventListener("click", async () => {
+    const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "SoundBoard-permissions.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
   navButtons.appendChild(exportButton);
 
   // import-button
@@ -58,7 +76,54 @@ export async function setupGMView(container, players = []) {
   importIcon.classList.add("nav-icon");
   importButton.appendChild(importIcon);
 
+  importButton.addEventListener("click", async () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json";
+    input.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const text = await file.text();
+      try {
+        const newPermissions = JSON.parse(text);
+        await savePermissions(newPermissions);
+        OBR.notification.show("import successful");
+        await renderSpells(newPermissions); // why does this not work for the GM, but for the player?
+      } catch (err) {
+        OBR.notification.show("Error importing file");
+      }
+    };
+    input.click();
+  });
+
   navButtons.appendChild(importButton);
+
+  // toggle player are allowed to play sound in general
+  /*
+  const meta = await OBR.room.getMetadata();
+  console.log("metadata in here:", meta);
+  const isEnabled = meta[SOUND_PERMISSION_KEY] !== false; // Default: true
+  const toggle = document.createElement("toggle");
+  toggle.textContent = " 🎵 Player Sounds ";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = isEnabled;
+  checkbox.id = "soundToggle";
+  console.log("I'm here:", isEnabled);
+  
+  toggle.addEventListener("change", async () => {
+    await OBR.room.setMetadata({
+      [SOUND_PERMISSION_KEY]: toggle.checked,
+      [SOUND_TRIGGER_KEY]: { timestamp: 0 }
+    });
+  });
+  const metadata = await OBR.room.getMetadata();
+  console.log("metadata down here:", metadata);
+  toggle.appendChild(checkbox);
+  navButtons.appendChild(toggle);
+  */
+
   // end of navbar
 
   // begin of contentArea 
@@ -98,8 +163,10 @@ export async function setupGMView(container, players = []) {
 
   container.appendChild(spellsContainer);
 
-  // for rerendering while searching and filtering this function is used
-  function renderSpells() {
+  // for rerendering while searching, filtering and updateing checkboxes this function is used
+  async function renderSpells(permissions) {
+    // get an updated player-list
+    players = await updatePlayers(players);
     // clear the container for a new render
     spellsContainer.innerHTML = '';
 
@@ -135,7 +202,6 @@ export async function setupGMView(container, players = []) {
       const spellCard = document.createElement('div');
       spellCard.classList.add('spell-card');
 
-      spellsContainer.appendChild(spellCard);
     
       // create a sound button to play the sound
       const button = document.createElement('button');
@@ -143,41 +209,92 @@ export async function setupGMView(container, players = []) {
       button.classList.add('spell-button');
     
       button.addEventListener('click', () => {
-        //const audio = new Audio(spell.audio);
-        //audio.play();
         // distribute sound to all Players in the room
         playSoundForAll(spell.audio);
       });
 
       spellCard.appendChild(button);
+
+      // Checkbox-Gruppe
+      if (players.length) { // if players is empty, we don't need the checkboxes
+        const checkboxGroup = document.createElement('div');
+        checkboxGroup.classList.add('checkbox-group');
+
+        players.forEach((player) => { // create a checkbox element for each player (for each sound)
+          const label = document.createElement('label');
+          label.classList.add('checkbox-label');
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          
+          // check existing room permissions to check and uncheck sounds
+          checkbox.checked = permissions[player]?.includes(spell.name) || false;
+
+          // Add EventListener for permissions
+          checkbox.addEventListener("change", async () => {
+            // disable Checkbox while permissions are updated
+            checkbox.disabled = true;
+
+            if (!permissions[player]) permissions[player] = []; // initiate permissions for player, if not alredy exist
+            if (checkbox.checked) { 
+              if (!permissions[player].includes(spell.name)) {
+                permissions[player].push(spell.name); // player gets permission to play the sound ich checkbox is checked
+              }
+            } else {
+              permissions[player] = permissions[player].filter(s => s !== spell.name); // player loses permission if checkbox is unchecked
+            }
+            
+            // save the new permissions in the room metadata
+            await savePermissions(permissions);
+
+            // reactivate checkbox
+            checkbox.disabled = false;
+          });
+
+          label.appendChild(checkbox);
+          label.append(` ${player}`);
+          checkboxGroup.appendChild(label);
+        });
+
+        spellCard.appendChild(checkboxGroup); 
+      }
+
+      // put all children together and append to the spellsContainer
+      spellsContainer.appendChild(spellCard); 
     });
   }
 
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value;
-    renderSpells();
+    renderSpells(permissions);
   });
   
   combinedSelect.addEventListener('change', (e) => {
     currentFilter = e.target.value;
-    renderSpells();
+    renderSpells(permissions);
   });
 
-  // initial rendering to dislpay all sounds
-  renderSpells();
-
+  // check for changed metadata to trigger sound
   let lastTimestamp = 0;
 
-  OBR.scene.onMetadataChange((metadata) => {
-
+  OBR.room.onMetadataChange((metadata) => {
+    console.log("in", metadata);
     const trigger = metadata[SOUND_TRIGGER_KEY];
-    console.log("Trigger:", trigger);
     if (!trigger) return;
-
+    console.log("trigger:", trigger.timestamp, lastTimestamp);
     if (trigger.timestamp > lastTimestamp) {
       lastTimestamp = trigger.timestamp;
       const audio = new Audio(trigger.audio);
       audio.play();
     }
   });
+  
+
+  // check for new players to update checkboxes and permissions
+  OBR.party.onChange((newplayer) => {
+    updatePlayers(players); // update the global players array, scince someone joined or left the room
+    renderSpells(permissions); // re-render to update the checkboxes
+  });
+
+  // initial rendering to dislpay all sounds
+  renderSpells(permissions);
 }
