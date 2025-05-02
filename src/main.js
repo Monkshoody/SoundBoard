@@ -13,7 +13,8 @@ import { setupPlayerView } from './playerview.js';
 //(check) Import/Export Funktion für diese permissons
 //(check) Add search to playerview when they get access to sounds
 //(check) Send Notification to all in room when Player plays sound
-//(To-Do) Mute Players with toggle in GM-View (https://codepen.io/snphillips/pen/bGBeJWe)
+//(check) Mute Players with toggle in GM-View (https://codepen.io/snphillips/pen/bGBeJWe)
+//(test) audio play does not work. Maybe because of Edge, but let's check!
 //clean up (maybe change spells to sounds)
 //make new Git-Branch
 //change to german

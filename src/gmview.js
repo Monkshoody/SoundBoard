@@ -17,11 +17,16 @@ async function updatePlayers(players) {
   return players;
 }
 
-
-
 // main function for the Game-Masters-View
 // I don't know what will happen if there are two GMs.
 export async function setupGMView(container) {
+
+  // Do I need to set-up/initiate all the Namespaces? What does this change?
+  const currentMetadata = await OBR.room.getMetadata();
+  await OBR.room.setMetadata({
+    ... currentMetadata,
+    [SOUND_PERMISSION_KEY]: true
+  });
 
   // permissions defines who is able to see and play a sound. GM can checkbox the users to provide access to a sound.
   // Thus, permissions is an array containing all players and the accoring sound access
@@ -44,6 +49,55 @@ export async function setupGMView(container) {
     navButtons.classList.add("nav-buttons");
     navbar.appendChild(navButtons);
   }
+
+  // toggle player are allowed to play sound in general
+  // audio-toggle container
+  const audioToggleWrapper = document.createElement("div");
+  audioToggleWrapper.classList.add("audio-toggle-wrapper");
+
+  // Label für den Switch
+  const label = document.createElement("label");
+  label.classList.add("switch");
+
+  // Der eigentliche Input (checkbox)
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.id = "audio-toggle";
+  checkbox.checked = true; // Optional: initial aktiv
+
+  checkbox.addEventListener("change", async () => {
+    const currentMetadata = await OBR.room.getMetadata();
+    console.log("checkbox.checked:", checkbox.checked);
+    if (checkbox.checked) {
+      console.log("Sound ist AN");
+    } else {
+      console.log("Sound ist AUS");
+    }
+    await OBR.room.setMetadata({
+      ... currentMetadata,
+      [SOUND_PERMISSION_KEY]: checkbox.checked
+    });
+  });
+
+  // Der "Slider"
+  const slider = document.createElement("span");
+  slider.classList.add("slider", "round");
+
+  // Füge checkbox und slider ins Label
+  label.appendChild(checkbox);
+  label.appendChild(slider);
+
+  // Beschriftung neben dem Switch
+  const switchText = document.createElement("span");
+  switchText.textContent = "mute player";
+  switchText.classList.add("switch-text");
+
+  // Füge alles zusammen
+  audioToggleWrapper.appendChild(switchText);
+  audioToggleWrapper.appendChild(label);
+
+  // In die navButtons einfügen
+  navButtons.appendChild(audioToggleWrapper);
 
   // export-button
   const exportButton = document.createElement("button");
@@ -100,33 +154,6 @@ export async function setupGMView(container) {
   });
 
   navButtons.appendChild(importButton);
-
-  // toggle player are allowed to play sound in general
-  /*
-  const meta = await OBR.room.getMetadata();
-  console.log("metadata in here:", meta);
-  const isEnabled = meta[SOUND_PERMISSION_KEY] !== false; // Default: true
-  const toggle = document.createElement("toggle");
-  toggle.textContent = " 🎵 Player Sounds ";
-
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.checked = isEnabled;
-  checkbox.id = "soundToggle";
-  console.log("I'm here:", isEnabled);
-  
-  toggle.addEventListener("change", async () => {
-    await OBR.room.setMetadata({
-      [SOUND_PERMISSION_KEY]: toggle.checked,
-      [SOUND_TRIGGER_KEY]: { timestamp: 0 }
-    });
-  });
-  const metadata = await OBR.room.getMetadata();
-  console.log("metadata down here:", metadata);
-  toggle.appendChild(checkbox);
-  navButtons.appendChild(toggle);
-  */
-
   // end of navbar
 
   // begin of contentArea 
