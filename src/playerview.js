@@ -7,14 +7,42 @@ const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namesp
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 
 export async function setupPlayerView(container, playerName) {
-  function renderSpells(permissions) {
+  // search function for sounds
+  let currentFilter = "all";
+  let currentSearch = "";
+
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.placeholder = '🔎 Search for sound name ...';
+  searchInput.classList.add('search-bar');
+
+  container.appendChild(searchInput);
+
+  // main container for sounds
+  const spellsContainer = document.createElement('div');
+  spellsContainer.classList.add('spells-container');
+
+  container.appendChild(spellsContainer);
+
+  async function renderSpells() {
+    const permissions = await loadPermissions();
+
     if (!permissions[playerName] || permissions[playerName].length === 0) {
       container.innerHTML = "<p>no sounds available</p>";
       return;
     }
-    container.innerHTML = ""; // emtying the playerview
-    const playerSpells = permissions[playerName] || [];
+    spellsContainer.innerHTML = ""; // emtying the playerview
+    let playerSpells = permissions[playerName] || [];
 
+    console.log("PlayerSpells:", playerSpells);
+    
+    // filter according to search
+    if (currentSearch.trim() !== "") {
+      const search = currentSearch.trim().toLowerCase();
+      playerSpells = playerSpells.filter(spell => spell.toLowerCase().includes(search));
+    }
+
+    console.log("PlayerSpells:", playerSpells);
     playerSpells.forEach(spellName => {
       const spell = spellData.find(s => s.name === spellName);
       if (!spell) return;
@@ -35,13 +63,18 @@ export async function setupPlayerView(container, playerName) {
       });
 
       card.appendChild(button);
-      container.appendChild(card);
+      spellsContainer.appendChild(card);
     });
   }
 
-  const permissions = await loadPermissions();
-  console.log("Permissions:", permissions);
-  renderSpells(permissions);
+  //const permissions = await loadPermissions();
+  //console.log("Permissions:", permissions);
+
+  searchInput.addEventListener('input', (e) => {
+    currentSearch = e.target.value;
+    renderSpells();
+  });
+
 
   // check for changed metadata to trigger sound
   let lastTimestamp = 0; // prevents Caching & ensures new triggering
@@ -55,7 +88,10 @@ export async function setupPlayerView(container, playerName) {
       const audio = new Audio(trigger.audio); // updates audio
       audio.play(); // play new audio
     }
-    const permissions = await loadPermissions();
-    renderSpells(permissions);
+    //const permissions = await loadPermissions();
+    renderSpells();
   });
+
+  // initial rendering to dislpay all sounds
+  renderSpells();
 }

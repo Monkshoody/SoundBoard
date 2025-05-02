@@ -11,12 +11,20 @@ import { setupPlayerView } from './playerview.js';
 //(check) Sounds abspielen für alle Spieler im Raum
 //(check) permissions -> GM kann jedem Spieler individuelle Sounds zuweisen (Bsp. Spieler 1 kann Lumos & Expelliarmus, Spieler 2 kann noch nichts, Spieler 3 kann Expelliarmus & Stupor)
 //(check) Import/Export Funktion für diese permissons
-//(To-Do) Add filter and search to playerview when they get access to sounds
+//(check) Add search to playerview when they get access to sounds
+//(To-Do) Send Notification to all in room when Player plays sound
 //(To-Do) Mute Players with toggle in GM-View
-//(Ideen): Spells.json als zusätzlichen Load und Save zulassen (Dan kann man auch individuelle Sounds hinzufügen oder löschen)
-// |-> Manipulation der json: Wie macht man das ohne die Json in der Extension für alle Leute die darauf zugreifen wollen zu ändern
-//change to english Documentation
 //clean up (maybe change spells to sounds)
+//make new Git-Branch
+//change to german
+
+//New Git-Branch for public availabiity:
+//change Spellboard -> Soundboard
+//change to english
+//edit export/import for provided sounds
+//remove spells.json
+//add an add-button to add new sounds
+//remove search and filter when no sound is available (see playerview)
 
 // Navigation und Content Struktur erstellen
 document.querySelector('#app').innerHTML = `
