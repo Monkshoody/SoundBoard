@@ -12,8 +12,8 @@ import { setupPlayerView } from './playerview.js';
 //(check) permissions -> GM kann jedem Spieler individuelle Sounds zuweisen (Bsp. Spieler 1 kann Lumos & Expelliarmus, Spieler 2 kann noch nichts, Spieler 3 kann Expelliarmus & Stupor)
 //(check) Import/Export Funktion für diese permissons
 //(check) Add search to playerview when they get access to sounds
-//(To-Do) Send Notification to all in room when Player plays sound
-//(To-Do) Mute Players with toggle in GM-View
+//(check) Send Notification to all in room when Player plays sound
+//(To-Do) Mute Players with toggle in GM-View (https://codepen.io/snphillips/pen/bGBeJWe)
 //clean up (maybe change spells to sounds)
 //make new Git-Branch
 //change to german

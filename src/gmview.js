@@ -1,9 +1,10 @@
 import OBR from "@owlbear-rodeo/sdk";
 import spellData from "./spells.json";
-import { loadPermissions, savePermissions, playSoundForAll } from "./permissions.js";
+import { loadPermissions, savePermissions, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
+const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 
 var players = []; // global players array including names of all players in the room
@@ -15,6 +16,8 @@ async function updatePlayers(players) {
   //console.log("update Players performed:", players);
   return players;
 }
+
+
 
 // main function for the Game-Masters-View
 // I don't know what will happen if there are two GMs.
@@ -88,7 +91,7 @@ export async function setupGMView(container) {
         const newPermissions = JSON.parse(text);
         await savePermissions(newPermissions);
         OBR.notification.show("import successful");
-        await renderSpells(newPermissions); // why does this not work for the GM, but for the player?
+        await renderSpells(newPermissions); // pass newPermissions to render GMView properly
       } catch (err) {
         OBR.notification.show("Error importing file");
       }
@@ -167,6 +170,7 @@ export async function setupGMView(container) {
   async function renderSpells(permissions) {
     // get an updated player-list
     players = await updatePlayers(players);
+    const playerName = await OBR.player.getName();
     // clear the container for a new render
     spellsContainer.innerHTML = '';
 
@@ -211,6 +215,7 @@ export async function setupGMView(container) {
       button.addEventListener('click', () => {
         // distribute sound to all Players in the room
         playSoundForAll(spell.audio);
+        triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
       });
 
       spellCard.appendChild(button);
@@ -277,10 +282,15 @@ export async function setupGMView(container) {
   let lastTimestamp = 0;
 
   OBR.room.onMetadataChange((metadata) => {
-    console.log("in", metadata);
+    const notify = metadata[NOTIFY_KEY];
+    if (notify && notify.timestamp > lastTimestamp) {
+      lastTimestamp = notify.timestamp;
+      OBR.notification.show(notify.message, "INFO");
+    }
     const trigger = metadata[SOUND_TRIGGER_KEY];
+    console.log("Trigger:", trigger);
     if (!trigger) return;
-    console.log("trigger:", trigger.timestamp, lastTimestamp);
+    console.log("Trigger timestamp:", trigger.timestamp, lastTimestamp);
     if (trigger.timestamp > lastTimestamp) {
       lastTimestamp = trigger.timestamp;
       const audio = new Audio(trigger.audio);

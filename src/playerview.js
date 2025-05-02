@@ -1,9 +1,10 @@
 import OBR from "@owlbear-rodeo/sdk";
 import spellData from "./spells.json";
-import { loadPermissions, playSoundForAll } from "./permissions.js";
+import { loadPermissions, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
+const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 
 export async function setupPlayerView(container, playerName) {
@@ -42,7 +43,7 @@ export async function setupPlayerView(container, playerName) {
       playerSpells = playerSpells.filter(spell => spell.toLowerCase().includes(search));
     }
 
-    console.log("PlayerSpells:", playerSpells);
+    //console.log("PlayerSpells:", playerSpells);
     playerSpells.forEach(spellName => {
       const spell = spellData.find(s => s.name === spellName);
       if (!spell) return;
@@ -60,6 +61,7 @@ export async function setupPlayerView(container, playerName) {
         console.log("isAllowed:", isAllowed);
         */
         playSoundForAll(spell.audio);
+        triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
       });
 
       card.appendChild(button);
@@ -79,6 +81,11 @@ export async function setupPlayerView(container, playerName) {
   // check for changed metadata to trigger sound
   let lastTimestamp = 0; // prevents Caching & ensures new triggering
   OBR.room.onMetadataChange(async (metadata) => {
+    const notify = metadata[NOTIFY_KEY];
+    if (notify && notify.timestamp > lastTimestamp) {
+      lastTimestamp = notify.timestamp;
+      OBR.notification.show(notify.message, "INFO");
+    }
     const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
     console.log("Trigger:", trigger);
     if (!trigger) return;
