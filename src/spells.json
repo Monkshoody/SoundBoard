@@ -5,7 +5,7 @@
         "beschreibung": "Öffnet verschlossene Türen und Fenster.",
         "bewegung": "Kurzer Bogen nach oben, dann nach unten",
         "jahr": "1. Jahr",
-        "audio": "https://www.dropbox.com/scl/fi/eorjgwb11jwgh75qoh7sc/Alohomora.wav?rlkey=jzuu0fimv3t419ijw1orlv7fa&st=m2np8pzh&raw=1",
+        "audio": "sounds/Alohomora.wav",
         "verfügbar": true
     },
     {
@@ -14,7 +14,7 @@
         "beschreibung": "Verlangsamungszauber: Verlangsamt die Bewegung von Personen oder Objekten.",
         "bewegung": "Zügig abwärts streichen, dann abrupt abbremsen mit Kreis.",
         "jahr": "1. Jahr",
-        "audio": "sounds/arresto-momentum.mp3",
+        "audio": "sounds/Arresto-Momentum.wav",
         "verfügbar": true
     },
     {
@@ -23,7 +23,7 @@
         "beschreibung": "Farbwechselzauber: Verändert die Farbe eines Objekts oder Kleidungsstücks.",
         "bewegung": "Zackige Wellenbewegung in der Luft.",
         "jahr": "1. Jahr",
-        "audio": "sounds/colovaria.mp3",
+        "audio": "sounds/Colovaria.wav",
         "verfügbar": true
     },
     {
@@ -32,7 +32,7 @@
         "beschreibung": "Schrumpfzauber: Lässt das Ziel schrumpfen.",
         "bewegung": "Vertikale Spirale von oben nach unten.",
         "jahr": "1. Jahr",
-        "audio": "sounds/diminuendo.mp3",
+        "audio": "sounds/Diminuendo.wav",
         "verfügbar": true
     },
     {
@@ -41,7 +41,7 @@
         "beschreibung": "Lässt die Spitze des Zauberstabs leuchten.",
         "bewegung": "Kurzer Kreis im Uhrzeigersinn",
         "jahr": "1. Jahr",
-        "audio": "https://www.dropbox.com/scl/fi/itb413qc3fcuevm1m01og/Lumos.wav?rlkey=qsl73zg0y5o5ltgc4wb6u2msn&st=0r1hkszb&raw=1",
+        "audio": "sounds/Lumos.wav",
         "verfügbar": true
     },
     {
@@ -50,7 +50,7 @@
         "beschreibung": "Funkenzauber: Schießt rote Funken zur Signalgebung in die Luft.",
         "bewegung": "Schnelles „X“ in die Luft, dann nach oben schnipsen.",
         "jahr": "1. Jahr",
-        "audio": "sounds/periculum.mp3",
+        "audio": "sounds/Periculum.wav",
         "verfügbar": true
     },
     {
@@ -59,7 +59,7 @@
         "beschreibung": "Weichmachzauber: Macht feste Materialien weich und biegsam.",
         "bewegung": "Schlängelnde Bewegung, wie ein springendes Seil.",
         "jahr": "1. Jahr",
-        "audio": "sounds/elasto.mp3",
+        "audio": "sounds/Elasto.wav",
         "verfügbar": true
     },
     {
@@ -68,7 +68,7 @@
         "beschreibung": "Reinigungszauber: Saugt Flüssigkeiten oder Schmutz von Oberflächen auf.",
         "bewegung": "Kreisbewegung im Uhrzeigersinn, dann nach unten zeigen.",
         "jahr": "1. Jahr",
-        "audio": "sounds/tergeo.mp3",
+        "audio": "sounds/Tergeo.wav",
         "verfügbar": true
     },
     {
@@ -77,7 +77,7 @@
         "beschreibung": "Schwebezauber: Lässt Objekte schweben und kontrolliert ihre Bewegung.",
         "bewegung": "Schwungvoller Aufwärtsschwung, dann langsames Kreisen. (Wutschen und Wedeln)",
         "jahr": "1. Jahr",
-        "audio": "https://www.dropbox.com/scl/fi/73z039lgt5ff15mis1rza/Wingardium-Leviosa.wav?rlkey=nzd1tvza0vh8pg7ymfk59szpw&st=q3hkpl53&raw=1",
+        "audio": "sounds/Wingardium-Leviosa.wav",
         "verfügbar": true
     },
     {
@@ -86,7 +86,7 @@
         "beschreibung": "Haarausfallfluch: Verursacht abrupten Haarausfall beim Ziel.",
         "bewegung": "Zackige Linie nach unten, dann zurückreißen.",
         "jahr": "1. Jahr",
-        "audio": "sounds/calvario.mp3",
+        "audio": "sounds/Calvario.wav",
         "verfügbar": true
     },
     {
@@ -95,7 +95,7 @@
         "beschreibung": "Gegenzuber: Ein Gegenzauber, der eine zur Zeit aktive Zauberwirkung beendet.",
         "bewegung": "Gerade Linie, dann quer durchstreichen.",
         "jahr": "1. Jahr",
-        "audio": "sounds/finite-incantatem.mp3",
+        "audio": "sounds/Finite-Incantatem.wav",
         "verfügbar": true
     },
     {
@@ -104,7 +104,7 @@
         "beschreibung": "Beinklammerfluch: Lässt die Beine des Ziels zusammenkleben.",
         "bewegung": "Zwei kurze diagonale Striche kreuzen sich.",
         "jahr": "1. Jahr",
-        "audio": "sounds/locomotor-mortis.mp3",
+        "audio": "sounds/Locomotor-Mortis.wav",
         "verfügbar": true
     },
     {
@@ -113,7 +113,7 @@
         "beschreibung": "Ganzkörperklammerfluch: Lähmt das Ziel vollständig.",
         "bewegung": "Lange Linie nach oben, dann abrupt stoppen.",
         "jahr": "1. Jahr",
-        "audio": "sounds/petrificus-totalus.mp3",
+        "audio": "sounds/Petrificus-Totalus.wav",
         "verfügbar": true
     },
     {
@@ -122,7 +122,7 @@
         "beschreibung": "Kotzfluch: Lässt das Ziel Schnecken erbrechen.",
         "bewegung": "Kreis mit einem ruckartigen Ausschlag nach vorne.",
         "jahr": "1. Jahr",
-        "audio": "sounds/schlug-schnecken.mp3",
+        "audio": "sounds/Schlug-Schnecken.wav",
         "verfügbar": true
     },
     {
@@ -131,7 +131,7 @@
         "beschreibung": "Wirbelwind-Hexung: Erzeugt einen kräftigen Windstoß oder Wirbelwind.",
         "bewegung": "Schnelle Spiralbewegung nach vorne.",
         "jahr": "1. Jahr",
-        "audio": "sounds/Ventus.mp3",
+        "audio": "sounds/Ventus.wav",
         "verfügbar": true
     },
     {
@@ -140,7 +140,7 @@
         "beschreibung": "Entwaffnet den Gegner und schleudert dessen Zauberstab weg.",
         "bewegung": "Gerade nach vorne stoßen",
         "jahr": "2. Jahr",
-        "audio": "sounds/expelliarmus.mp3",
+        "audio": "sounds/Expelliarmus_entwaffnen.wav",
         "verfügbar": true
     },
     {
@@ -149,7 +149,7 @@
         "beschreibung": "Erzeugt ein magisches Schutzschild.",
         "bewegung": "Kurzer Schwung nach vorne mit Halbkreis",
         "jahr": "3. Jahr",
-        "audio": "sounds/protego.mp3",
+        "audio": "sounds/Protego.wav",
         "verfügbar": true
     },
     {
@@ -158,7 +158,7 @@
         "beschreibung": "Lässt das Ziel bewusstlos werden.",
         "bewegung": "Schneller Schlag nach vorne",
         "jahr": "4. Jahr",
-        "audio": "sounds/stupor.mp3",
+        "audio": "sounds/Stupor.wav",
         "verfügbar": true
     },
     {
@@ -167,7 +167,7 @@
         "beschreibung": "Beschwört ein Objekt zum Zaubernden.",
         "bewegung": "Ziehen mit dem Zauberstab in Richtung Körper",
         "jahr": "4. Jahr",
-        "audio": "sounds/accio.mp3",
+        "audio": "sounds/Accio.wav",
         "verfügbar": true
     }
 ]
