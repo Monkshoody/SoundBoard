@@ -22,7 +22,7 @@ import { setupPlayerView } from './playerview.js';
 //New Git-Branch for public availabiity:
 //change Spellboard -> Soundboard
 //change to english
-//edit export/import for provided sounds
+//edit export/import for provided sounds (cut-off ?dl=0 to ?raw=1) how's this woth youtube or others?
 //remove spells.json
 //add an add-button to add new sounds
 //remove search and filter when no sound is available (see playerview)

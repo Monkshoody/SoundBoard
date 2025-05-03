@@ -3,3 +3,6 @@
   Access-Control-Allow-Methods: GET
   Access-Control-Allow-Headers: Content-Type
 
+/sounds/*.wav
+  Content-Type: audio/wav
+  Access-Control-Allow-Origin: *
