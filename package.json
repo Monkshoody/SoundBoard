@@ -13,5 +13,8 @@
   },
   "dependencies": {
     "@owlbear-rodeo/sdk": "^3.1.0"
-  }
+  },
+  "scripts": {
+  "build": "vite build && cp _headers dist/_headers"
+}
 }
