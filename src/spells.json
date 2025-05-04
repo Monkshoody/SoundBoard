@@ -369,6 +369,15 @@
         "verfügbar": true
     },
     {
+        "name": "Prior-Incantato",
+        "kategorie": "Prior Incantato",
+        "beschreibung": "Zauber-Rückverfolgung: Zeigt letzten genutzten Zauber eines Zauberstabs.",
+        "bewegung": "Den eigenen Zauberstab auf einen anderen Zauberstab richten und stillhalten.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Prior-Incantato.wav",
+        "verfügbar": true
+    },
+    {
         "name": "Reparifarge",
         "kategorie": "Verwandlung",
         "beschreibung": "Rückverwandlungszauber: Hebt missglückte oder halbfertige Verwandlungen auf.",
@@ -519,15 +528,6 @@
         "bewegung": "Schlingende Bewegung wie das Werfen eines Lassos, gefolgt von einem ruckartigen Zuziehen.",
         "jahr": "4. Jahr",
         "audio": "sounds/Incarcerous.wav",
-        "verfügbar": true
-    },
-    {
-        "name": "Homenum Revelio",
-        "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Menschen-Enthüllungszauber: Deckt verborgene menschliche Präsenzen in der Nähe auf.",
-        "bewegung": "Pulsierende Kreise mit anschließendem radialem Scan durch den Raum (Handfläche nach außen).",
-        "jahr": "4. Jahr",
-        "audio": "sounds/Homenum_Revelio.wav",
         "verfügbar": true
     },
     {
@@ -897,7 +897,7 @@
         "bewegung": "Hypnotische Spiralbewegung vor den Augen des Ziels mit weißem Nebel.",
         "jahr": "7. Jahr",
         "audio": "sounds/Obliviate.wav",
-        "verfügbar": false
+        "verfügbar": true
     },
     {
         "name": "Portus",
@@ -906,7 +906,7 @@
         "bewegung": "Komplexe dreidimensionale Knotenbewegung um das Objekt mit blauem Pulsieren.",
         "jahr": "7. Jahr",
         "audio": "sounds/Portus.wav",
-        "verfügbar": false
+        "verfügbar": true
     },
     {
         "name": "Baubillious",
@@ -960,7 +960,7 @@
         "bewegung": "Wirres, unkontrolliertes Kritzeln in der Luft mit grünlichem Nebel.",
         "jahr": "7. Jahr",
         "audio": "sounds/Mutatio.wav",
-        "verfügbar": false
+        "verfügbar": true
     },
     {
         "name": "Redactum",
