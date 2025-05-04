@@ -241,8 +241,8 @@ export async function setupGMView(container) {
     
       button.addEventListener('click', () => {
         // distribute sound to all Players in the room
-        playSoundForAll(spell.audio);
         triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
+        playSoundForAll(spell.audio);
       });
 
       spellCard.appendChild(button);

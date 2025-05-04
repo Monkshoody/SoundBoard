@@ -4,5 +4,9 @@
   Access-Control-Allow-Headers: Content-Type
 
 /sounds/*.wav
+  Access-Control-Allow-Origin: https://www.owlbear.rodeo
+  Access-Control-Allow-Methods: GET
+  Access-Control-Allow-Headers: Range
+  Access-Control-Expose-Headers: Accept-Ranges, Content-Range
   Content-Type: audio/wav
-  Access-Control-Allow-Origin: *
+  Accept-Ranges: bytes
