@@ -5,7 +5,7 @@
         "beschreibung": "Öffnet verschlossene Türen und Fenster.",
         "bewegung": "Kurzer Bogen nach oben, dann nach unten",
         "jahr": "1. Jahr",
-        "audio": "sounds/Alohomora_fixed.wav",
+        "audio": "sounds/Alohomora.wav",
         "verfügbar": true
     },
     {
@@ -135,39 +135,858 @@
         "verfügbar": true
     },
     {
-        "name": "Expelliarmus",
-        "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Entwaffnet den Gegner und schleudert dessen Zauberstab weg.",
+        "name": "Expelliarmus (entwaffnen)",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Entwaffnungszauber: Entwaffnet den Gegner und schleudert dessen Zauberstab oder ein anderes Objekt weg.",
         "bewegung": "Gerade nach vorne stoßen",
         "jahr": "2. Jahr",
         "audio": "sounds/Expelliarmus_entwaffnen.wav",
         "verfügbar": true
     },
     {
+        "name": "Expelliarmus (stoßen)",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Entwaffnungszauber: Entwaffnet den Gegner, in dem er durch die Luft geschleudert oder weggestoßen wird.",
+        "bewegung": "Gerade Linie nach vorne mit einem leichten Schwung zur Seite. Wirkt wie ein Stoß.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Expelliarmus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Obscuro",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Erblindungszauber: Erzeugt eine magische Augenbinde über den Augen des Ziels.",
+        "bewegung": "Kreisbewegung im Uhrzeigersinn vor dem Gesicht des Ziels.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Obscuro.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Reparo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Reparaturzauber: Fügt zerbrochene oder beschädigte Gegenstände nahtlos wieder zusammen.",
+        "bewegung": "Kleiner Halbkreis von links nach rechts über dem Objekt.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Reparo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Mimblewimble",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Zungenklammer Fluch: Verhindert, dass das Ziel verständlich sprechen kann.",
+        "bewegung": "Kurze Zickzack-Bewegung vor dem Mund des Gegners.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Mimblewimble.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Epoximise",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Bindungszauber: Verklebt zwei Objekte dauerhaft miteinander.",
+        "bewegung": "Zwei diagonale Striche kreuzen sich in der Mitte wie ein „X“.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Epoximise.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Flagrate",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Magische Kennzeichnung: Lässt ein flammendes Kreuz in der Luft entstehen.",
+        "bewegung": "Zeichne mit der Spitze des Zauberstabs das gewünschte Symbol.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Flagrate.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Fumos",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Rauch-Zauber: Hüllt das Umfeld in dichten, magischen Rauch zur Ablenkung.",
+        "bewegung": "Schnelles Spiralmuster nach oben, als würde man Rauch aufsteigen lassen.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Fumos.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Incendio",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Feuerzauber: Entfacht sofort eine Flamme oder setzt ein Ziel in Brand.",
+        "bewegung": "Kurzer, kräftiger Stich nach vorne wie eine Fackelbewegung.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Incendio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Serpensortia",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Schlangenbeschwörungszauber: Lässt eine lebendige Schlange erscheinen.",
+        "bewegung": "Schlängelnde Bewegung, die den Körper einer Schlange imitiert.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Serpensortia.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Mucus ad Nauseam",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Erkältungsfluch: Führt zu übermäßigem Nasenlaufen und Unwohlsein.",
+        "bewegung": "Schneller Schwung nach oben mit abruptem Stopp über dem Kopf des Ziels.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Mucus_ad_Nauseam.wav",
+        "verfügbar": true
+    },
+    {
         "name": "Protego",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Erzeugt ein magisches Schutzschild.",
-        "bewegung": "Kurzer Schwung nach vorne mit Halbkreis",
-        "jahr": "3. Jahr",
+        "beschreibung": "Schildzauber: Erzeugt eine magische Barriere, die Zauber abwehrt.",
+        "bewegung": "Halbkreisförmige Abwehrbewegung vor dem Körper.",
+        "jahr": "2. Jahr",
         "audio": "sounds/Protego.wav",
         "verfügbar": true
     },
     {
-        "name": "Stupor",
+        "name": "Rictusempra",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Lässt das Ziel bewusstlos werden.",
-        "bewegung": "Schneller Schlag nach vorne",
-        "jahr": "4. Jahr",
-        "audio": "sounds/Stupor.wav",
+        "beschreibung": "Kitzel-Hexung: Verursacht unkontrollierbares Kitzeln beim Gegner.",
+        "bewegung": "Kurze, wiederholte Auf-und-ab-Bewegung wie ein Wackeln.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Rictusempra.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Steleus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Nieß-Hexung: Erzwingt heftiges und häufiges Niesen.",
+        "bewegung": "Zwei schnelle Schläge nach vorn, wie ein Niesreiz.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Steleus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Titillando",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Kitzel-Hexung: Lässt das Ziel laut lachen und sich winden.",
+        "bewegung": "Leicht tänzelnde, geschwungene Bewegung nach rechts.",
+        "jahr": "2. Jahr",
+        "audio": "sounds/Titillando.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Bombarda",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Explosionszauber: Erzeugt eine kleine, kontrollierte Explosion, die Objekte zerstören oder Türen aufsprengen kann.",
+        "bewegung": "Kraftvoller Stoß nach vorne mit kreisender Bewegung zur Verstärkung.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Bombarda.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Expulso",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Erschütterungszauber: Löst eine energetische Druckwelle aus, die das Ziel zurückwirft oder zerstört.",
+        "bewegung": "Schnelle diagonale Bewegung von oben links nach unten rechts.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Expulso.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Mobilicorpus",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Marionettenzauber: Ein lebloser menschlicher Körper wird wie eine Marionette bewegt, gesteuert vom Zauberstab.",
+        "bewegung": "Hebende Bewegung nach oben, dann wie eine Puppenhand geführt.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Mobilicorpus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Ferula",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Bandagierungszauber: Erzeugt spontan Bandagen und eine Schiene zur Versorgung von Verletzungen.",
+        "bewegung": "Zickzack-Bewegung über die betroffene Körperstelle.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Ferula.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Herbivicus",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Pflanzenwachstumszauber: Beschleunigt das Wachstum von Pflanzen oder bringt sie zum Erblühen.",
+        "bewegung": "Spiralförmige Aufwärtsbewegung wie ein wachsender Trieb.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Herbivicus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Illegibilus",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Buchstabensalat-Zauber: Macht Schriftzüge unleserlich oder verzerrt sie.",
+        "bewegung": "Wellenförmige Linienbewegung über das geschriebene Wort.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Illegibilus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Impervius",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Abdichtungszauber: Macht Objekte wasserabweisend oder schützt sie vor Nässe.",
+        "bewegung": "Umschließende Kreisbewegung über das Zielobjekt.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Impervius.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Levicorpus",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Der baumelnde Fluch: Hebt das Ziel kopfüber an einem unsichtbaren Faden in die Luft.",
+        "bewegung": "Aufwärtsschwung mit abruptem Stopp über dem Kopf des Ziels.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Levicorpus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Liberacorpus",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Der Gegenzauber zu Levicorpus: Löst den kopfüber Fluch sofort auf.",
+        "bewegung": "Abwärtsbewegung wie beim Lösen eines Knotens.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Liberacorpus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Reducio",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Der Schrumpfzauber: Lässt Objekte oder Wesen auf eine kleinere Größe schrumpfen.",
+        "bewegung": "Kreisbewegung, die kleiner wird und mit einem Punkt endet.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Reducio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Orchideous",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Blumenbeschwörung: Lässt spontan einen Strauß Blumen aus dem Zauberstab sprießen.",
+        "bewegung": "Leichtes Schwingen wie das Öffnen einer Blüte.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Orchideous.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Reparifarge",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Rückverwandlungszauber: Hebt missglückte oder halbfertige Verwandlungen auf.",
+        "bewegung": "Rückwärtsgerichtete Spirale wie ein Rückruf.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Reparifarge.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Anteoculatia",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Geweih-Wachs-Hexung: Lässt dem Opfer ein Geweih wachsen.",
+        "bewegung": "Zwei kleine Hakenbewegungen nach oben neben dem Kopf.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Anteoculatia.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Colloshoo",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Festkleb-Hexung: Lässt die Schuhe des Ziels am Boden festkleben.",
+        "bewegung": "Kurzes Tippen nach unten auf beide Füße des Ziels.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Colloshoo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Engorgio",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Anschwell-Hexung: Vergrößert das Zielobjekt oder den Körperteil erheblich.",
+        "bewegung": "Ausdehnende Bewegung mit breitem Bogen nach außen.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Engorgio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Mimble Wimble",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Zungenknoten-Fluch: Verwirrt die Zunge des Ziels, sodass klare Sprache unmöglich wird.",
+        "bewegung": "Kurze, wirre Schleifenbewegung vor dem Mund.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Mimble_Wimble.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Riddikulus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Irrwichtabwehr: Verwandelt einen Irrwicht in etwas Lächerliches zur Entkräftung der Angst.",
+        "bewegung": "Zielgerichtetes Antippen mit Lachen im Herzen.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Riddikulus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Tarantallegra",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Tanz-Hexung: Veranlasst das Ziel zu wildem, unkontrollierbarem Tanzen.",
+        "bewegung": "Schnelle, flatternde Bewegung mit dem Zauberstab wie bei einem Tanzschritt.",
+        "jahr": "3. Jahr",
+        "audio": "sounds/Tarantallegra.wav",
         "verfügbar": true
     },
     {
         "name": "Accio",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Beschwört ein Objekt zum Zaubernden.",
-        "bewegung": "Ziehen mit dem Zauberstab in Richtung Körper",
+        "beschreibung": "Der Herbeirufzauber: Lässt Objekte über große Distanzen zum Zaubernden fliegen.",
+        "bewegung": "Ziehen mit dem Zauberstab in Richtung des Körpers.",
         "jahr": "4. Jahr",
         "audio": "sounds/Accio.wav",
         "verfügbar": true
+    },
+    {
+        "name": "Depulso",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Verscheuchungszauber: Schleudert Objekte oder Gegner von sich fort.",
+        "bewegung": "Ein schneller diagonaler Hieb von unten links nach oben rechts, dann ein kraftvoller Stoß mit der Spitze nach vorn.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Depulso.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Diffindo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Abtrennzauber: Trennt Stoffe oder andere Materialien sauber.",
+        "bewegung": "Ein präziser, gerader Schnitt in der Luft – horizontal oder vertikal –, gefolgt von einer kurzen, abwärts gerichteten Zickzackbewegung.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Diffindo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Episkey",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der kleine Heilzauber: Behandelt kleinere Verletzungen wie Nasenbluten oder Prellungen.",
+        "bewegung": "Ein sanfter, kreisender Schwung im Uhrzeigersinn über der betroffenen Stelle, dann ein kurzes Tippen.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Episkey.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Quietus",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Gegenzauber zu Sonorus: Verringert übernatürlich verstärkte Stimmen.",
+        "bewegung": "Ein leises Antippen des Kehlkopfes mit der Spitze, danach ein zurückziehender Bogen mit einem kleinen Kreisel am Ende.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Quietus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Sonorus",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Megafonzauber: Verstärkt die Stimme des Zaubernden wie ein Lautsprecher.",
+        "bewegung": "Eine spiralförmige Bewegung nach außen, wie ein Lautsprecher, dann ein aufwärts gerichteter Bogen gegen den Hals. Zauberstab muss während des Sprechens an den Hals gedrückt werden.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Sonorus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Stupor",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Der Schockzauber: Betäubt das Ziel sofort und wirft es zurück.",
+        "bewegung": "Eine schnelle, peitschende Bewegung von oben nach unten, dann ein gerader Stoß nach vorn auf das Ziel.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Stupor.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Nebulus",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Nebelzauber: Beschwört dichten, undurchdringlichen Nebel zur Tarnung oder Verwirrung von Gegnern.",
+        "bewegung": "Weiche, wischende Kreisbewegungen von oben nach unten, als würde man Nebel weben, gefolgt von einem sanften Ausblasen.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Nebulus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Avis",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Vogelbeschwörungszauber: Konjuriert einen Schwarm kleiner Vögel aus der Zauberstabspitze.",
+        "bewegung": "Schnelle Aufwärtsbewegung mit zwitscherndem Ton, als würde man Samen streuen.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Avis.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Incarcerous",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Fesselzauber: Beschwört magische Seile oder Ketten, die sich um das Ziel wickeln.",
+        "bewegung": "Schlingende Bewegung wie das Werfen eines Lassos, gefolgt von einem ruckartigen Zuziehen.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Incarcerous.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Homenum Revelio",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Menschen-Enthüllungszauber: Deckt verborgene menschliche Präsenzen in der Nähe auf.",
+        "bewegung": "Pulsierende Kreise mit anschließendem radialem Scan durch den Raum (Handfläche nach außen).",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Homenum_Revelio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Rennervate",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Belebungszauber: Hebt Betäubungen auf und stellt die Vitalfunktionen wieder her.",
+        "bewegung": "Drei konzentrische Kreise über der Brust des Betäubten, gefolgt von einem energischen Aufwärtsschwung.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Rennervate.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Densaugeo",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Zahnwuchs-Hexung: Verursacht extremes Wachstum der Vorderzähne bis zu gefährlicher Länge.",
+        "bewegung": "Zwei kurze Stöße Richtung Mund des Ziels mit zuckendem Zeigefinger.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Densaugeo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Furnunculus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Furunkel-Hexung: Bedeckt das Gesicht des Ziels mit schmerzhaften Eiterpickeln.",
+        "bewegung": "Kribbelnde Kratzbewegung vor dem eigenen Gesicht mit eklig verzerrter Mimik.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Furnunculus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Impedimenta",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Lähm-Hexung: Verlangsamt oder stoppt die Bewegung des Ziels für kurze Zeit.",
+        "bewegung": "Abrupte Stopp-Handbewegung (wie ein Verkehrspolizist) mit vibrierendem Widerstandsgefühl.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Impedimenta.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Locomotor Wibbly",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Gummibein-Hexung: Macht die Beine des Ziels schlaff und unkontrollierbar wie Wackelpudding.",
+        "bewegung": "Wackelnde Zickzack-Bewegung nach unten mit albernem Watschelgang.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Locomotor_Wibbly.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Reducto",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Auflösungszauber: Zerstört feste Objekte durch magische Desintegration.",
+        "bewegung": "Kompakter, vibrierender Stoß direkt aufs Ziel - wie ein unsichtbarer Hammer.",
+        "jahr": "4. Jahr",
+        "audio": "sounds/Reducto.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Anapneo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Erstickungslöser: Befreit die Atemwege von Blockaden oder Erstickungsgefahr.",
+        "bewegung": "Sanftes Streichen über die eigene Kehle mit befreiender Ausatmung.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Anapneo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Aperio",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Öffnungs-Zauber: Entsperrt magisch verschlossene Türen oder Behälter.",
+        "bewegung": "Drehende Bewegung wie ein Schlüssel im Schloss mit hörbarem 'Klick'-Effekt.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Aperio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Colloportus",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Verrieglungs-Zauber: Versiegelt Türen oder Fenster mit magischem Klebstoff.",
+        "bewegung": "X-förmige Bewegung über die Tür mit abschließendem Faustschluss.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Colloportus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Expecto Patronum",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Patronus-Zauber: Beschwört einen Schutzschild gegen Dementoren (erfordert glückliche Erinnerung). Bei besonders starker Erinnerung (und einem Wurf von 11 oder 12) erscheint ein silbriges Schutz-Wesen.",
+        "bewegung": "Große, schützende Kreisbewegung mit fokussiertem 'Herzöffnen' und kraftvollem Stoß nach vorn.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Expecto_Patronum.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Repello Muggletum",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Muggel-Abwehrzauber: Hält Nicht-Magier von einem Bereich fern durch Verwirrung oder Abschreckung.",
+        "bewegung": "Großes 'Abtrenn'-Zeichen in die Luft zeichnen mit unsichtbarer Trennlinie.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Repello_Muggletum.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Silencio",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Schweigezauber: Unterdrückt alle Geräusche in einem Bereich oder von einer Person.",
+        "bewegung": "Finger auf die Lippen legen, dann wegstreichen wie das Entfernen einer unsichtbaren Maske.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Silencio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Specialis Revelio",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Magische Objekt-Enthüllung: Zeigt versteckte magische Eigenschaften von Gegenständen an.",
+        "bewegung": "Zauberstab wie eine Lupe über das Objekt führen mit pulsierender Untersuchungsaura.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Specialis_Revelio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Vulnera Sanentur",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Heilzauber: Stoppt Blutungen und schließt Wunden durch beschleunigte Geweberegeneration.",
+        "bewegung": "Sanftes Überstreichen der Wunde mit goldenem Licht, begleitet von lateinischem Flüstern.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Vulnera_Sanentur.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Evanesco",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Verschwinde-Zauber: Lässt nicht-lebende Objekte in Nichts zerfallen.",
+        "bewegung": "Abwischbewegung wie das Entfernen von Staub mit verblassendem 'Puff'-Geräusch.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Evanesco.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Cantis",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Sing-Hexung: Zwingt das Ziel, alberne Lieder zu singen (exzellente Ablenkung im Duell).",
+        "bewegung": "Dirigenten-ähnliche Bewegungen mit rhythmischem Takt halten.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Cantis.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Oppugno",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Tierangriff: Lenkt kleine Lebewesen (z.B. Vögel) zum gezielten Angriff auf ein Ziel.",
+        "bewegung": "Pfeifender Ruf gefolgt von einer werfenden Geste Richtung Ziel.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Oppugno.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Protego Totalum",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Areal-Schutzzauber: Errichtet eine kuppelförmige Barriere um einen ganzen Bereich.",
+        "bewegung": "Große schützende Armbewegung (wie ein Umarmen) mit abschließendem Stampfen.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Protego_Totalum.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Relashio",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Loslass-Hexung: Zwingt Gegner, ihren Griff zu lockern oder Gegenstände fallen zu lassen.",
+        "bewegung": "Plötzliches Öffnen der Faust mit explosiver Geste (wie eine mentale Druckwelle).",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Relashio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Imperio",
+        "kategorie": "Unverzeihliche Flüche",
+        "beschreibung": "Befehlsfluch: Übernimmt vollständige Kontrolle über das Opfer (höchst illegal).",
+        "bewegung": "Hypnotische Pendelbewegung mit gespenstisch fließendem Arm und leerem Blick.",
+        "jahr": "5. Jahr",
+        "audio": "sounds/Imperio.wav",
+        "verfügbar": false
+    },
+    {
+        "name": "Confundo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Verwirrungszauber: Verursacht geistige Desorientierung und lässt das Ziel irrational handeln.",
+        "bewegung": "Kreisförmige Schleifenbewegung gegen den Uhrzeigersinn, gefolgt von einem abrupten Stich nach vorne.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Confundo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Deprimo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Sprengzauber: Erzeugt eine konzentrierte Druckwelle, die Objekte oder Oberflächen zertrümmert.",
+        "bewegung": "Abrupte Abwärtsbewegung mit gespreizten Fingern, als würde man etwas zerquetschen.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Deprimo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Emendo",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Knochenheilung: Repariert gebrochene oder zersplitterte Knochen durch magische Rekonstruktion.",
+        "bewegung": "Sanfte, wellenförmige Bewegung über die Verletzung, begleitet von goldenem Licht.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Emendo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Muffliato",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Störgeräusche-Zauber: Erzeugt ein unerkennbares Summen in den Ohren umstehender Personen, um Gespräche zu schützen.",
+        "bewegung": "Kleiner Kreis vor den Lippen, gefolgt von einem schnippenden Finger.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Muffliato.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Revelio",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Enthüllungszauber: Macht verborgene Objekte, Schrift oder magische Tarnungen sichtbar.",
+        "bewegung": "Z-förmige Bewegung mit anschließendem Aufblitzen der Zauberstabspitze.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Revelio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Aguamenti",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Wasserbeschwörungszauber: Konjuriert einen sauberen Wasserstrahl oder -strom aus der Zauberstabspitze.",
+        "bewegung": "Elegante, fließende Bewegung wie das Zeichnen einer Welle in die Luft.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Aguamenti.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Disapparieren",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Teleportations-Zauber (verschwinden): Ermöglicht das sofortige Verschwinden vom aktuellen Ort.",
+        "bewegung": "Dreifache spiralförmige Drehung des Zauberstabs, gefolgt von einem abrupten Schließen der Augen.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Disapparieren.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Apparieren",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Teleportations-Zauber (auftauchen): Ermöglicht das Erscheinen an einem vorher bestimmten Ort.",
+        "bewegung": "Konzentrierte Fokussierung auf das Ziel, gefolgt von einer explosiven Geste beim Materialisieren.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Apparieren.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Sectumsempra",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Der zerreißende Fluch: Verursacht unsichtbare Schnittwunden, als würde das Ziel von einem Schwert attackiert. (Nur mit Affinität zur Dunklen Seite)",
+        "bewegung": "Aggressive diagonale Schlitzbewegung mit schwarzem Rauch an der Zauberstabspitze.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Sectumsempra.wav",
+        "verfügbar": false
+    },
+    {
+        "name": "Ebublio",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Beschwörung kleiner Blasen: Erzeugt schwebende, magische Blasen, die Feinde kurzzeitig verwirren können.",
+        "bewegung": "Leichte Pustebewegung mit rhythmischem Auf und Ab des Zauberstabs.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Ebublio.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Flipendo",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Weiche-Zurück-Hexung: Stößt Ziele mit kontrollierter Kraft zurück, ohne sie zu verletzen.",
+        "bewegung": "Abrupte Schubfbewegung, als würde man eine unsichtbare Tür aufstoßen.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Flipendo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Gemino",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Verdopplungszauber: Erstellt kurzlebige Duplikate von Objekten, die nach Berührung verschwinden.",
+        "bewegung": "Zwei schnelle, parallele Striche über das Objekt mit vibrierender Spitze.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Gemino.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Langlock",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Verstummungszauber: Klebt die Zunge des Opfers am Gaumen fest und verhindert so Sprechen.",
+        "bewegung": "Abruptes Antippen der eigenen Zunge, gefolgt von einem kneifenden Fingerzeichen.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Langlock.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Melofors",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Kürbis-Kopf-Hexung: Verwandelt den Kopf des Ziels in einen großen, orangefarbenen Kürbis.",
+        "bewegung": "Kreisende Bewegung um den eigenen Kopf, gefolgt von einem lustigen Zwinkern.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Melofors.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Pullus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Hühner-Verwandlung: Transfiguriert kleine Kreaturen in harmlose Hühner für begrenzte Zeit.",
+        "bewegung": "Hühnerfuß-ähnliche Kratzbewegung in der Luft mit gackerndem Ton.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Pullus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Crucio",
+        "kategorie": "Unverzeihliche Flüche",
+        "beschreibung": "Folterfluch: Verursacht unerträgliche, nervenzerreißende Schmerzen ohne physische Spuren zu hinterlassen.",
+        "bewegung": "Zitternde S-förmige Bewegung mit bösartiger Intentionshaltung.",
+        "jahr": "6. Jahr",
+        "audio": "sounds/Crucio.wav",
+        "verfügbar": false
+    },
+    {
+        "name": "Fidelius Mysteria Celare",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "7th Level Geheimniswahrer: Versteckt ein Geheimnis so tief, dass es nur vom Geheimniswahrer preisgegeben werden kann.",
+        "bewegung": "Komplexe Runenzeichnung in die Luft, gefolgt von einem Herzschlag-mimikenden Stoß.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Fidelius.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Duro",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Versteinerungszauber: Verwandelt Objekte oder Lebewesen vorübergehend in solide Steinform.",
+        "bewegung": "Steifer, gerader Stoß wie ein Fechter, begleitet von einem 'Einfrieren'-Befehl.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Duro.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Homenum Revelio",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Menschen-Enthüllungs-Zauber: Deckt unsichtbare oder versteckte menschliche Präsenzen in der Nähe auf.",
+        "bewegung": "Pulsierende Kreise mit anschließendem radialem Scan durch den Raum.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Homenum.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Legilimens",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Gedankenlesen: Erlaubt dem Zaubernden, die Oberflächengedanken eines anderen zu durchdringen.",
+        "bewegung": "Gegen die Schläfe gehaltener Zauberstab mit konzentrischen mentalen Wellen.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Legilimens.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Obliviate",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Gedächtniszauber: Löscht gezielt Erinnerungen aus dem Gedächtnis des Opfers.",
+        "bewegung": "Hypnotische Spiralbewegung vor den Augen des Ziels mit weißem Nebel.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Obliviate.wav",
+        "verfügbar": false
+    },
+    {
+        "name": "Portus",
+        "kategorie": "Zauberkunst",
+        "beschreibung": "Portschlüssel-Erschaffung: Verwandelt ein Objekt in einen Portschlüssel für sofortigen Transport. (Erfordert Ministeriumserlaubnis)",
+        "bewegung": "Komplexe dreidimensionale Knotenbewegung um das Objekt mit blauem Pulsieren.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Portus.wav",
+        "verfügbar": false
+    },
+    {
+        "name": "Baubillious",
+        "kategorie": "Verwandlung",
+        "beschreibung": "Blitzzauber: Erzeugt kontrollierte elektrische Entladungen aus der Zauberstabspitze.",
+        "bewegung": "Zackige Blitzimitation in der Luft mit begleitendem Donnergrollen.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Baubillious.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Azreth",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Dämonenfeuer: Große Schwaden verfluchten Feuers strömen aus dem Zauberstab und nehmen Bestiengestalt an, die alles verbrennen.",
+        "bewegung": "Wildes, unkontrolliertes Schlagen mit rot-glühender Spitze und dämonischem Flüstern.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Azreth.wav",
+        "verfügbar": false
+    },
+    {
+        "name": "Confrigo",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Explosionszauber: Verursacht eine gezielte, magische Detonation mit hoher Zerstörungskraft.",
+        "bewegung": "Explosionsimitation mit nach außen schnellender Hand und orangener Lichtaura.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Confrigo.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Fianto Duri",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Schutzverstärkung: Verstärkt bestehende Schutzzauber um ein Vielfaches ihrer ursprünglichen Stärke.",
+        "bewegung": "Konzentrische Schilde zeichnend mit vibrierendem Widerstandsgefühl.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Fianto_Duri.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Levicorpus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Schwebefluch: Lässt das Ziel kopfüber in der Luft hängen, hilflos und desorientiert.",
+        "bewegung": "Plötzliches Hochreißen des Zauberstabs mit imaginärem Seilzug.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Levicorpus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Mutatio",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Mutations-Hexung: Verursacht zufällige körperliche Deformationen beim Ziel für begrenzte Zeit.",
+        "bewegung": "Wirres, unkontrolliertes Kritzeln in der Luft mit grünlichem Nebel.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Mutatio.wav",
+        "verfügbar": false
+    },
+    {
+        "name": "Redactum",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Schrumpfzauber: Verkleinert Objekte oder Lebewesen auf Miniaturgröße ohne Gewichtsverlust.",
+        "bewegung": "Zusammendrückende Bewegung mit Daumen und Zeigefinger bei abnehmender Spiralbewegung.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Redactum.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Vermiculus",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
+        "beschreibung": "Wurm-Verwandlung: Transfiguriert kleine Objekte in zappelnde Würmer für humorvolle Ablenkung.",
+        "bewegung": "Schlängelnde Bewegung wie ein Wurm mit abschließendem 'Plop'-Geräusch.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Vermiculus.wav",
+        "verfügbar": true
+    },
+    {
+        "name": "Avada Kedavra",
+        "kategorie": "Unverzeihliche Flüche",
+        "beschreibung": "Todesfluch: Tötet das Ziel sofort und schmerzlos mit einem grünen Blitz. Hinterlässt keine physischen Spuren.",
+        "bewegung": "Tödlicher gerader Stoß mit vibrierendem, schwarzem Energiefluss und bösartiger Intentionshaltung.",
+        "jahr": "7. Jahr",
+        "audio": "sounds/Avada_Kedavra.wav",
+        "verfügbar": false
     }
 ]
