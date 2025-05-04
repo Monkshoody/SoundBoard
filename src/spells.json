@@ -5,7 +5,7 @@
         "beschreibung": "Öffnet verschlossene Türen und Fenster.",
         "bewegung": "Kurzer Bogen nach oben, dann nach unten",
         "jahr": "1. Jahr",
-        "audio": "sounds/Alohomora.wav",
+        "audio": "sounds/Alohomora_fixed.wav",
         "verfügbar": true
     },
     {

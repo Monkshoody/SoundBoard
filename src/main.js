@@ -15,16 +15,21 @@ import { setupPlayerView } from './playerview.js';
 //(check) Send Notification to all in room when Player plays sound
 //(check) Mute Players with toggle in GM-View (https://codepen.io/snphillips/pen/bGBeJWe)
 //(test) audio play does not work. Maybe because of Edge, but let's check!
-//clean up (maybe change spells to sounds)
+//fullfill JSON
+//create Audio files
+//normalize audio files
+//clean up
 //make new Git-Branch
 //change to german
 
 //New Git-Branch for public availabiity:
 //change Spellboard -> Soundboard
+//change spells to sounds
 //change to english
 //edit export/import for provided sounds (cut-off ?dl=0 to ?raw=1) how's this woth youtube or others?
 //remove spells.json
 //add an add-button to add new sounds
+//add a sound slider to increase or decrease volume for each sound
 //remove search and filter when no sound is available (see playerview)
 
 // Navigation und Content Struktur erstellen
