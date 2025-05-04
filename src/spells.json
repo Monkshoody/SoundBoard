@@ -149,7 +149,7 @@
         "beschreibung": "Entwaffnungszauber: Entwaffnet den Gegner, in dem er durch die Luft geschleudert oder weggestoßen wird.",
         "bewegung": "Gerade Linie nach vorne mit einem leichten Schwung zur Seite. Wirkt wie ein Stoß.",
         "jahr": "2. Jahr",
-        "audio": "sounds/Expelliarmus.wav",
+        "audio": "sounds/Expelliarmus_wegstoßen.wav",
         "verfügbar": true
     },
     {
