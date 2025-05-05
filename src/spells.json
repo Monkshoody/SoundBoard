@@ -221,7 +221,7 @@
         "beschreibung": "Erkältungsfluch: Führt zu übermäßigem Nasenlaufen und Unwohlsein.",
         "bewegung": "Schneller Schwung nach oben mit abruptem Stopp über dem Kopf des Ziels.",
         "jahr": "2. Jahr",
-        "audio": "sounds/Mucus_ad_Nauseam.wav",
+        "audio": "sounds/Mucus-ad-Nauseam.wav",
         "verfügbar": true
     },
     {
@@ -363,7 +363,7 @@
         "name": "Prior-Incantato",
         "kategorie": "Prior Incantato",
         "beschreibung": "Zauber-Rückverfolgung: Zeigt letzten genutzten Zauber eines Zauberstabs.",
-        "bewegung": "Den eigenen Zauberstab auf einen anderen Zauberstab richten und stillhalten.",
+        "bewegung": "Den eigenen Zauberstab auf einen anderen Zauberstab richten und drei mal antippen stillhalten.",
         "jahr": "3. Jahr",
         "audio": "sounds/Prior-Incantato.wav",
         "verfügbar": true
@@ -563,7 +563,7 @@
         "beschreibung": "Gummibein-Hexung: Macht die Beine des Ziels schlaff und unkontrollierbar wie Wackelpudding.",
         "bewegung": "Wackelnde Zickzack-Bewegung nach unten mit albernem Watschelgang.",
         "jahr": "4. Jahr",
-        "audio": "sounds/Locomotor_Wibbly.wav",
+        "audio": "sounds/Locomotor-Wibbly.wav",
         "verfügbar": true
     },
     {
@@ -608,7 +608,7 @@
         "beschreibung": "Patronus-Zauber: Beschwört einen Schutzschild gegen Dementoren (erfordert glückliche Erinnerung). Bei besonders starker Erinnerung (und einem Wurf von 11 oder 12) erscheint ein silbriges Schutz-Wesen.",
         "bewegung": "Große, schützende Kreisbewegung mit fokussiertem 'Herzöffnen' und kraftvollem Stoß nach vorn.",
         "jahr": "5. Jahr",
-        "audio": "sounds/Expecto_Patronum.wav",
+        "audio": "sounds/Expecto-Patronum.wav",
         "verfügbar": true
     },
     {
@@ -617,7 +617,7 @@
         "beschreibung": "Muggel-Abwehrzauber: Hält Nicht-Magier von einem Bereich fern durch Verwirrung oder Abschreckung.",
         "bewegung": "Großes 'Abtrenn'-Zeichen in die Luft zeichnen mit unsichtbarer Trennlinie.",
         "jahr": "5. Jahr",
-        "audio": "sounds/Repello_Muggletum.wav",
+        "audio": "sounds/Repello-Muggletum.wav",
         "verfügbar": true
     },
     {
@@ -635,7 +635,7 @@
         "beschreibung": "Magische Objekt-Enthüllung: Zeigt versteckte magische Eigenschaften von Gegenständen an.",
         "bewegung": "Zauberstab wie eine Lupe über das Objekt führen mit pulsierender Untersuchungsaura.",
         "jahr": "5. Jahr",
-        "audio": "sounds/Specialis_Revelio.wav",
+        "audio": "sounds/Specialis-Revelio.wav",
         "verfügbar": true
     },
     {
@@ -680,7 +680,7 @@
         "beschreibung": "Areal-Schutzzauber: Errichtet eine kuppelförmige Barriere um einen ganzen Bereich.",
         "bewegung": "Große schützende Armbewegung (wie ein Umarmen) mit abschließendem Stampfen.",
         "jahr": "5. Jahr",
-        "audio": "sounds/Protego_Totalum.wav",
+        "audio": "sounds/Protego-Totalum.wav",
         "verfügbar": true
     },
     {
@@ -839,7 +839,7 @@
     {
         "name": "Fidelius Mysteria Celare",
         "kategorie": "Zauberkunst",
-        "beschreibung": "7th Level Geheimniswahrer: Versteckt ein Geheimnis so tief, dass es nur vom Geheimniswahrer preisgegeben werden kann.",
+        "beschreibung": "Geheimniswahrer: Versteckt ein Geheimnis so tief, dass es nur vom Geheimniswahrer preisgegeben werden kann.",
         "bewegung": "Komplexe Runenzeichnung in die Luft, gefolgt von einem Herzschlag-mimikenden Stoß.",
         "jahr": "7. Jahr",
         "audio": "sounds/Fidelius.wav",
@@ -923,7 +923,7 @@
         "beschreibung": "Schutzverstärkung: Verstärkt bestehende Schutzzauber um ein Vielfaches ihrer ursprünglichen Stärke.",
         "bewegung": "Konzentrische Schilde zeichnend mit vibrierendem Widerstandsgefühl.",
         "jahr": "7. Jahr",
-        "audio": "sounds/Fianto_Duri.wav",
+        "audio": "sounds/Fianto-Duri.wav",
         "verfügbar": true
     },
     {
@@ -933,15 +933,6 @@
         "bewegung": "Wirres, unkontrolliertes Kritzeln in der Luft mit grünlichem Nebel.",
         "jahr": "7. Jahr",
         "audio": "sounds/Mutatio.wav",
-        "verfügbar": true
-    },
-    {
-        "name": "Redactum",
-        "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Schrumpfzauber: Verkleinert Objekte oder Lebewesen auf Miniaturgröße ohne Gewichtsverlust.",
-        "bewegung": "Zusammendrückende Bewegung mit Daumen und Zeigefinger bei abnehmender Spiralbewegung.",
-        "jahr": "7. Jahr",
-        "audio": "sounds/Redactum.wav",
         "verfügbar": true
     },
     {
@@ -959,7 +950,7 @@
         "beschreibung": "Todesfluch: Tötet das Ziel sofort und schmerzlos mit einem grünen Blitz. Hinterlässt keine physischen Spuren.",
         "bewegung": "Tödlicher gerader Stoß mit vibrierendem, schwarzem Energiefluss und bösartiger Intentionshaltung.",
         "jahr": "7. Jahr",
-        "audio": "sounds/Avada_Kedavra.wav",
+        "audio": "sounds/Avada-Kedavra.wav",
         "verfügbar": false
     }
 ]
