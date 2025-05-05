@@ -117,12 +117,12 @@
         "verfügbar": true
     },
     {
-        "name": "Schlug Schnecken",
+        "name": "Schluck Schnecken",
         "kategorie": "Verteidigung gegen die dunklen Künste",
         "beschreibung": "Kotzfluch: Lässt das Ziel Schnecken erbrechen.",
         "bewegung": "Kreis mit einem ruckartigen Ausschlag nach vorne.",
         "jahr": "1. Jahr",
-        "audio": "sounds/Schlug-Schnecken.wav",
+        "audio": "sounds/Schluck-Schnecken.wav",
         "verfügbar": true
     },
     {
@@ -168,15 +168,6 @@
         "bewegung": "Kleiner Halbkreis von links nach rechts über dem Objekt.",
         "jahr": "2. Jahr",
         "audio": "sounds/Reparo.wav",
-        "verfügbar": true
-    },
-    {
-        "name": "Mimblewimble",
-        "kategorie": "Verwandlung",
-        "beschreibung": "Zungenklammer Fluch: Verhindert, dass das Ziel verständlich sprechen kann.",
-        "bewegung": "Kurze Zickzack-Bewegung vor dem Mund des Gegners.",
-        "jahr": "2. Jahr",
-        "audio": "sounds/Mimblewimble.wav",
         "verfügbar": true
     },
     {
@@ -334,7 +325,7 @@
     },
     {
         "name": "Levicorpus",
-        "kategorie": "Verwandlung",
+        "kategorie": "Verteidigung gegen die dunklen Künste",
         "beschreibung": "Der baumelnde Fluch: Hebt das Ziel kopfüber an einem unsichtbaren Faden in die Luft.",
         "bewegung": "Aufwärtsschwung mit abruptem Stopp über dem Kopf des Ziels.",
         "jahr": "3. Jahr",
@@ -416,10 +407,10 @@
     {
         "name": "Mimble Wimble",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Zungenknoten-Fluch: Verwirrt die Zunge des Ziels, sodass klare Sprache unmöglich wird.",
+        "beschreibung": "Zungenklammer Fluch: Verhindert, dass das Ziel verständlich sprechen kann.",
         "bewegung": "Kurze, wirre Schleifenbewegung vor dem Mund.",
         "jahr": "3. Jahr",
-        "audio": "sounds/Mimble_Wimble.wav",
+        "audio": "sounds/Mimble-Wimble.wav",
         "verfügbar": true
     },
     {
@@ -596,7 +587,7 @@
     {
         "name": "Aperio",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Öffnungs-Zauber: Entsperrt magisch verschlossene Türen oder Behälter.",
+        "beschreibung": "Öffnungs-Zauber: Gegenzauber zu Colloportus. Öffnet verklebte Türen, Fenster oder Behälter.",
         "bewegung": "Drehende Bewegung wie ein Schlüssel im Schloss mit hörbarem 'Klick'-Effekt.",
         "jahr": "5. Jahr",
         "audio": "sounds/Aperio.wav",
@@ -605,7 +596,7 @@
     {
         "name": "Colloportus",
         "kategorie": "Zauberkunst",
-        "beschreibung": "Verrieglungs-Zauber: Versiegelt Türen oder Fenster mit magischem Klebstoff.",
+        "beschreibung": "Verrieglungs-Zauber: Versiegelt Türen, Fenster oder Behälter mit magischem Klebstoff.",
         "bewegung": "X-förmige Bewegung über die Tür mit abschließendem Faustschluss.",
         "jahr": "5. Jahr",
         "audio": "sounds/Colloportus.wav",
@@ -653,7 +644,7 @@
         "beschreibung": "Heilzauber: Stoppt Blutungen und schließt Wunden durch beschleunigte Geweberegeneration.",
         "bewegung": "Sanftes Überstreichen der Wunde mit goldenem Licht, begleitet von lateinischem Flüstern.",
         "jahr": "5. Jahr",
-        "audio": "sounds/Vulnera_Sanentur.wav",
+        "audio": "sounds/Vulnera-Sanentur.wav",
         "verfügbar": true
     },
     {
@@ -762,15 +753,6 @@
         "bewegung": "Elegante, fließende Bewegung wie das Zeichnen einer Welle in die Luft.",
         "jahr": "6. Jahr",
         "audio": "sounds/Aguamenti.wav",
-        "verfügbar": true
-    },
-    {
-        "name": "Disapparieren",
-        "kategorie": "Verwandlung",
-        "beschreibung": "Teleportations-Zauber (verschwinden): Ermöglicht das sofortige Verschwinden vom aktuellen Ort.",
-        "bewegung": "Dreifache spiralförmige Drehung des Zauberstabs, gefolgt von einem abrupten Schließen der Augen.",
-        "jahr": "6. Jahr",
-        "audio": "sounds/Disapparieren.wav",
         "verfügbar": true
     },
     {
@@ -927,12 +909,12 @@
         "verfügbar": false
     },
     {
-        "name": "Confrigo",
+        "name": "Confringo",
         "kategorie": "Verteidigung gegen die dunklen Künste",
         "beschreibung": "Explosionszauber: Verursacht eine gezielte, magische Detonation mit hoher Zerstörungskraft.",
         "bewegung": "Explosionsimitation mit nach außen schnellender Hand und orangener Lichtaura.",
         "jahr": "7. Jahr",
-        "audio": "sounds/Confrigo.wav",
+        "audio": "sounds/Confringo.wav",
         "verfügbar": true
     },
     {
@@ -942,15 +924,6 @@
         "bewegung": "Konzentrische Schilde zeichnend mit vibrierendem Widerstandsgefühl.",
         "jahr": "7. Jahr",
         "audio": "sounds/Fianto_Duri.wav",
-        "verfügbar": true
-    },
-    {
-        "name": "Levicorpus",
-        "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Schwebefluch: Lässt das Ziel kopfüber in der Luft hängen, hilflos und desorientiert.",
-        "bewegung": "Plötzliches Hochreißen des Zauberstabs mit imaginärem Seilzug.",
-        "jahr": "7. Jahr",
-        "audio": "sounds/Levicorpus.wav",
         "verfügbar": true
     },
     {
