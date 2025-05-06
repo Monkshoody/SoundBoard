@@ -21,6 +21,13 @@ async function updatePlayers(players) {
 // I don't know what will happen if there are two GMs.
 export async function setupGMView(container) {
 
+  const audioCache = {};
+
+  function preloadSound(name, path) {
+      const audio = new Audio(path);
+      audio.load();
+      audioCache[name] = audio;
+  }
   // Do I need to set-up/initiate all the Namespaces? What does this change?
   const currentMetadata = await OBR.room.getMetadata();
   await OBR.room.setMetadata({
@@ -230,6 +237,9 @@ export async function setupGMView(container) {
 
     // create cards for each filtered sound in the main container: spellsContainer
     filteredSpells.forEach(spell => {
+      //preload all sounds to minimize time-lacks during playtime
+      preloadSound(spell.audio, spell.audio)
+
       const spellCard = document.createElement('div');
       spellCard.classList.add('spell-card');
 
@@ -323,8 +333,14 @@ export async function setupGMView(container) {
     console.log("Trigger timestamp:", trigger.timestamp, lastTimestamp);
     if (trigger.timestamp > lastTimestamp) {
       lastTimestamp = trigger.timestamp;
-      const audio = new Audio(trigger.audio);
-      audio.play();
+      //const audio = new Audio(trigger.audio);
+      //audio.play();
+      const audio = audioCache[trigger.audio];
+      if (audio) {
+        // Erstelle eine neue Instanz, um mehrfaches Abspielen zu ermöglichen
+        const clone = audio.cloneNode();
+        clone.play().catch(console.error);
+      }
     }
   });
   
