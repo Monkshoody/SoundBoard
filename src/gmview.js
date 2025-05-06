@@ -37,7 +37,7 @@ export async function setupGMView(container) {
   //                      3. GM is with all players in the room. -> getPlayers() will be full -> we should still update players through OBR.party.onChange()
   players = await updatePlayers(players);
 
-  // begin of navbar
+// begin of navbar
   // navigation-bar for headdline and import/export Buttons
   const navbar = document.getElementById("navbar") || document.createElement("nav");
   navbar.classList.add("navbar");
@@ -154,9 +154,9 @@ export async function setupGMView(container) {
   });
 
   navButtons.appendChild(importButton);
-  // end of navbar
+// end of navbar
 
-  // begin of contentArea 
+// begin of contentArea 
   // search function for sounds
   let currentFilter = "all";
   let currentSearch = "";
@@ -294,7 +294,9 @@ export async function setupGMView(container) {
       spellsContainer.appendChild(spellCard); 
     });
   }
+// end of contentArea 
 
+// begin of EventListener
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value;
     renderSpells(permissions);
@@ -304,8 +306,9 @@ export async function setupGMView(container) {
     currentFilter = e.target.value;
     renderSpells(permissions);
   });
+// end of EventListener
 
-  // check for changed metadata to trigger sound
+// check for changed metadata to trigger notification and sound
   let lastTimestamp = 0;
 
   OBR.room.onMetadataChange((metadata) => {
@@ -326,12 +329,12 @@ export async function setupGMView(container) {
   });
   
 
-  // check for new players to update checkboxes and permissions
+// check for new players to update checkboxes and permissions
   OBR.party.onChange((newplayer) => {
     updatePlayers(players); // update the global players array, scince someone joined or left the room
     renderSpells(permissions); // re-render to update the checkboxes
   });
 
-  // initial rendering to dislpay all sounds
+// initial rendering to dislpay all sounds
   renderSpells(permissions);
 }

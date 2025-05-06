@@ -16,8 +16,9 @@ import { setupPlayerView } from './playerview.js';
 //(check) Mute Players with toggle in GM-View (https://codepen.io/snphillips/pen/bGBeJWe)
 //(check) audio play does not work. Maybe because of Edge, but let's check!
 //(check) fullfill JSON
-//create Audio files
-//normalize audio files
+//(check) create Audio files
+//(check) normalize audio files
+//final testing in OwlBear
 //clean up
 //make new Git-Branch
 //change to german
