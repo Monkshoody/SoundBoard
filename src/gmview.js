@@ -13,22 +13,13 @@ var players = []; // global players array including names of all players in the 
 async function updatePlayers(players) {
   const playersList = await OBR.party.getPlayers()
   players = playersList.map(player => player.name);
-  //console.log("update Players performed:", players);
   return players;
 }
 
 // main function for the Game-Masters-View
-// I don't know what will happen if there are two GMs.
 export async function setupGMView(container) {
 
-  const audioCache = {};
-
-  function preloadSound(name, path) {
-      const audio = new Audio(path);
-      audio.load();
-      audioCache[name] = audio;
-  }
-  // Do I need to set-up/initiate all the Namespaces? What does this change?
+// initiate the SOUND_PERMISSION_KEY as true, so that the players are allowed to play sounds
   const currentMetadata = await OBR.room.getMetadata();
   await OBR.room.setMetadata({
     ... currentMetadata,
@@ -49,7 +40,7 @@ export async function setupGMView(container) {
   const navbar = document.getElementById("navbar") || document.createElement("nav");
   navbar.classList.add("navbar");
 
-  // container for buttons in navigation-bar
+// container for buttons in navigation-bar
   let navButtons = navbar.querySelector(".nav-buttons");
   if (!navButtons) {
     navButtons = document.createElement("div");
@@ -57,56 +48,53 @@ export async function setupGMView(container) {
     navbar.appendChild(navButtons);
   }
 
-  // toggle player are allowed to play sound in general
-  // audio-toggle container
+// audio-toggle container
+  // toggle to allow or deny player to play sound in general
   const audioToggleWrapper = document.createElement("div");
   audioToggleWrapper.classList.add("audio-toggle-wrapper");
 
-  // Label für den Switch
+  // Label for the switch
   const label = document.createElement("label");
   label.classList.add("switch");
 
-  // Der eigentliche Input (checkbox)
+  // the actual input (checkbox)
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.id = "audio-toggle";
-  checkbox.checked = true; // Optional: initial aktiv
+  checkbox.checked = true; // optional: initial deactivated (but the SOUND_PERMISSION_KEY needs to be initiate as false )
 
+  // EventListener for the switch
+  // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
     const currentMetadata = await OBR.room.getMetadata();
-    console.log("checkbox.checked:", checkbox.checked);
-    if (checkbox.checked) {
-      console.log("Sound ist AN");
-    } else {
-      console.log("Sound ist AUS");
-    }
     await OBR.room.setMetadata({
       ... currentMetadata,
       [SOUND_PERMISSION_KEY]: checkbox.checked
     });
   });
 
-  // Der "Slider"
+  // make it slide
   const slider = document.createElement("span");
   slider.classList.add("slider", "round");
 
-  // Füge checkbox und slider ins Label
+  // add checkbox and slider in label
   label.appendChild(checkbox);
   label.appendChild(slider);
 
-  // Beschriftung neben dem Switch
+  // description next to the switch
   const switchText = document.createElement("span");
   switchText.textContent = "mute player";
   switchText.classList.add("switch-text");
 
-  // Füge alles zusammen
+  // put it all together
   audioToggleWrapper.appendChild(switchText);
   audioToggleWrapper.appendChild(label);
 
-  // In die navButtons einfügen
+  // insert into the navButtons
   navButtons.appendChild(audioToggleWrapper);
 
-  // export-button
+// export-button
+  // export allows to export (player-)permissions of the room. Needfull in case you want to switch OwlBear-rooms but you don't want to tick all the checkboxes again
   const exportButton = document.createElement("button");
   exportButton.classList.add("nav-button");
   exportButton.title = "save permissions";
@@ -116,8 +104,9 @@ export async function setupGMView(container) {
   exportIcon.classList.add("nav-icon");
   exportButton.appendChild(exportIcon);
 
+  // EventListener for the export-button
   exportButton.addEventListener("click", async () => {
-    const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" }); // grab the current permissions of the room and parse them in JSON-format
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -130,7 +119,8 @@ export async function setupGMView(container) {
 
   navButtons.appendChild(exportButton);
 
-  // import-button
+// import-button
+  // import allows to import (player-)permissions to the room. We have an export, so we need an import right? RIGHT?!
   const importButton = document.createElement("button");
   importButton.classList.add("nav-button");
   importButton.title = "open permissions";
@@ -140,6 +130,7 @@ export async function setupGMView(container) {
   importIcon.classList.add("nav-icon");
   importButton.appendChild(importIcon);
 
+  // EventListener for the import-button
   importButton.addEventListener("click", async () => {
     const input = document.createElement("input");
     input.type = "file";
@@ -148,13 +139,14 @@ export async function setupGMView(container) {
       const file = e.target.files[0];
       if (!file) return;
       const text = await file.text();
+      // try the parse first, since we don't know what GMs are uploading
       try {
         const newPermissions = JSON.parse(text);
         await savePermissions(newPermissions);
         OBR.notification.show("import successful");
         await renderSpells(newPermissions); // pass newPermissions to render GMView properly
       } catch (err) {
-        OBR.notification.show("Error importing file");
+        OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
       }
     };
     input.click();
@@ -168,6 +160,7 @@ export async function setupGMView(container) {
   let currentFilter = "all";
   let currentSearch = "";
 
+// search function for spells
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = '🔎 Search for sound name ...';
@@ -175,7 +168,7 @@ export async function setupGMView(container) {
 
   container.appendChild(searchInput);
 
-  // filter for year and category
+// filter for year and category
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
 
@@ -194,18 +187,18 @@ export async function setupGMView(container) {
 
   container.appendChild(combinedSelect);
 
-  // main container for sounds
+// main container for sounds
   const spellsContainer = document.createElement('div');
   spellsContainer.classList.add('spells-container');
 
   container.appendChild(spellsContainer);
 
-  // for rerendering while searching, filtering and updateing checkboxes this function is used
+// for rerendering while searching, filtering and updateing checkboxes this function is used
   async function renderSpells(permissions) {
     // get an updated player-list
     players = await updatePlayers(players);
     const playerName = await OBR.player.getName();
-    // clear the container for a new render
+    // clear the spellsContainer for a new render
     spellsContainer.innerHTML = '';
 
     // show generelly just available sounds
@@ -230,39 +223,41 @@ export async function setupGMView(container) {
       }
     }
 
+    // if there are no spells left, display a 
     if (filteredSpells.length === 0) {
-      spellsContainer.innerHTML = '<p>No sounds found.</p>';
-      //return;
+      spellsContainer.innerHTML = '<p>No spells found.</p>';
+      return; // in general not neccessary, scince filteredSpells is empty
     }
 
-    // create cards for each filtered sound in the main container: spellsContainer
+    // create cards for each filtered spell in the main container: spellsContainer
     filteredSpells.forEach(spell => {
-      //preload all sounds to minimize time-lacks during playtime
-      preloadSound(spell.audio, spell.audio)
 
       const spellCard = document.createElement('div');
       spellCard.classList.add('spell-card');
-
     
       // create a sound button to play the sound
       const button = document.createElement('button');
       button.textContent = `${spell.name}`;
       button.classList.add('spell-button');
-    
+      
+      // EventListener for the button to notify everybody in the room and distribute the sound to everybody
       button.addEventListener('click', async () => {
-        // distribute sound to all Players in the room
+        // notify everybody in the room, that the player has hit a spell
         await triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
+        // play the audio in the room
         await playSoundForAll(spell.audio);
       });
 
       spellCard.appendChild(button);
 
-      // Checkbox-Gruppe
+      // The Checkbox-Group is used to display checkboxes for each player, for each spell.
+      // If they are ticked, the according player get's the according spell displayed in his SpellBoard
       if (players.length) { // if players is empty, we don't need the checkboxes
         const checkboxGroup = document.createElement('div');
         checkboxGroup.classList.add('checkbox-group');
 
-        players.forEach((player) => { // create a checkbox element for each player (for each sound)
+        // create a checkbox element for each player (for each sound)
+        players.forEach((player) => {
           const label = document.createElement('label');
           label.classList.add('checkbox-label');
           const checkbox = document.createElement('input');
@@ -271,15 +266,15 @@ export async function setupGMView(container) {
           // check existing room permissions to check and uncheck sounds
           checkbox.checked = permissions[player]?.includes(spell.name) || false;
 
-          // Add EventListener for permissions
+          // add EventListener for permissions
           checkbox.addEventListener("change", async () => {
-            // disable Checkbox while permissions are updated
+            // disable checkbox while permissions are updated (should be just a matter of milliseconds)
             checkbox.disabled = true;
 
             if (!permissions[player]) permissions[player] = []; // initiate permissions for player, if not alredy exist
             if (checkbox.checked) { 
               if (!permissions[player].includes(spell.name)) {
-                permissions[player].push(spell.name); // player gets permission to play the sound ich checkbox is checked
+                permissions[player].push(spell.name); // player gets permission to play the sound if the checkbox is checked
               }
             } else {
               permissions[player] = permissions[player].filter(s => s !== spell.name); // player loses permission if checkbox is unchecked
@@ -307,11 +302,13 @@ export async function setupGMView(container) {
 // end of contentArea 
 
 // begin of EventListener
+  // add EventListener for search
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value;
     renderSpells(permissions);
   });
   
+  // add EventListener for filter
   combinedSelect.addEventListener('change', (e) => {
     currentFilter = e.target.value;
     renderSpells(permissions);
@@ -319,28 +316,24 @@ export async function setupGMView(container) {
 // end of EventListener
 
 // check for changed metadata to trigger notification and sound
-  let lastTimestamp = 0;
+  let lastTimestamp = 0; // prevents Caching & ensures new triggering
 
   OBR.room.onMetadataChange((metadata) => {
+
+    // if NOTIFY_KEY has changed, send a notification to everybody in the room
     const notify = metadata[NOTIFY_KEY];
     if (notify && notify.timestamp > lastTimestamp) {
       lastTimestamp = notify.timestamp;
       OBR.notification.show(notify.message, "INFO");
     }
-    const trigger = metadata[SOUND_TRIGGER_KEY];
-    console.log("Trigger:", trigger);
+    
+    // if SOUND_TRIGGER_KEY has changed, play the audio file in everybodys browser
+    const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
     if (!trigger) return;
-    console.log("Trigger timestamp:", trigger.timestamp, lastTimestamp);
-    if (trigger.timestamp > lastTimestamp) {
-      lastTimestamp = trigger.timestamp;
-      //const audio = new Audio(trigger.audio);
-      //audio.play();
-      const audio = audioCache[trigger.audio];
-      if (audio) {
-        // Erstelle eine neue Instanz, um mehrfaches Abspielen zu ermöglichen
-        const clone = audio.cloneNode();
-        clone.play().catch(console.error);
-      }
+    if (trigger.timestamp > lastTimestamp) { // if new triggert
+      lastTimestamp = trigger.timestamp; // update timestamp
+      const audio = new Audio(trigger.audio); // updates audio
+      audio.play(); // play new audio
     }
   });
   
@@ -351,6 +344,6 @@ export async function setupGMView(container) {
     renderSpells(permissions); // re-render to update the checkboxes
   });
 
-// initial rendering to dislpay all sounds
+// initial rendering to dislpay all spells
   renderSpells(permissions);
 }

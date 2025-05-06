@@ -32,11 +32,12 @@ import { setupPlayerView } from './playerview.js';
 //add an add-button to add new sounds
 //add a sound slider to increase or decrease volume for each sound
 //remove search and filter when no sound is available (see playerview)
+// I don't know what will happen if there are two GMs
 
 // Navigation und Content Struktur erstellen
 document.querySelector('#app').innerHTML = `
   <nav id="navbar" class="navbar">
-    <span class="brand">Spellboard</span>
+    <span class="brand">SpellBoard</span>
     <div class="nav-buttons"></div>
   </nav>
   <div id="contentArea"></div>

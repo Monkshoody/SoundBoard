@@ -1,8 +1,8 @@
 {
   "name": "SoundBoard",
-  "version": "0.3.4",
+  "version": "1.0.1",
   "manifest_version": 1,
-  "author": "Moonkshood",
+  "author": "Monkshoody",
   "icon": "./logo.png",
   "description": "Provide sound effects, songs, backgroundmusic with access to all Players.",
   "action": {

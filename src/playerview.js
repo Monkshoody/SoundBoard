@@ -8,7 +8,7 @@ const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespa
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 
 export async function setupPlayerView(container, playerName) {
-  // search function for sounds
+// search function for spells
   let currentFilter = "all";
   let currentSearch = "";
 
@@ -17,64 +17,93 @@ export async function setupPlayerView(container, playerName) {
   searchInput.placeholder = '🔎 Search for sound name ...';
   searchInput.classList.add('search-bar');
 
-  //container.appendChild(searchInput);
+  // container needs to be apennded after cleaning the container in if (!permissions[playerName] || ...
 
-  // main container for sounds
+// filter for year and category
+  const combinedSelect = document.createElement('select');
+  combinedSelect.classList.add('combined-filter');
+
+  const options = [
+    "all",
+    ...[...new Set(spellData.map(spell => spell.kategorie))].map(k => `category: ${k}`),
+    ...[...new Set(spellData.map(spell => spell.jahr))].map(j => `year: ${j}`)
+  ];
+
+  options.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    combinedSelect.appendChild(option);
+  });
+
+  // container needs to be apennded after cleaning the container in if (!permissions[playerName] || ...
+  
+// main container for sounds
   const spellsContainer = document.createElement('div');
   spellsContainer.classList.add('spells-container');
 
-  //container.appendChild(spellsContainer);
+  // container needs to be apennded after cleaning the container in if (!permissions[playerName] || ...
 
+// for rerendering while searching, filtering and updateing permissions this function is used
   async function renderSpells() {
+    // get updated permissions
     const permissions = await loadPermissions();
-    console.log("permissions:", permissions);
-
+    
+    // clear everything (filter, search, etc.) if there aren't any permissions
     if (!permissions[playerName] || permissions[playerName].length === 0) {
-      container.innerHTML = "<p>no sounds available (HERE)</p>";
+      container.innerHTML = "<p>no sounds available</p>";
       return;
     }
+    // add the search, filter and spell-buttons
     container.appendChild(searchInput);
+    container.appendChild(combinedSelect);
     container.appendChild(spellsContainer);
+
     spellsContainer.innerHTML = ""; // emtying the playerview
     let playerSpells = permissions[playerName] || [];
 
-    console.log("PlayerSpells:", playerSpells);
-    
     // filter according to search
     if (currentSearch.trim() !== "") {
       const search = currentSearch.trim().toLowerCase();
       playerSpells = playerSpells.filter(spell => spell.toLowerCase().includes(search));
     }
 
-    //console.log("PlayerSpells:", playerSpells);
+    if (currentFilter !== "all") {
+      if (selected.startsWith("category: ")) {
+        const category = selected.replace("category: ", "");
+        playerSpells = playerSpells.filter(spell => spell.kategorie === category);
+      }
+      if (selected.startsWith("year: ")) {
+          const year = selected.replace("year: ", "");
+          playerSpells = playerSpells.filter(spell => spell.jahr === year);
+      }
+    }
+
+    // create cards for each filtered spell in the main container: spellsContainer
     playerSpells.forEach(spellName => {
       const spell = spellData.find(s => s.name === spellName);
-      console.log("in spell", spell, playerSpells);
       if (!spell) return;
 
       const card = document.createElement("div");
       card.className = "spell-card";
 
+      // create a sound button to play the sound
       const button = document.createElement("button");
       button.textContent = spell.name;
       button.className = "spell-button";
+
       button.addEventListener("click", async () => {
-        /*
-        const metadata = OBR.room.getMetadata();
-        const isAllowed = metadata[SOUND_PERMISSION_KEY]
-        console.log("isAllowed:", isAllowed);
-        */
+        // await the click event, to ensure fluent sound play and notification 
         const metadata = await OBR.room.getMetadata();
-        console.log("metadata", metadata);
-        //OBR.room.getMetadata().then((metadata) =>{
-          //console.log("spell-button clicked -> metadata[SOUND_PERMISSION_KEY]:", metadata[SOUND_PERMISSION_KEY]);
-          if (metadata[SOUND_PERMISSION_KEY]) {
-            await triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
-            await playSoundForAll(spell.audio);
-          } else {
-            await OBR.notification.show("Du hast den GM genervt, daher wurdest du gemutet. Gib ihm einen 🍪.");
-          }
-        //})
+
+        if (metadata[SOUND_PERMISSION_KEY]) { // check for permission to play sounds
+          // notify everybody in the room, that the player has hit a spell
+          await triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
+          // play the audio in the room
+          await playSoundForAll(spell.audio);
+        } else { // if the GM muted everyone ... Players needs to be punished ^^
+          await OBR.notification.show("Du hast den GM genervt, daher wurdest du gemutet. Gib ihm einen 🍪.");
+        }
       });
 
       card.appendChild(button);
@@ -82,35 +111,43 @@ export async function setupPlayerView(container, playerName) {
     });
   }
 
+  // add EventListener for search
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value;
     renderSpells();
   });
 
+  // add EventListener for filter
+  combinedSelect.addEventListener('change', (e) => {
+    currentFilter = e.target.value;
+    renderSpells();
+  });
+// end of EventListener
 
-  // check for changed metadata to trigger sound
+// check for changed metadata to trigger sound
   let lastTimestamp = 0; // prevents Caching & ensures new triggering
   OBR.room.onMetadataChange(async (metadata) => {
+
+    // if NOTIFY_KEY has changed, send a notification to everybody in the room
     const notify = metadata[NOTIFY_KEY];
-    console.log("Notify", notify);
-    console.log("notify timestamp:", notify.timestamp, lastTimestamp);
     if (notify && notify.timestamp > lastTimestamp) {
       lastTimestamp = notify.timestamp;
       OBR.notification.show(notify.message, "INFO");
     }
+
+    // if SOUND_TRIGGER_KEY has changed, play the audio file in everybodys browser
     const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
-    console.log("Trigger:", trigger);
     if (!trigger) return;
-    console.log("Trigger timestamp:", trigger.timestamp, lastTimestamp);
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
       audio.play(); // play new audio
     }
-    //const permissions = await loadPermissions();
+    
+    // re-render the spellsContainer
     await renderSpells();
   });
 
-  // initial rendering to dislpay all sounds
+  // initial rendering to dislpay spells
   renderSpells();
 }
