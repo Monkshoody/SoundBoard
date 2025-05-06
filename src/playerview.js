@@ -7,6 +7,13 @@ const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namesp
 const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 
+/*
+Ich muss die suche, filter und spells schon vor dem rendering an den container appenden, da sie sonst nicht funktionieren
+dadurch werden sie aber bei container.innerHTML = "<p>no sounds available</p>"; gelöscht und anschließend nicht wieder angefügt
+Ich kann sie aber auch nicht in der if else verzweigung stehen lassen, da sie sonst (vermutlich) bei jedem render neu eingefügt (oder ist java so schlau, dass es das selbst erkennt?)
+Vielleicht gibt es sowas wie ein container.unappendchild() oder container.removechild(). Das könnte man in der if (!permissions[playerName] || permissions[playerName].length === 0) verwenden, um den Container zu leeren.
+Aber dann habe ich wieder das gleiche Problem... glaube ich. Dang!
+*/
 export async function setupPlayerView(container, playerName) {
 // search function for spells
   let currentFilter = "all";
@@ -17,7 +24,7 @@ export async function setupPlayerView(container, playerName) {
   searchInput.placeholder = '🔎 Search for sound name ...';
   searchInput.classList.add('search-bar');
 
-  // container needs to be apennded after cleaning the container in if (!permissions[playerName] || ...
+  container.appendChild(searchInput);
 
 // filter for year and category
   const combinedSelect = document.createElement('select');
@@ -36,13 +43,13 @@ export async function setupPlayerView(container, playerName) {
     combinedSelect.appendChild(option);
   });
 
-  // container needs to be apennded after cleaning the container in if (!permissions[playerName] || ...
+  container.appendChild(combinedSelect);
   
 // main container for sounds
   const spellsContainer = document.createElement('div');
   spellsContainer.classList.add('spells-container');
 
-  // container needs to be apennded after cleaning the container in if (!permissions[playerName] || ...
+  container.appendChild(spellsContainer);
 
 // for rerendering while searching, filtering and updateing permissions this function is used
   async function renderSpells() {
@@ -52,12 +59,12 @@ export async function setupPlayerView(container, playerName) {
     // clear everything (filter, search, etc.) if there aren't any permissions
     if (!permissions[playerName] || permissions[playerName].length === 0) {
       container.innerHTML = "<p>no sounds available</p>";
-      return;
+    } else {
+      // add the search, filter and spell-buttons
+      container.appendChild(searchInput);
+      container.appendChild(combinedSelect);
+      container.appendChild(spellsContainer);
     }
-    // add the search, filter and spell-buttons
-    container.appendChild(searchInput);
-    container.appendChild(combinedSelect);
-    container.appendChild(spellsContainer);
 
     spellsContainer.innerHTML = ""; // emtying the playerview
     let playerSpells = permissions[playerName] || [];
