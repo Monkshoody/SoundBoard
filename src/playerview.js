@@ -17,21 +17,24 @@ export async function setupPlayerView(container, playerName) {
   searchInput.placeholder = '🔎 Search for sound name ...';
   searchInput.classList.add('search-bar');
 
-  container.appendChild(searchInput);
+  //container.appendChild(searchInput);
 
   // main container for sounds
   const spellsContainer = document.createElement('div');
   spellsContainer.classList.add('spells-container');
 
-  container.appendChild(spellsContainer);
+  //container.appendChild(spellsContainer);
 
   async function renderSpells() {
     const permissions = await loadPermissions();
     console.log("permissions:", permissions);
 
     if (!permissions[playerName] || permissions[playerName].length === 0) {
-      container.innerHTML = "<p>no sounds available</p>";
+      container.innerHTML = "<p>no sounds available (HERE)</p>";
+      return;
     }
+    container.appendChild(searchInput);
+    container.appendChild(spellsContainer);
     spellsContainer.innerHTML = ""; // emtying the playerview
     let playerSpells = permissions[playerName] || [];
 
