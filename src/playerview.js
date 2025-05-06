@@ -46,6 +46,7 @@ export async function setupPlayerView(container, playerName) {
     //console.log("PlayerSpells:", playerSpells);
     playerSpells.forEach(spellName => {
       const spell = spellData.find(s => s.name === spellName);
+      console.log("in spell", spell, playerSpells);
       if (!spell) return;
 
       const card = document.createElement("div");
@@ -54,21 +55,23 @@ export async function setupPlayerView(container, playerName) {
       const button = document.createElement("button");
       button.textContent = spell.name;
       button.className = "spell-button";
-      button.addEventListener("click", () => {
+      button.addEventListener("click", async () => {
         /*
         const metadata = OBR.room.getMetadata();
         const isAllowed = metadata[SOUND_PERMISSION_KEY]
         console.log("isAllowed:", isAllowed);
         */
-        OBR.room.getMetadata().then((metadata) =>{
+        metadata = await OBR.room.getMetadata();
+        console.log(metadata);
+        //OBR.room.getMetadata().then((metadata) =>{
           //console.log("spell-button clicked -> metadata[SOUND_PERMISSION_KEY]:", metadata[SOUND_PERMISSION_KEY]);
           if (metadata[SOUND_PERMISSION_KEY]) {
-            playSoundForAll(spell.audio);
-            triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
+            await triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
+            await playSoundForAll(spell.audio);
           } else {
-            OBR.notification.show("Du hast den GM genervt, daher wurdest du gemutet. Gib ihm einen 🍪.");
+            await OBR.notification.show("Du hast den GM genervt, daher wurdest du gemutet. Gib ihm einen 🍪.");
           }
-        })
+        //})
       });
 
       card.appendChild(button);
