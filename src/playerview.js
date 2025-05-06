@@ -89,6 +89,8 @@ export async function setupPlayerView(container, playerName) {
   let lastTimestamp = 0; // prevents Caching & ensures new triggering
   OBR.room.onMetadataChange(async (metadata) => {
     const notify = metadata[NOTIFY_KEY];
+    console.log("Notify", notify);
+    console.log("notify timestamp:", notify.timestamp, lastTimestamp);
     if (notify && notify.timestamp > lastTimestamp) {
       lastTimestamp = notify.timestamp;
       OBR.notification.show(notify.message, "INFO");
