@@ -361,7 +361,7 @@
     },
     {
         "name": "Prior-Incantato",
-        "kategorie": "Prior Incantato",
+        "kategorie": "Zauberkunst",
         "beschreibung": "Zauber-Rückverfolgung: Zeigt letzten genutzten Zauber eines Zauberstabs.",
         "bewegung": "Den eigenen Zauberstab auf einen anderen Zauberstab richten und drei mal antippen stillhalten.",
         "jahr": "3. Jahr",
