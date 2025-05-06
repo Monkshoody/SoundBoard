@@ -254,11 +254,11 @@
     {
         "name": "Titillando",
         "kategorie": "Verteidigung gegen die dunklen Künste",
-        "beschreibung": "Kitzel-Hexung: Lässt das Ziel laut lachen und sich winden.",
+        "beschreibung": "Kitzel-Hexung: Lässt das Ziel laut lachen und sich winden. (Dopplung mit Rictusempra)",
         "bewegung": "Leicht tänzelnde, geschwungene Bewegung nach rechts.",
         "jahr": "2. Jahr",
         "audio": "sounds/Titillando.wav",
-        "verfügbar": true
+        "verfügbar": false
     },
     {
         "name": "Bombarda",
