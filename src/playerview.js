@@ -27,6 +27,7 @@ export async function setupPlayerView(container, playerName) {
 
   async function renderSpells() {
     const permissions = await loadPermissions();
+    console.log("permissions:", permissions);
 
     if (!permissions[playerName] || permissions[playerName].length === 0) {
       container.innerHTML = "<p>no sounds available</p>";
@@ -61,8 +62,8 @@ export async function setupPlayerView(container, playerName) {
         const isAllowed = metadata[SOUND_PERMISSION_KEY]
         console.log("isAllowed:", isAllowed);
         */
-        metadata = await OBR.room.getMetadata();
-        console.log(metadata);
+        const metadata = await OBR.room.getMetadata();
+        console.log("metadata", metadata);
         //OBR.room.getMetadata().then((metadata) =>{
           //console.log("spell-button clicked -> metadata[SOUND_PERMISSION_KEY]:", metadata[SOUND_PERMISSION_KEY]);
           if (metadata[SOUND_PERMISSION_KEY]) {
@@ -78,9 +79,6 @@ export async function setupPlayerView(container, playerName) {
       spellsContainer.appendChild(card);
     });
   }
-
-  //const permissions = await loadPermissions();
-  //console.log("Permissions:", permissions);
 
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value;
@@ -108,7 +106,7 @@ export async function setupPlayerView(container, playerName) {
       audio.play(); // play new audio
     }
     //const permissions = await loadPermissions();
-    renderSpells();
+    await renderSpells();
   });
 
   // initial rendering to dislpay all sounds
