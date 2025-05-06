@@ -31,7 +31,6 @@ export async function setupPlayerView(container, playerName) {
 
     if (!permissions[playerName] || permissions[playerName].length === 0) {
       container.innerHTML = "<p>no sounds available</p>";
-      return;
     }
     spellsContainer.innerHTML = ""; // emtying the playerview
     let playerSpells = permissions[playerName] || [];
