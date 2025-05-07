@@ -203,6 +203,8 @@ export async function setupGMView(container) {
 
     // show generelly just available sounds
     let filteredSpells = spellData.filter(spell => spell.verfügbar);
+    // sort alphabteically to the names
+    filteredSpells.sort((a, b) => a.name.localeCompare(b.name));
 
     // filter according to search
     if (currentSearch.trim() !== "") {

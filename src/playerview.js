@@ -58,10 +58,9 @@ export async function setupPlayerView(container, playerName) {
     
     // clear everything (filter, search, etc.) if there aren't any permissions
     if (!permissions[playerName] || permissions[playerName].length === 0) {
-      spellsContainer.innerHTML = "<p>no sounds available</p>";
       searchInput.style.display = 'none';
       combinedSelect.style.display = 'none';
-      spellsContainer.style.display = 'none';
+      spellsContainer.innerHTML = "<p>no sounds available</p>";
     } else {
       searchInput.style.display = '';
       combinedSelect.style.display = '';
@@ -78,14 +77,16 @@ export async function setupPlayerView(container, playerName) {
       playerSpells = playerSpells.filter(spell => spell.toLowerCase().includes(search));
     }
 
+    // filter according to combined filter
+    const selected = combinedSelect.value;
     if (currentFilter !== "all") {
       if (selected.startsWith("category: ")) {
         const category = selected.replace("category: ", "");
-        playerSpells = playerSpells.filter(spell => spell.kategorie === category);
+        filteredSpells = filteredSpells.filter(spell => spell.kategorie === category);
       }
       if (selected.startsWith("year: ")) {
           const year = selected.replace("year: ", "");
-          playerSpells = playerSpells.filter(spell => spell.jahr === year);
+          filteredSpells = filteredSpells.filter(spell => spell.jahr === year);
       }
     }
 
