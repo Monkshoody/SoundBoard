@@ -210,6 +210,35 @@ export async function setupGMView(container) {
   const addButton = document.createElement('button');
   addButton.textContent = '➕ add sound';
 
+  // --- Event-Listener für das Hinzufügen ---
+  addButton.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    const category = categoryInput.value.trim();
+    const audio = audioInput.value.trim();
+
+    if (name && category && audio) {
+      const newSound = { name, category, audio };
+      spellData.push(newSound);
+
+      // Optional: Konsole zur Kontrolle
+      console.log("Neuer Sound hinzugefügt:", newSound);
+      console.log("Aktuelle soundData:", soundData);
+
+      // Felder leeren
+      nameInput.value = "";
+      categoryInput.value = "";
+      audioInput.value = "";
+    } else {
+      alert("Bitte alle Felder ausfüllen!");
+    }
+  });
+
+  // put eveything together
+  container.appendChild(nameInput);
+  container.appendChild(categoryInput);
+  container.appendChild(audioInput);
+  container.appendChild(addButton);
+
 // search function for sounds
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
