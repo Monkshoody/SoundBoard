@@ -72,7 +72,7 @@ function processDropboxLink(inputUrl) {
   const dropboxRegex = /^https:\/\/www\.dropbox\.com\/scl\/fi\/[\w\d]+\/[\w\d%-]+\.\w+\?.*/;
 
   if (!dropboxRegex.test(inputUrl)) {
-    OBR.notification.show("❌ Please enter a valid Dropbox link", "INFO");
+    OBR.notification.show("Please enter a valid Dropbox link", "INFO");
     return null;
   }
 
@@ -264,11 +264,10 @@ export async function setupGMView(container) {
     if (parse === null) {audioInput.value = "";}
 
     if (name && category && parse) {
-      const newSound = { name, category, audio };
+      const newSound = { name, category, parse };
       soundData.push(newSound);
 
-      console.log("Neuer Sound hinzugefügt:", newSound);
-      console.log("Aktuelle soundData:", soundData);
+      OBR.notification.show("New sound added", "INFO");
 
       // clear input fields
       nameInput.value = "";
