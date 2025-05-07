@@ -292,7 +292,7 @@ export async function setupGMView(container) {
 
   container.appendChild(searchInput);
 
-// filter for categories
+// filter for categories; Note that this is only the initiation of the filter DOM, as the filter reacts dynamically to the creation and deletion of new sounds.
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
   const options = [
@@ -326,6 +326,7 @@ export async function setupGMView(container) {
     let newSoundData = await loadSoundData();
     let filteredSounds = newSoundData;
 
+    //
     const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value);
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
@@ -462,7 +463,10 @@ export async function setupGMView(container) {
     
     // if SOUND_TRIGGER_KEY has changed, play the audio file in everybodys browser
     const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
+    console.log("trigger:", trigger);
     if (!trigger) return;
+    console.log("timestamp > lastTimestamp", timestamp, lastTimestamp);
+    console.log("trigger.audio", trigger.audio);
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio

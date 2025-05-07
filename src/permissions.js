@@ -36,7 +36,6 @@ export async function saveSoundData(soundData) {
     [SOUND_TRIGGER_KEY]: { timestamp: 0 }, // reset the timesamp so the OBR.room.onMetadataChange in gmview und playerview won't trigger
     [NOTIFY_KEY]: { timestamp: 0 } // same for NOTIFY_KEY
   });
-  console.log("metadata:", currentMetadata);
 }
 
 // playSoundForAll will dirtibute the argument "audioFile" to all players in the room
