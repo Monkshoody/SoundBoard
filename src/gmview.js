@@ -29,7 +29,6 @@ export async function setupGMView(container) {
   // permissions defines who is able to see and play a sound. GM can checkbox the users to provide access to a sound.
   // Thus, permissions is an array containing all players and the accoring sound access
   const permissions = await loadPermissions();
-  //console.log("Permissions GM:", permissions);
   // three possibilities: 1. GM is first one in room und thus alone. -> getPlayers() will be empty
   //                      2. GM is with some, but not all players in room. -> getPlayers() will be partially full -> players needs update through OBR.party.onChange()
   //                      3. GM is with all players in the room. -> getPlayers() will be full -> we should still update players through OBR.party.onChange()

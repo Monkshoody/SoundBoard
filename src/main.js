@@ -18,8 +18,8 @@ import { setupPlayerView } from './playerview.js';
 //(check) fullfill JSON
 //(check) create Audio files
 //(check) normalize audio files
-//final testing in OwlBear
-//clean up
+//(check) final testing in OwlBear
+//(check) clean up
 //make new Git-Branch
 //change to german
 
