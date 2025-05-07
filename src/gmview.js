@@ -1,6 +1,6 @@
 import OBR from "@owlbear-rodeo/sdk";
 //import spellData from "./spells.json";
-import { loadPermissions, savePermissions, saveSoundData, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
+import { loadPermissions, savePermissions, saveSoundData, loadSoundData, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
@@ -89,6 +89,20 @@ function processDropboxLink(inputUrl) {
   return newUrl;
 }
 
+// refreshCategoryFilter will refresh the filter options in the dropdown menu, if new sounds contain new categories
+function refreshCategoryFilter(data) {
+  combinedSelect.innerHTML = ""; // delete old options
+  const options = [ // fetch all options from soundData
+    "all",
+    ...[...new Set(data.map(sound => sound.category))].map(k => `category: ${k}`)
+  ];
+  options.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    combinedSelect.appendChild(option); // add new option to the drop-down menu
+  });
+}
 
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
@@ -259,9 +273,7 @@ export async function setupGMView(container) {
     const name = nameInput.value.trim();
     const category = categoryInput.value.trim();
     const audio = audioInput.value.trim();
-    console.log("audio before", audio);
     let parse = processDropboxLink(audio);
-    console.log("parse after", parse);
     if (parse === null) {audioInput.value = "";}
 
     if (name && category && parse) {
@@ -298,18 +310,9 @@ export async function setupGMView(container) {
 // filter for category
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
-
-  const options = [
-    "all",
-    ...[...new Set(soundData.map(sound => sound.category))].map(k => `category: ${k}`)
-  ];
-
-  options.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    combinedSelect.appendChild(option);
-  });
+  // load updated soundData and set filter-categories according to the new spundData-categories
+  const newSoundData = loadSoundData();
+  refreshCategoryFilter(newSoundData);
 
   container.appendChild(combinedSelect);
 
@@ -327,8 +330,9 @@ export async function setupGMView(container) {
     // clear the soundsContainer for a new render
     soundsContainer.innerHTML = '';
 
-    // show generelly just available sounds
-    let filteredSounds = soundData//.filter(spell => spell.verfügbar);
+    // loud new soundData scince it could be updated
+    let newSoundData = loadSoundData();
+    let filteredSounds = newSoundData
     // sort alphabteically to the names
     filteredSounds.sort((a, b) => a.name.localeCompare(b.name));
 
