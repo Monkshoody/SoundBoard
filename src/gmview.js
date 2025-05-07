@@ -263,9 +263,7 @@ export async function setupGMView(container) {
 
     if (name && category && parse) {
       const newSound = { name, category, parse };
-      console.log("soundData before", soundData);
       soundData.push(newSound);
-      console.log("soundData after", soundData);
       saveSoundData(soundData);
 
       OBR.notification.show("New sound added", "INFO");
@@ -327,8 +325,8 @@ export async function setupGMView(container) {
     // loud new soundData from the room namespace for it could be updated
     let newSoundData = await loadSoundData();
     let filteredSounds = newSoundData;
-
-    //
+    console.log("fetched filteredSounds:", filteredSounds);
+    // 
     const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value);
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))

@@ -27,6 +27,7 @@ export async function loadSoundData() {
   const metadata = await OBR.room.getMetadata();
   return metadata[SOUNDDATA_KEY] || {};
 }
+
 // saveSoundData will save the argument "soundData" in the SOUNDDATA_KEY
 export async function saveSoundData(soundData) {
   const currentMetadata = await OBR.room.getMetadata();
@@ -36,6 +37,8 @@ export async function saveSoundData(soundData) {
     [SOUND_TRIGGER_KEY]: { timestamp: 0 }, // reset the timesamp so the OBR.room.onMetadataChange in gmview und playerview won't trigger
     [NOTIFY_KEY]: { timestamp: 0 } // same for NOTIFY_KEY
   });
+  const metad = await OBR.room.getMetadata();
+  console.log("metadata after saveSoundData:", metad);
 }
 
 // playSoundForAll will dirtibute the argument "audioFile" to all players in the room
