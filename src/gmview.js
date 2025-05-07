@@ -323,6 +323,7 @@ export async function setupGMView(container) {
   });
 
   container.appendChild(combinedSelect);
+  console.log("combinedSelect created");
 
 // main container for sounds
   const soundsContainer = document.createElement('div');
@@ -342,6 +343,8 @@ export async function setupGMView(container) {
     let newSoundData = loadSoundData();
     let filteredSounds = newSoundData
 
+    console.log("I'm HERE!!!");
+    console.log("combinedSelect", combinedSelect);
     refreshCategoryFilter(combinedSelect, filteredSounds);
     // sort alphabteically to the names
     filteredSounds.sort((a, b) => a.name.localeCompare(b.name));
