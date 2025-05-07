@@ -307,12 +307,19 @@ export async function setupGMView(container) {
 
   container.appendChild(searchInput);
 
-// filter for category
+// filter for categories
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
-  // load updated soundData and set filter-categories according to the new spundData-categories
-  const newSoundData = loadSoundData();
-  refreshCategoryFilter(newSoundData);
+  const options = [
+    "all",
+    ...[...new Set(soundData.map(sound => sound.category))].map(k => `category: ${k}`)
+  ];
+  options.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    combinedSelect.appendChild(option);
+  });
 
   container.appendChild(combinedSelect);
 
@@ -333,6 +340,8 @@ export async function setupGMView(container) {
     // loud new soundData scince it could be updated
     let newSoundData = loadSoundData();
     let filteredSounds = newSoundData
+
+    refreshCategoryFilter(filteredSounds);
     // sort alphabteically to the names
     filteredSounds.sort((a, b) => a.name.localeCompare(b.name));
 
