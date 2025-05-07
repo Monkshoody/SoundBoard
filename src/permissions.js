@@ -23,6 +23,17 @@ export async function savePermissions(permissions) {
   });
 }
 
+// saveSoundData will save the argument "soundData" in the SOUNDDATA_KEY
+export async function saveSoundData(soundData) {
+  const currentMetadata = await OBR.room.getMetadata();
+  await OBR.room.setMetadata({
+    ...currentMetadata,
+    [SOUNDDATA_KEY]: soundData, // set soundData to SOUNDDATA_KEY
+    [SOUND_TRIGGER_KEY]: { timestamp: 0 }, // reset the timesamp so the OBR.room.onMetadataChange in gmview und playerview won't trigger
+    [NOTIFY_KEY]: { timestamp: 0 } // same for NOTIFY_KEY
+  });
+}
+
 // playSoundForAll will dirtibute the argument "audioFile" to all players in the room
 export async function playSoundForAll(audioFile) {
   const currentMetadata = await OBR.room.getMetadata();

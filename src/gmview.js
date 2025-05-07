@@ -1,6 +1,6 @@
 import OBR from "@owlbear-rodeo/sdk";
 //import spellData from "./spells.json";
-import { loadPermissions, savePermissions, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
+import { loadPermissions, savePermissions, saveSoundData, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
@@ -93,11 +93,12 @@ function processDropboxLink(inputUrl) {
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
 
-// initiate the SOUND_PERMISSION_KEY as true, so that the players are allowed to play sounds
+// initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
   await OBR.room.setMetadata({
     ... currentMetadata,
-    [SOUND_PERMISSION_KEY]: true
+    [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
+    [SOUNDDATA_KEY]: soundData // initiate the SOUNDDATA_KEY as empty array, so on default no sounds are available. SOUNDDATA_KEY will be updated accoring to soundData array
   });
 
   // permissions defines who is able to see and play a sound. GM can checkbox the users to provide access to a sound.
@@ -246,7 +247,7 @@ export async function setupGMView(container) {
 
   const audioInput = document.createElement('input');
   audioInput.type = 'text';
-  audioInput.placeholder = 'link';
+  audioInput.placeholder = 'DropBox link';
   audioInput.classList.add('addInput');
 
   const addButton = document.createElement('button');
@@ -266,6 +267,7 @@ export async function setupGMView(container) {
     if (name && category && parse) {
       const newSound = { name, category, parse };
       soundData.push(newSound);
+      saveSoundData(soundData);
 
       OBR.notification.show("New sound added", "INFO");
 
