@@ -67,6 +67,29 @@ async function updatePlayers(players) {
   return players;
 }
 
+// parse input Links 
+function processDropboxLink(inputUrl) {
+  const dropboxRegex = /^https:\/\/www\.dropbox\.com\/scl\/fi\/[\w\d]+\/[\w\d%-]+\.\w+\?.*/;
+
+  if (!dropboxRegex.test(inputUrl)) {
+    OBR.notification.show("❌ Please enter a valid Dropbox link", "INFO");
+    return null;
+  }
+
+  // Remove any existing dl=0 or dl=1
+  let newUrl = inputUrl.replace(/([?&])dl=\d/, '');
+
+  // Append raw=1 correctly (depending on whether parameters are already present)
+  if (newUrl.includes('?')) {
+    newUrl += '&raw=1';
+  } else {
+    newUrl += '?raw=1';
+  }
+
+  return newUrl;
+}
+
+
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
 
@@ -98,19 +121,6 @@ export async function setupGMView(container) {
     navbar.appendChild(navButtons);
   }
 
-/*
-// add Sounds
-  // addSounds allows to add new sounds to the OwlBear-room
-  const addSounds = document.createElement("button");
-  addSounds.classList.add("nav-button");
-  addSounds.title = "add sounds";
-  const addIcon = document.createElement("img");
-  addIcon.src = "./add.png";
-  addIcon.alt = "addSound";
-  addIcon.classList.add("nav-icon");
-  addSounds.appendChild(addIcon);
-  navButtons.appendChild(addSounds);
-*/
 // audio-toggle container
   // toggle to allow or deny player to play sound in general
   const audioToggleWrapper = document.createElement("div");
@@ -248,6 +258,8 @@ export async function setupGMView(container) {
     const name = nameInput.value.trim();
     const category = categoryInput.value.trim();
     const audio = audioInput.value.trim();
+    audio = processDropboxLink(audio);
+    if (audio === null) {audioInput.value = ""};
 
     if (name && category && audio) {
       const newSound = { name, category, audio };
