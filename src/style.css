@@ -96,7 +96,7 @@ h1 {
   overflow-y: auto;
 }
 
-input[type="text"] {
+.inputInput[type="text"] {
   padding: 1px 3px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -105,13 +105,13 @@ input[type="text"] {
   width: auto;
 }
 
-input[type="text"]:focus {
+.inputInput[type="text"]:focus {
   border-color: #5a67d8;
   box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
   outline: none;
 }
 
-.add-button {
+.buttonInput {
   padding: 1px 3px;
   background-color: #5a67d8;
   color: white;
@@ -120,14 +120,14 @@ input[type="text"]:focus {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.add-button:hover {
+.buttonInput:hover {
   background-color: #434190;
 }
 
-.add-button:active {
+.buttonInput:active {
   transform: scale(0.98);
 }
 
