@@ -341,7 +341,8 @@ export async function setupGMView(container) {
 
     // loud new soundData scince it could be updated
     let newSoundData = loadSoundData();
-    let filteredSounds = newSoundData
+    let filteredSounds = newSoundData;
+    console.log("filteredSounds", filteredSounds);
 
     console.log("I'm HERE!!!");
     console.log("combinedSelect", combinedSelect);
