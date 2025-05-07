@@ -1,11 +1,32 @@
 import OBR from "@owlbear-rodeo/sdk";
-import spellData from "./spells.json";
+//import spellData from "./spells.json";
 import { loadPermissions, savePermissions, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
 const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
+
+// global soundData array for storing the sounds
+//var soundData = [];
+//right now for testcases
+var soundData = [
+  {
+    "name": "Alohomora",
+    "category": "Zauberkunst",
+    "audio": "https://www.dropbox.com/scl/fi/nrxteuyazmatma686cxfd/Alohomora.wav?rlkey=w3apwnwb3to2wqc2y8t0z8ooi&st=e55u98zi&raw=1"
+  },
+  {
+    "name": "Lumos",
+    "category": "Zauberkunst",
+    "audio": "https://www.dropbox.com/scl/fi/j6f9d0vdjqxdnp0webvb5/Lumos.wav?rlkey=i7yxbmwno2vfyls8row5wiw0w&st=m758xuir&raw=1"
+  },
+  {
+    "name": "Expelliarmus",
+    "category": "Kampfzauber",
+    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
+  }
+];
 
 var players = []; // global players array including names of all players in the room
 
@@ -46,6 +67,17 @@ export async function setupGMView(container) {
     navButtons.classList.add("nav-buttons");
     navbar.appendChild(navButtons);
   }
+
+// add Sounds
+  // addSounds allows to add new sounds to the OwlBear-room
+  const addSounds = document.createElement("button");
+  addSounds.classList.add("nav-button");
+  addSounds.title = "add sounds";
+  const addIcon = document.createElement("img");
+  addIcon.src = "./add.png";
+  addIcon.alt = "addSound";
+  addIcon.classList.add("nav-icon");
+  addSounds.appendChild(addIcon);
 
 // audio-toggle container
   // toggle to allow or deny player to play sound in general
@@ -167,14 +199,13 @@ export async function setupGMView(container) {
 
   container.appendChild(searchInput);
 
-// filter for year and category
+// filter for category
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
 
   const options = [
     "all",
-    ...[...new Set(spellData.map(spell => spell.kategorie))].map(k => `category: ${k}`),
-    ...[...new Set(spellData.map(spell => spell.jahr))].map(j => `year: ${j}`)
+    ...[...new Set(soundData.map(spell => spell.kategorie))].map(k => `category: ${k}`)
   ];
 
   options.forEach(opt => {
@@ -201,7 +232,7 @@ export async function setupGMView(container) {
     soundsContainer.innerHTML = '';
 
     // show generelly just available sounds
-    let filteredSounds = spellData.filter(spell => spell.verfügbar);
+    let filteredSounds = soundData//.filter(spell => spell.verfügbar);
     // sort alphabteically to the names
     filteredSounds.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -214,14 +245,8 @@ export async function setupGMView(container) {
     // filter according to combined filter
     const selected = combinedSelect.value;
     if (currentFilter !== "all") {
-      if (selected.startsWith("category: ")) {
-        const category = selected.replace("category: ", "");
-        filteredSounds = filteredSounds.filter(sound => sound.kategorie === category);
-      }
-      if (selected.startsWith("year: ")) {
-          const year = selected.replace("year: ", "");
-          filteredSounds = filteredSounds.filter(sound => sound.jahr === year);
-      }
+      const category = selected.replace("category: ", "");
+      filteredSounds = filteredSounds.filter(sound => sound.kategorie === category);
     }
 
     // if there are no sounds left, display a message
