@@ -68,12 +68,12 @@ export async function setupPlayerView(container, playerName) {
       spellsContainer.innerHTML = ""; // emtying the playerview
     }
 
+    // like gmview filteredSpells show generelly just available spells, spells for which the player has authorization
     let  playerSpells = [];
     permissions[playerName].forEach(spellName => {
-      console.log("spellName", spellName);
+      // find spells for which the player has permission
       const spell = spellData.find(s => s.name === spellName);
-      playerSpells.push(spell);
-      console.log("playerSpells", playerSpells);
+      playerSpells.push(spell); // store these spells in playerSpells
 
       // filter according to search
       if (currentSearch.trim() !== "") {
@@ -94,31 +94,11 @@ export async function setupPlayerView(container, playerName) {
         }
       }
     });
-    /*
-    let playerSpells = permissions[playerName] || [];
-
-    // filter according to search
-    if (currentSearch.trim() !== "") {
-      const search = currentSearch.trim().toLowerCase();
-      playerSpells = playerSpells.filter(spell => spell.toLowerCase().includes(search));
-    }
-
-    // filter according to combined filter
-    const selected = combinedSelect.value;
-    if (currentFilter !== "all") {
-      if (selected.startsWith("category: ")) {
-        const category = selected.replace("category: ", "");
-        playerSpells = playerSpells.filter(spell => spell.kategorie === category);
-      }
-      if (selected.startsWith("year: ")) {
-          const year = selected.replace("year: ", "");
-          playerSpells = playerSpells.filter(spell => spell.jahr === year);
-      }
-    }
-    */
+    
+    // sort alphabteically to the names
+    playerSpells.sort((a, b) => a.name.localeCompare(b.name));
     // create cards for each filtered spell in the main container: spellsContainer
     playerSpells.forEach(spell => {
-      //const spell = spellData.find(s => s.name === spellName);
       if (!spell) return;
 
       const card = document.createElement("div");

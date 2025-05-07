@@ -201,7 +201,7 @@ export async function setupGMView(container) {
     // clear the spellsContainer for a new render
     spellsContainer.innerHTML = '';
 
-    // show generelly just available sounds
+    // show generelly just available spells
     let filteredSpells = spellData.filter(spell => spell.verfügbar);
     // sort alphabteically to the names
     filteredSpells.sort((a, b) => a.name.localeCompare(b.name));
