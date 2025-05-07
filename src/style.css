@@ -92,7 +92,7 @@ h1 {
 
 #contentArea {
   flex-grow: 1;
-  padding: 20px;
+  padding: 30px 2px 2px 2px;
   overflow-y: auto;
 }
 
@@ -116,7 +116,6 @@ h1 {
   border: 1px solid white;
   background-color: #2d2d2d;
   color: white;
-  border: none;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
