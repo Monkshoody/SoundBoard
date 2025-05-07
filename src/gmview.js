@@ -243,7 +243,7 @@ export async function setupGMView(container) {
   addButton.textContent = '➕ add sound';
   addButton.classList.add('add-button');
 
-  // --- Event-Listener für das Hinzufügen ---
+  // EventListener for adding new sounds
   addButton.addEventListener('click', () => {
     const name = nameInput.value.trim();
     const category = categoryInput.value.trim();
@@ -253,18 +253,17 @@ export async function setupGMView(container) {
       const newSound = { name, category, audio };
       soundData.push(newSound);
 
-      // Optional: Konsole zur Kontrolle
       console.log("Neuer Sound hinzugefügt:", newSound);
       console.log("Aktuelle soundData:", soundData);
 
-      // Felder leeren
+      // clear input fields
       nameInput.value = "";
       categoryInput.value = "";
       audioInput.value = "";
     } else {
       OBR.notification.show("Please fill in all fields!", "INFO");
-      //alert("Please fill in all fields!");
     }
+    renderSounds(permissions);
   });
 
   // put eveything together
