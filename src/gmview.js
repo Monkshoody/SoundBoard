@@ -226,7 +226,7 @@ export async function setupGMView(container) {
 
     // if there are no sounds left, display a message
     if (filteredSounds.length === 0) {
-      soundsContainer.innerHTML = '<p>No sounds found.</p>';
+      soundsContainer.innerHTML = '<p>No sounds found</p>';
       return; // in general not neccessary, scince filteredSounds is empty
     }
 
@@ -244,7 +244,7 @@ export async function setupGMView(container) {
       // EventListener for the button to notify everybody in the room and distribute the sound to everybody
       button.addEventListener('click', async () => {
         // notify everybody in the room, that the player has hit a sound
-        await triggerGlobalNotification(`${playerName} hat den Zauber "${sound.name}" gewirkt!`);
+        await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
         // play the audio in the room
         await playSoundForAll(sound.audio);
       });

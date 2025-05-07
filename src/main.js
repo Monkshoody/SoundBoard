@@ -3,8 +3,7 @@ import OBR from "@owlbear-rodeo/sdk";
 import { setupGMView } from './gmview.js';
 import { setupPlayerView } from './playerview.js';
 
-//change spells to sounds
-//change to english
+//ToDo
 //edit export/import for provided sounds (cut-off ?dl=0 to ?raw=1) how's this woth youtube or others?
 //remove spells.json
 //add an add-button to add new sounds

@@ -108,11 +108,11 @@ export async function setupPlayerView(container, playerName) {
 
         if (metadata[SOUND_PERMISSION_KEY]) { // check for permission to play sounds
           // notify everybody in the room, that the player has hit a sound
-          await triggerGlobalNotification(`${playerName} hat den Zauber "${sound.name}" gewirkt!`);
+          await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
           // play the audio in the room
           await playSoundForAll(sound.audio);
         } else { // if the GM muted everyone ... Players needs to be punished ^^
-          await OBR.notification.show("Du hast den GM genervt, daher wurdest du gemutet. Gib ihm einen 🍪.");
+          await OBR.notification.show("You annoyed the GM, so you were muted. Give him a 🍪 to regain access.");
         }
       });
 
