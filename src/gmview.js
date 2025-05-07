@@ -188,7 +188,7 @@ export async function setupGMView(container) {
 
 // main container for sounds
   const soundsContainer = document.createElement('div');
-  soundsContainer.classList.add('sounds-container');
+  soundsContainer.classList.add('sound-container');
 
   container.appendChild(soundsContainer);
 
