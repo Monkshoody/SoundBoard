@@ -263,7 +263,9 @@ export async function setupGMView(container) {
 
     if (name && category && parse) {
       const newSound = { name, category, parse };
+      console.log("soundData before", soundData);
       soundData.push(newSound);
+      console.log("soundData after", soundData);
       saveSoundData(soundData);
 
       OBR.notification.show("New sound added", "INFO");
@@ -377,6 +379,7 @@ export async function setupGMView(container) {
       // EventListener for the soundButton to notify everybody in the room and distribute the sound to everybody
       soundButton.addEventListener('click', async () => {
         // play the audio in the room
+        console.log("HERE", sound.name, sound.audio);
         await playSoundForAll(sound.audio);
         // notify everybody in the room, that the player has hit a sound
         await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
@@ -459,7 +462,7 @@ export async function setupGMView(container) {
     if (notify && notify.timestamp > lastTimestamp) {
       lastTimestamp = notify.timestamp;
       OBR.notification.show(notify.message, "INFO");
-      return;
+      //return;
     }
     
     // if SOUND_TRIGGER_KEY has changed, play the audio file in everybodys browser
