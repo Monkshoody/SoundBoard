@@ -143,7 +143,7 @@ export async function setupGMView(container) {
         const newPermissions = JSON.parse(text);
         await savePermissions(newPermissions);
         OBR.notification.show("import successful");
-        await renderSpells(newPermissions); // pass newPermissions to render GMView properly
+        await renderSounds(newPermissions); // pass newPermissions to render GMView properly
       } catch (err) {
         OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
       }
@@ -159,7 +159,7 @@ export async function setupGMView(container) {
   let currentFilter = "all";
   let currentSearch = "";
 
-// search function for spells
+// search function for sounds
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = '🔎 Search for sound name ...';
@@ -187,28 +187,28 @@ export async function setupGMView(container) {
   container.appendChild(combinedSelect);
 
 // main container for sounds
-  const spellsContainer = document.createElement('div');
-  spellsContainer.classList.add('spells-container');
+  const soundsContainer = document.createElement('div');
+  soundsContainer.classList.add('sounds-container');
 
-  container.appendChild(spellsContainer);
+  container.appendChild(soundsContainer);
 
 // for rerendering while searching, filtering and updateing checkboxes this function is used
-  async function renderSpells(permissions) {
+  async function renderSounds(permissions) {
     // get an updated player-list
     players = await updatePlayers(players);
     const playerName = await OBR.player.getName();
-    // clear the spellsContainer for a new render
-    spellsContainer.innerHTML = '';
+    // clear the soundsContainer for a new render
+    soundsContainer.innerHTML = '';
 
-    // show generelly just available spells
-    let filteredSpells = spellData.filter(spell => spell.verfügbar);
+    // show generelly just available sounds
+    let filteredSounds = spellData.filter(spell => spell.verfügbar);
     // sort alphabteically to the names
-    filteredSpells.sort((a, b) => a.name.localeCompare(b.name));
+    filteredSounds.sort((a, b) => a.name.localeCompare(b.name));
 
     // filter according to search
     if (currentSearch.trim() !== "") {
       const search = currentSearch.trim().toLowerCase();
-      filteredSpells = filteredSpells.filter(spell => spell.name.toLowerCase().includes(search));
+      filteredSounds = filteredSounds.filter(sound => sound.name.toLowerCase().includes(search));
     }
 
     // filter according to combined filter
@@ -216,43 +216,43 @@ export async function setupGMView(container) {
     if (currentFilter !== "all") {
       if (selected.startsWith("category: ")) {
         const category = selected.replace("category: ", "");
-        filteredSpells = filteredSpells.filter(spell => spell.kategorie === category);
+        filteredSounds = filteredSounds.filter(sound => sound.kategorie === category);
       }
       if (selected.startsWith("year: ")) {
           const year = selected.replace("year: ", "");
-          filteredSpells = filteredSpells.filter(spell => spell.jahr === year);
+          filteredSounds = filteredSounds.filter(sound => sound.jahr === year);
       }
     }
 
-    // if there are no spells left, display a 
-    if (filteredSpells.length === 0) {
-      spellsContainer.innerHTML = '<p>No spells found.</p>';
-      return; // in general not neccessary, scince filteredSpells is empty
+    // if there are no sounds left, display a message
+    if (filteredSounds.length === 0) {
+      soundsContainer.innerHTML = '<p>No sounds found.</p>';
+      return; // in general not neccessary, scince filteredSounds is empty
     }
 
-    // create cards for each filtered spell in the main container: spellsContainer
-    filteredSpells.forEach(spell => {
+    // create cards for each filtered sound in the main container: soundsContainer
+    filteredSounds.forEach(sound => {
 
-      const spellCard = document.createElement('div');
-      spellCard.classList.add('spell-card');
+      const soundCard = document.createElement('div');
+      soundCard.classList.add('sound-card');
     
       // create a sound button to play the sound
       const button = document.createElement('button');
-      button.textContent = `${spell.name}`;
-      button.classList.add('spell-button');
+      button.textContent = `${sound.name}`;
+      button.classList.add('sound-button');
       
       // EventListener for the button to notify everybody in the room and distribute the sound to everybody
       button.addEventListener('click', async () => {
-        // notify everybody in the room, that the player has hit a spell
-        await triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
+        // notify everybody in the room, that the player has hit a sound
+        await triggerGlobalNotification(`${playerName} hat den Zauber "${sound.name}" gewirkt!`);
         // play the audio in the room
-        await playSoundForAll(spell.audio);
+        await playSoundForAll(sound.audio);
       });
 
-      spellCard.appendChild(button);
+      soundCard.appendChild(button);
 
-      // The Checkbox-Group is used to display checkboxes for each player, for each spell.
-      // If they are ticked, the according player get's the according spell displayed in his SpellBoard
+      // The Checkbox-Group is used to display checkboxes for each player, for each sound.
+      // If they are ticked, the according player get's the according sound displayed in his soundBoard
       if (players.length) { // if players is empty, we don't need the checkboxes
         const checkboxGroup = document.createElement('div');
         checkboxGroup.classList.add('checkbox-group');
@@ -265,7 +265,7 @@ export async function setupGMView(container) {
           checkbox.type = 'checkbox';
           
           // check existing room permissions to check and uncheck sounds
-          checkbox.checked = permissions[player]?.includes(spell.name) || false;
+          checkbox.checked = permissions[player]?.includes(sound.name) || false;
 
           // add EventListener for permissions
           checkbox.addEventListener("change", async () => {
@@ -274,11 +274,11 @@ export async function setupGMView(container) {
 
             if (!permissions[player]) permissions[player] = []; // initiate permissions for player, if not alredy exist
             if (checkbox.checked) { 
-              if (!permissions[player].includes(spell.name)) {
-                permissions[player].push(spell.name); // player gets permission to play the sound if the checkbox is checked
+              if (!permissions[player].includes(sound.name)) {
+                permissions[player].push(sound.name); // player gets permission to play the sound if the checkbox is checked
               }
             } else {
-              permissions[player] = permissions[player].filter(s => s !== spell.name); // player loses permission if checkbox is unchecked
+              permissions[player] = permissions[player].filter(s => s !== sound.name); // player loses permission if checkbox is unchecked
             }
             
             // save the new permissions in the room metadata
@@ -293,11 +293,11 @@ export async function setupGMView(container) {
           checkboxGroup.appendChild(label);
         });
 
-        spellCard.appendChild(checkboxGroup); 
+        soundCard.appendChild(checkboxGroup); 
       }
 
-      // put all children together and append to the spellsContainer
-      spellsContainer.appendChild(spellCard); 
+      // put all children together and append to the soundsContainer
+      soundsContainer.appendChild(soundCard); 
     });
   }
 // end of contentArea 
@@ -306,13 +306,13 @@ export async function setupGMView(container) {
   // add EventListener for search
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value;
-    renderSpells(permissions);
+    renderSounds(permissions);
   });
   
   // add EventListener for filter
   combinedSelect.addEventListener('change', (e) => {
     currentFilter = e.target.value;
-    renderSpells(permissions);
+    renderSounds(permissions);
   });
 // end of EventListener
 
@@ -342,9 +342,9 @@ export async function setupGMView(container) {
 // check for new players to update checkboxes and permissions
   OBR.party.onChange((newplayer) => {
     updatePlayers(players); // update the global players array, scince someone joined or left the room
-    renderSpells(permissions); // re-render to update the checkboxes
+    renderSounds(permissions); // re-render to update the checkboxes
   });
 
-// initial rendering to dislpay all spells
-  renderSpells(permissions);
+// initial rendering to dislpay all sounds
+  renderSounds(permissions);
 }

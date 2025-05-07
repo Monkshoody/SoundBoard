@@ -130,14 +130,14 @@ h1 {
   margin-top: 3px;
 }
 
-.spells-container {
+.sound-container {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 5px;
 }
 
-.spell-card {
+.sound-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 5px;
@@ -147,7 +147,7 @@ h1 {
   align-items: center;
 }
 
-.spell-button {
+.sound-button {
   margin-bottom: 8px;
   padding: 6px 12px;
   font-size: 16px;

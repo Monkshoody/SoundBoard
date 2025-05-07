@@ -7,15 +7,8 @@ const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namesp
 const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 
-/*
-Ich muss die suche, filter und spells schon vor dem rendering an den container appenden, da sie sonst nicht funktionieren
-dadurch werden sie aber bei container.innerHTML = "<p>no sounds available</p>"; gelöscht und anschließend nicht wieder angefügt
-Ich kann sie aber auch nicht in der if else verzweigung stehen lassen, da sie sonst (vermutlich) bei jedem render neu eingefügt (oder ist java so schlau, dass es das selbst erkennt?)
-Vielleicht gibt es sowas wie ein container.unappendchild() oder container.removechild(). Das könnte man in der if (!permissions[playerName] || permissions[playerName].length === 0) verwenden, um den Container zu leeren.
-Aber dann habe ich wieder das gleiche Problem... glaube ich. Dang!
-*/
 export async function setupPlayerView(container, playerName) {
-// search function for spells
+// search function for sounds
   let currentFilter = "all";
   let currentSearch = "";
 
@@ -46,13 +39,13 @@ export async function setupPlayerView(container, playerName) {
   container.appendChild(combinedSelect);
   
 // main container for sounds
-  const spellsContainer = document.createElement('div');
-  spellsContainer.classList.add('spells-container');
+  const soundContainer = document.createElement('div');
+  soundContainer.classList.add('sound-container');
 
-  container.appendChild(spellsContainer);
+  container.appendChild(soundContainer);
 
 // for rerendering while searching, filtering and updateing permissions this function is used
-  async function renderSpells() {
+  async function renderSounds() {
     // get updated permissions
     const permissions = await loadPermissions();
     
@@ -60,25 +53,25 @@ export async function setupPlayerView(container, playerName) {
     if (!permissions[playerName] || permissions[playerName].length === 0) {
       searchInput.style.display = 'none';
       combinedSelect.style.display = 'none';
-      spellsContainer.innerHTML = "<p>no sounds available</p>";
+      soundContainer.innerHTML = "<p>no sounds available</p>";
     } else {
       searchInput.style.display = '';
       combinedSelect.style.display = '';
-      spellsContainer.style.display = '';
-      spellsContainer.innerHTML = ""; // emtying the playerview
+      soundContainer.style.display = '';
+      soundContainer.innerHTML = ""; // emtying the playerview
     }
 
-    // like gmview filteredSpells show generelly just available spells, spells for which the player has authorization
-    let  playerSpells = [];
-    permissions[playerName].forEach(spellName => {
-      // find spells for which the player has permission
-      const spell = spellData.find(s => s.name === spellName);
-      playerSpells.push(spell); // store these spells in playerSpells
+    // like gmview filteredsounds show generelly just available sounds, sounds for which the player has authorization
+    let  playerSounds = [];
+    permissions[playerName].forEach(soundName => {
+      // find sounds for which the player has permission
+      const sound = soundData.find(s => s.name === soundName);
+      playerSounds.push(sound); // store these sounds in playerSounds
 
       // filter according to search
       if (currentSearch.trim() !== "") {
         const search = currentSearch.trim().toLowerCase();
-        playerSpells = playerSpells.filter(spell => spell.name.toLowerCase().includes(search));
+        playerSounds = playerSounds.filter(sound => sound.name.toLowerCase().includes(search));
       }
 
       // filter according to combined filter
@@ -86,58 +79,58 @@ export async function setupPlayerView(container, playerName) {
       if (currentFilter !== "all") {
         if (selected.startsWith("category: ")) {
           const category = selected.replace("category: ", "");
-          playerSpells = playerSpells.filter(spell => spell.kategorie === category);
+          playerSounds = playerSounds.filter(sound => sound.kategorie === category);
         }
         if (selected.startsWith("year: ")) {
             const year = selected.replace("year: ", "");
-            playerSpells = playerSpells.filter(spell => spell.jahr === year);
+            playerSounds = playerSounds.filter(sound => sound.jahr === year);
         }
       }
     });
     
     // sort alphabteically to the names
-    playerSpells.sort((a, b) => a.name.localeCompare(b.name));
-    // create cards for each filtered spell in the main container: spellsContainer
-    playerSpells.forEach(spell => {
-      if (!spell) return;
+    playerSounds.sort((a, b) => a.name.localeCompare(b.name));
+    // create cards for each filtered sound in the main container: soundContainer
+    playerSounds.forEach(sound => {
+      if (!sound) return;
 
       const card = document.createElement("div");
-      card.className = "spell-card";
+      card.className = "sound-card";
 
       // create a sound button to play the sound
       const button = document.createElement("button");
-      button.textContent = spell.name;
-      button.className = "spell-button";
+      button.textContent = sound.name;
+      button.className = "sound-button";
 
       button.addEventListener("click", async () => {
         // await the click event, to ensure fluent sound play and notification 
         const metadata = await OBR.room.getMetadata();
 
         if (metadata[SOUND_PERMISSION_KEY]) { // check for permission to play sounds
-          // notify everybody in the room, that the player has hit a spell
-          await triggerGlobalNotification(`${playerName} hat den Zauber "${spell.name}" gewirkt!`);
+          // notify everybody in the room, that the player has hit a sound
+          await triggerGlobalNotification(`${playerName} hat den Zauber "${sound.name}" gewirkt!`);
           // play the audio in the room
-          await playSoundForAll(spell.audio);
+          await playSoundForAll(sound.audio);
         } else { // if the GM muted everyone ... Players needs to be punished ^^
           await OBR.notification.show("Du hast den GM genervt, daher wurdest du gemutet. Gib ihm einen 🍪.");
         }
       });
 
       card.appendChild(button);
-      spellsContainer.appendChild(card);
+      soundContainer.appendChild(card);
     });
   }
 
   // add EventListener for search
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value;
-    renderSpells();
+    renderSounds();
   });
 
   // add EventListener for filter
   combinedSelect.addEventListener('change', (e) => {
     currentFilter = e.target.value;
-    renderSpells();
+    renderSounds();
   });
 // end of EventListener
 
@@ -161,10 +154,10 @@ export async function setupPlayerView(container, playerName) {
       audio.play(); // play new audio
     }
     
-    // re-render the spellsContainer
-    await renderSpells();
+    // re-render the soundContainer
+    await renderSounds();
   });
 
-  // initial rendering to dislpay spells
-  renderSpells();
+  // initial rendering to dislpay sounds
+  renderSounds();
 }
