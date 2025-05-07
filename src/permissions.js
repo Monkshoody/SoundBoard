@@ -25,7 +25,6 @@ export async function savePermissions(permissions) {
 
 export async function loadSoundData() {
   const metadata = await OBR.room.getMetadata();
-  console.log("metadata", metadata);
   return metadata[SOUNDDATA_KEY] || {};
 }
 // saveSoundData will save the argument "soundData" in the SOUNDDATA_KEY

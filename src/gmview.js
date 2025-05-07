@@ -89,21 +89,6 @@ function processDropboxLink(inputUrl) {
   return newUrl;
 }
 
-// refreshCategoryFilter will refresh the filter options in the dropdown menu, if new sounds contain new categories
-function refreshCategoryFilter(combinedSelect, data) {
-  combinedSelect.innerHTML = ""; // delete old options
-  const options = [ // fetch all options from soundData
-    "all",
-    ...[...new Set(data.map(sound => sound.category))].map(k => `category: ${k}`)
-  ];
-  options.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    combinedSelect.appendChild(option); // add new option to the drop-down menu
-  });
-}
-
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
 
@@ -309,7 +294,6 @@ export async function setupGMView(container) {
 
 // filter for categories
   const combinedSelect = document.createElement('select');
-  //Hier!!! combinedSelect not defined vermutlich wegen refreshCategoryFilter 
   combinedSelect.classList.add('combined-filter');
   const options = [
     "all",
@@ -323,7 +307,6 @@ export async function setupGMView(container) {
   });
 
   container.appendChild(combinedSelect);
-  console.log("combinedSelect created");
 
 // main container for sounds
   const soundsContainer = document.createElement('div');
@@ -342,11 +325,20 @@ export async function setupGMView(container) {
     // loud new soundData from the room namespace for it could be updated
     let newSoundData = await loadSoundData();
     let filteredSounds = newSoundData;
-    console.log("filteredSounds", filteredSounds);
 
-    console.log("I'm HERE!!!");
-    console.log("combinedSelect", combinedSelect);
-    refreshCategoryFilter(combinedSelect, filteredSounds);
+    const existingCategories = existingOptions
+    .filter(opt => opt.startsWith("category: "))
+    .map(opt => opt.replace("category: ", ""));
+    const allCategories = [...new Set(filteredSounds.map(sound => sound.category))];
+    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat));
+    newCategories.forEach(cat => {
+      const option = document.createElement('option');
+      option.value = `category: ${cat}`;
+      option.textContent = `category: ${cat}`;
+      combinedSelect.appendChild(option);
+    });
+
+
     // sort alphabteically to the names
     filteredSounds.sort((a, b) => a.name.localeCompare(b.name));
 
