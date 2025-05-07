@@ -465,7 +465,7 @@ export async function setupGMView(container) {
     const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
     console.log("trigger:", trigger);
     if (!trigger) return;
-    console.log("timestamp > lastTimestamp", timestamp, lastTimestamp);
+    console.log("trigger.timestamp > lastTimestamp", trigger.timestamp, lastTimestamp);
     console.log("trigger.audio", trigger.audio);
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
