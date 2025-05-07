@@ -68,9 +68,11 @@ export async function setupPlayerView(container, playerName) {
       spellsContainer.innerHTML = ""; // emtying the playerview
     }
 
-    const playerSpells = [];
+    let  playerSpells;
     permissions[playerName].forEach(spellName => {
+      console.log("spellName", spellName);
       playerSpells = spellData.find(s => s.name === spellName);
+      console.log("playerSpells", playerSpells);
 
       // filter according to search
       if (currentSearch.trim() !== "") {
@@ -114,8 +116,8 @@ export async function setupPlayerView(container, playerName) {
     }
     */
     // create cards for each filtered spell in the main container: spellsContainer
-    playerSpells.forEach(spellName => {
-      const spell = spellData.find(s => s.name === spellName);
+    playerSpells.forEach(spell => {
+      //const spell = spellData.find(s => s.name === spellName);
       if (!spell) return;
 
       const card = document.createElement("div");
