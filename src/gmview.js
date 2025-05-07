@@ -26,6 +26,35 @@ var soundData = [
     "name": "Expelliarmus",
     "category": "Verwandlung",
     "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
+  },
+  {
+    "name": "sfsdffdf",
+    "category": "Verwandlung",
+    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
+  },
+  {
+    "name": "Expelliafdsa<sdfsrmus",
+    "category": "Verwandlung",
+    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
+  },
+  {
+    "name": "fhgfhhmjf",
+    "category": "Verwandlung",
+    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
+  },
+  {
+    "name": "saseztrht",
+    "category": "Verwandlung",
+    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
+  },  {
+    "name": "htthr",
+    "category": "Verwandlung",
+    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
+  },
+  {
+    "name": "garghghjklkglokigh",
+    "category": "Verwandlung",
+    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
   }
 ];
 
