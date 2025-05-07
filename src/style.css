@@ -113,9 +113,9 @@ h1 {
 
 .add-button {
   padding: auto;
-  border: 1px solid white;
-  background-color: #2d2d2d;
-  color: white;
+  border: 1px solid #ccc;
+  /*background-color: #2d2d2d;*/
+  /*color: white;*/
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;

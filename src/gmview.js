@@ -251,7 +251,7 @@ export async function setupGMView(container) {
 
     if (name && category && audio) {
       const newSound = { name, category, audio };
-      spellData.push(newSound);
+      soundData.push(newSound);
 
       // Optional: Konsole zur Kontrolle
       console.log("Neuer Sound hinzugefügt:", newSound);
