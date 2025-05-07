@@ -82,11 +82,11 @@ export async function setupPlayerView(container, playerName) {
     if (currentFilter !== "all") {
       if (selected.startsWith("category: ")) {
         const category = selected.replace("category: ", "");
-        filteredSpells = filteredSpells.filter(spell => spell.kategorie === category);
+        playerSpells = playerSpells.filter(spell => spell.kategorie === category);
       }
       if (selected.startsWith("year: ")) {
           const year = selected.replace("year: ", "");
-          filteredSpells = filteredSpells.filter(spell => spell.jahr === year);
+          playerSpells = playerSpells.filter(spell => spell.jahr === year);
       }
     }
 
