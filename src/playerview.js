@@ -58,15 +58,18 @@ export async function setupPlayerView(container, playerName) {
     
     // clear everything (filter, search, etc.) if there aren't any permissions
     if (!permissions[playerName] || permissions[playerName].length === 0) {
-      container.innerHTML = "<p>no sounds available</p>";
+      spellsContainer.innerHTML = "<p>no sounds available</p>";
+      searchInput.style.display = 'none';
+      combinedSelect.style.display = 'none';
+      spellsContainer.style.display = 'none';
     } else {
-      // add the search, filter and spell-buttons
-      container.appendChild(searchInput);
-      container.appendChild(combinedSelect);
-      container.appendChild(spellsContainer);
+      searchInput.style.display = '';
+      combinedSelect.style.display = '';
+      spellsContainer.style.display = '';
+      spellsContainer.innerHTML = ""; // emtying the playerview
     }
 
-    spellsContainer.innerHTML = ""; // emtying the playerview
+    //spellsContainer.innerHTML = ""; // emtying the playerview
     let playerSpells = permissions[playerName] || [];
 
     // filter according to search
