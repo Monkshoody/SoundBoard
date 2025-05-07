@@ -99,10 +99,10 @@ h1 {
 .addInput[type="text"] {
   padding: auto;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   transition: border 0.2s, box-shadow 0.2s;
-  width: auto;
+  width: 100%;
 }
 
 .addInput[type="text"]:focus {
@@ -113,11 +113,11 @@ h1 {
 
 .add-button {
   padding: auto;
-  border: 1px solid #383838;
+  border: 1px solid #ffffff;
   background-color: #2d2d2d;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
