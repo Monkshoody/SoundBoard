@@ -97,7 +97,7 @@ h1 {
 }
 
 .addInput[type="text"] {
-  padding: 1px 3px;
+  padding: auto;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
@@ -112,7 +112,8 @@ h1 {
 }
 
 .add-button {
-  padding: 1px 3px;
+  padding: auto;
+  border: 1px solid #383838;
   background-color: #2d2d2d;
   color: white;
   border: none;
