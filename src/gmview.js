@@ -195,22 +195,22 @@ export async function setupGMView(container) {
   let currentSearch = "";
 
 // addSounds for adding new Sounds
-  const nameInput = document.createElement('inputInput');
+  const nameInput = document.createElement('input');
   nameInput.type = 'text';
   nameInput.placeholder = 'sound name';
-  nameInput.classList.add('nameInput');
+  nameInput.classList.add('addInput');
 
-  const categoryInput = document.createElement('inputInput');
+  const categoryInput = document.createElement('input');
   categoryInput.type = 'text';
   categoryInput.placeholder = 'category';
-  categoryInput.classList.add('categoryInput');
+  categoryInput.classList.add('addInput');
 
-  const audioInput = document.createElement('inputInput');
+  const audioInput = document.createElement('input');
   audioInput.type = 'text';
   audioInput.placeholder = 'link';
-  audioInput.classList.add('audioInput');
+  audioInput.classList.add('addInput');
 
-  const addButton = document.createElement('buttonInput');
+  const addButton = document.createElement('button');
   addButton.textContent = '➕ add sound';
   addButton.classList.add('add-button');
 
