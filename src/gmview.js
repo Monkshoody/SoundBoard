@@ -309,6 +309,7 @@ export async function setupGMView(container) {
 
 // filter for categories
   const combinedSelect = document.createElement('select');
+  //Hier!!! combinedSelect not defined vermutlich wegen refreshCategoryFilter 
   combinedSelect.classList.add('combined-filter');
   const options = [
     "all",
