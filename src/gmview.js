@@ -79,6 +79,7 @@ export async function setupGMView(container) {
   addIcon.alt = "addSound";
   addIcon.classList.add("nav-icon");
   addSounds.appendChild(addIcon);
+  navButtons.appendChild(addSounds);
 
 // audio-toggle container
   // toggle to allow or deny player to play sound in general
