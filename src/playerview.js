@@ -72,7 +72,7 @@ export async function setupPlayerView(container, playerName) {
     permissions[playerName].forEach(spellName => {
       console.log("spellName", spellName);
       const spell = spellData.find(s => s.name === spellName);
-      playerSpells.append(spell);
+      playerSpells.push(spell);
       console.log("playerSpells", playerSpells);
 
       // filter according to search
