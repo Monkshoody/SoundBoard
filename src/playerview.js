@@ -68,7 +68,30 @@ export async function setupPlayerView(container, playerName) {
       spellsContainer.innerHTML = ""; // emtying the playerview
     }
 
-    //spellsContainer.innerHTML = ""; // emtying the playerview
+    const playerSpells = [];
+    permissions[playerName].forEach(spellName => {
+      playerSpells = spellData.find(s => s.name === spellName);
+
+      // filter according to search
+      if (currentSearch.trim() !== "") {
+        const search = currentSearch.trim().toLowerCase();
+        playerSpells = playerSpells.filter(spell => spell.toLowerCase().includes(search));
+      }
+
+      // filter according to combined filter
+      const selected = combinedSelect.value;
+      if (currentFilter !== "all") {
+        if (selected.startsWith("category: ")) {
+          const category = selected.replace("category: ", "");
+          playerSpells = playerSpells.filter(spell => spell.kategorie === category);
+        }
+        if (selected.startsWith("year: ")) {
+            const year = selected.replace("year: ", "");
+            playerSpells = playerSpells.filter(spell => spell.jahr === year);
+        }
+      }
+    });
+    /*
     let playerSpells = permissions[playerName] || [];
 
     // filter according to search
@@ -89,7 +112,7 @@ export async function setupPlayerView(container, playerName) {
           playerSpells = playerSpells.filter(spell => spell.jahr === year);
       }
     }
-
+    */
     // create cards for each filtered spell in the main container: spellsContainer
     playerSpells.forEach(spellName => {
       const spell = spellData.find(s => s.name === spellName);
