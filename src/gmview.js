@@ -69,6 +69,7 @@ export async function setupGMView(container) {
     navbar.appendChild(navButtons);
   }
 
+/*
 // add Sounds
   // addSounds allows to add new sounds to the OwlBear-room
   const addSounds = document.createElement("button");
@@ -80,7 +81,7 @@ export async function setupGMView(container) {
   addIcon.classList.add("nav-icon");
   addSounds.appendChild(addIcon);
   navButtons.appendChild(addSounds);
-
+*/
 // audio-toggle container
   // toggle to allow or deny player to play sound in general
   const audioToggleWrapper = document.createElement("div");
@@ -192,6 +193,22 @@ export async function setupGMView(container) {
   // search function for sounds
   let currentFilter = "all";
   let currentSearch = "";
+
+// addSounds for adding new Sounds
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.placeholder = 'sound name';
+
+  const categoryInput = document.createElement('input');
+  categoryInput.type = 'text';
+  categoryInput.placeholder = 'category';
+
+  const audioInput = document.createElement('input');
+  audioInput.type = 'text';
+  audioInput.placeholder = 'link';
+
+  const addButton = document.createElement('button');
+  addButton.textContent = '➕ add sound';
 
 // search function for sounds
   const searchInput = document.createElement('input');
