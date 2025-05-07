@@ -339,8 +339,8 @@ export async function setupGMView(container) {
     // clear the soundsContainer for a new render
     soundsContainer.innerHTML = '';
 
-    // loud new soundData scince it could be updated
-    let newSoundData = loadSoundData();
+    // loud new soundData from the room namespace for it could be updated
+    let newSoundData = await loadSoundData();
     let filteredSounds = newSoundData;
     console.log("filteredSounds", filteredSounds);
 
