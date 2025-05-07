@@ -2,10 +2,11 @@ import OBR from "@owlbear-rodeo/sdk";
 //import spellData from "./spells.json";
 import { loadPermissions, savePermissions, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
-const METADATA_NAMESPACE = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
+const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
 const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
+const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for storing the sound data
 
 // global soundData array for storing the sounds
 //var soundData = [];
@@ -23,7 +24,7 @@ var soundData = [
   },
   {
     "name": "Expelliarmus",
-    "category": "Kampfzauber",
+    "category": "Verwandlung",
     "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
   }
 ];
@@ -205,7 +206,7 @@ export async function setupGMView(container) {
 
   const options = [
     "all",
-    ...[...new Set(soundData.map(spell => spell.kategorie))].map(k => `category: ${k}`)
+    ...[...new Set(soundData.map(spell => spell.category))].map(k => `category: ${k}`)
   ];
 
   options.forEach(opt => {
@@ -246,7 +247,7 @@ export async function setupGMView(container) {
     const selected = combinedSelect.value;
     if (currentFilter !== "all") {
       const category = selected.replace("category: ", "");
-      filteredSounds = filteredSounds.filter(sound => sound.kategorie === category);
+      filteredSounds = filteredSounds.filter(sound => sound.category === category);
     }
 
     // if there are no sounds left, display a message
