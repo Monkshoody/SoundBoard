@@ -78,7 +78,7 @@ export async function setupPlayerView(container, playerName) {
       // filter according to search
       if (currentSearch.trim() !== "") {
         const search = currentSearch.trim().toLowerCase();
-        playerSpells = playerSpells.filter(spell => spell.toLowerCase().includes(search));
+        playerSpells = playerSpells.filter(spell => spell.name.toLowerCase().includes(search));
       }
 
       // filter according to combined filter
