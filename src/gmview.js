@@ -257,12 +257,12 @@ export async function setupGMView(container) {
   addButton.addEventListener('click', () => {
     const name = nameInput.value.trim();
     const category = categoryInput.value.trim();
-    const audio = audioInput.value.trim();
-    let parse = processDropboxLink(audio);
-    if (parse === null) {audioInput.value = "";}
+    const audioName = audioInput.value.trim();
+    const audio = processDropboxLink(audioName);
+    if (audio === null) {audioInput.value = "";}
 
-    if (name && category && parse) {
-      const newSound = { name, category, parse };
+    if (name && category && audio) {
+      const newSound = { name, category, audio };
       soundData.push(newSound);
       saveSoundData(soundData);
 
