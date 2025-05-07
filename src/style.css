@@ -102,7 +102,7 @@ input[type="text"] {
   border-radius: 8px;
   font-size: 1rem;
   transition: border 0.2s, box-shadow 0.2s;
-  width: 100%;
+  width: auto;
 }
 
 input[type="text"]:focus {
@@ -110,6 +110,26 @@ input[type="text"]:focus {
   box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
   outline: none;
 }
+
+.add-button {
+  padding: 0.6rem 1rem;
+  background-color: #5a67d8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.add-button:hover {
+  background-color: #434190;
+}
+
+.add-button:active {
+  transform: scale(0.98);
+}
+
 
 .card {
   padding: 2em;

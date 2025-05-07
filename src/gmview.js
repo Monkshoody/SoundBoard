@@ -209,6 +209,7 @@ export async function setupGMView(container) {
 
   const addButton = document.createElement('button');
   addButton.textContent = '➕ add sound';
+  addButton.classList.add('add-button');
 
   // --- Event-Listener für das Hinzufügen ---
   addButton.addEventListener('click', () => {
@@ -254,7 +255,7 @@ export async function setupGMView(container) {
 
   const options = [
     "all",
-    ...[...new Set(soundData.map(spell => spell.category))].map(k => `category: ${k}`)
+    ...[...new Set(soundData.map(sound => sound.category))].map(k => `category: ${k}`)
   ];
 
   options.forEach(opt => {
@@ -311,19 +312,19 @@ export async function setupGMView(container) {
       soundCard.classList.add('sound-card');
     
       // create a sound button to play the sound
-      const button = document.createElement('button');
-      button.textContent = `${sound.name}`;
-      button.classList.add('sound-button');
+      const soundButton = document.createElement('button');
+      soundButton.textContent = `${sound.name}`;
+      soundButton.classList.add('sound-button');
       
-      // EventListener for the button to notify everybody in the room and distribute the sound to everybody
-      button.addEventListener('click', async () => {
+      // EventListener for the soundButton to notify everybody in the room and distribute the sound to everybody
+      soundButton.addEventListener('click', async () => {
         // notify everybody in the room, that the player has hit a sound
         await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
         // play the audio in the room
         await playSoundForAll(sound.audio);
       });
 
-      soundCard.appendChild(button);
+      soundCard.appendChild(soundButton);
 
       // The Checkbox-Group is used to display checkboxes for each player, for each sound.
       // If they are ticked, the according player get's the according sound displayed in his soundBoard
