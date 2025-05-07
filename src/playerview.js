@@ -1,5 +1,4 @@
 import OBR from "@owlbear-rodeo/sdk";
-import spellData from "./spells.json";
 import { loadPermissions, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
@@ -7,6 +6,8 @@ const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namesp
 const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for storing the sound data
+
+var soundData = [];
 
 export async function setupPlayerView(container, playerName) {
 // search function for sounds
@@ -26,8 +27,7 @@ export async function setupPlayerView(container, playerName) {
 
   const options = [
     "all",
-    ...[...new Set(spellData.map(spell => spell.kategorie))].map(k => `category: ${k}`),
-    ...[...new Set(spellData.map(spell => spell.jahr))].map(j => `year: ${j}`)
+    ...[...new Set(soundData.map(spell => spell.category))].map(k => `category: ${k}`) // categories needs to be added dynamically (see gmview 328 existingOptions ...)
   ];
 
   options.forEach(opt => {
@@ -61,7 +61,7 @@ export async function setupPlayerView(container, playerName) {
       soundContainer.style.display = '';
       soundContainer.innerHTML = ""; // emtying the playerview
     }
-
+    
     // like gmview filteredsounds show generelly just available sounds, sounds for which the player has authorization
     let  playerSounds = [];
     permissions[playerName].forEach(soundName => {

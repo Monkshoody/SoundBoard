@@ -1,5 +1,4 @@
 import OBR from "@owlbear-rodeo/sdk";
-//import spellData from "./spells.json";
 import { loadPermissions, savePermissions, saveSoundData, loadSoundData, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
@@ -325,15 +324,15 @@ export async function setupGMView(container) {
     // loud new soundData from the room namespace for it could be updated
     let newSoundData = await loadSoundData();
     let filteredSounds = newSoundData;
-    console.log("fetched filteredSounds:", filteredSounds);
-    // 
-    const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value);
+
+    // since new sounds can be added, the filter needs to updated to possible new categories
+    const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
-    .map(opt => opt.replace("category: ", ""));
-    const allCategories = [...new Set(filteredSounds.map(sound => sound.category))];
-    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat));
-    newCategories.forEach(cat => {
+    .map(opt => opt.replace("category: ", "")); // prepare for comparison
+    const allCategories = [...new Set(filteredSounds.map(sound => sound.category))]; // get all category options from metadata namespace (filteredSounds)
+    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
+    newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
       option.textContent = `category: ${cat}`;
@@ -377,7 +376,6 @@ export async function setupGMView(container) {
       // EventListener for the soundButton to notify everybody in the room and distribute the sound to everybody
       soundButton.addEventListener('click', async () => {
         // play the audio in the room
-        console.log("HERE", sound.name, sound.audio);
         await playSoundForAll(sound.audio);
         // notify everybody in the room, that the player has hit a sound
         await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
@@ -465,10 +463,7 @@ export async function setupGMView(container) {
     
     // if SOUND_TRIGGER_KEY has changed, play the audio file in everybodys browser
     const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
-    console.log("trigger:", trigger);
     if (!trigger) return;
-    console.log("trigger.timestamp > lastTimestamp", trigger.timestamp, lastTimestamp);
-    console.log("trigger.audio", trigger.audio);
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
