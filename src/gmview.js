@@ -90,7 +90,7 @@ function processDropboxLink(inputUrl) {
 }
 
 // refreshCategoryFilter will refresh the filter options in the dropdown menu, if new sounds contain new categories
-function refreshCategoryFilter(data) {
+function refreshCategoryFilter(combinedSelect, data) {
   combinedSelect.innerHTML = ""; // delete old options
   const options = [ // fetch all options from soundData
     "all",
@@ -342,7 +342,7 @@ export async function setupGMView(container) {
     let newSoundData = loadSoundData();
     let filteredSounds = newSoundData
 
-    refreshCategoryFilter(filteredSounds);
+    refreshCategoryFilter(combinedSelect, filteredSounds);
     // sort alphabteically to the names
     filteredSounds.sort((a, b) => a.name.localeCompare(b.name));
 
