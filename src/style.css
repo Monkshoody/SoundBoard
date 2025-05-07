@@ -92,8 +92,23 @@ h1 {
 
 #contentArea {
   flex-grow: 1;
-  padding: 20px;
+  padding: 2px;
   overflow-y: auto;
+}
+
+input[type="text"] {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+input[type="text"]:focus {
+  border-color: #5a67d8;
+  box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
+  outline: none;
 }
 
 .card {

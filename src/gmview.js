@@ -229,7 +229,8 @@ export async function setupGMView(container) {
       categoryInput.value = "";
       audioInput.value = "";
     } else {
-      alert("Bitte alle Felder ausfüllen!");
+      OBR.notification.show(notify.message, "INFO");
+      //alert("Please fill in all fields!");
     }
   });
 
