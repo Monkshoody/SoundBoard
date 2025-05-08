@@ -114,10 +114,10 @@ export async function setupGMView(container) {
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
     const currentMetadata = await OBR.room.getMetadata();
-    permissionsKey = await loadPermissionsKey();
+    console.log("checkbox.checked", checkbox.checked);
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: !permissionsKey
+      [SOUND_PERMISSION_KEY]: checkbox.checked
     });
     console.log("currentMetadata[SOUND_PERMISSION_KEY]:", currentMetadata[SOUND_PERMISSION_KEY]);
   });
@@ -506,7 +506,7 @@ export async function setupGMView(container) {
 
           playerButton.addEventListener('click', () => {
             console.log(`you clicked ${player}`);
-            //playSoundForPlayers(sound.id, [player.id, currentGMId]); 
+            //playSoundForPlayers(sound.audio, player);
           });
 
           playerSoundButton.appendChild(playerButton);
