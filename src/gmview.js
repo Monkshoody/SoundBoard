@@ -47,7 +47,6 @@ export async function setupGMView(container) {
 // initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
   soundData = await loadSoundData();
-  console.log(soundData);
   if (soundData == []) {
     await OBR.room.setMetadata({
       ... currentMetadata,
@@ -60,8 +59,7 @@ export async function setupGMView(container) {
       [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
     });
   }
-  const metad = await OBR.room.getMetadata();
-  console.log("metad after", metad);
+
   // permissions defines who is able to see and play a sound. GM can checkbox the users to provide access to a sound.
   // Thus, permissions is an array containing all players and the accoring sound access
   const permissions = await loadPermissions();
