@@ -131,10 +131,46 @@ export async function setupGMView(container) {
   settingsButton.classList.add("nav-button");
   settingsButton.title = "import/export";
   const settingsIcon = document.createElement("img");
-  settingsIcon.src = "./settings.png";
+  settingsIcon.src = "/public/settings.png";
   settingsIcon.alt = "import/export";
   settingsIcon.classList.add("nav-icon");
   settingsButton.appendChild(settingsIcon);
+
+  // dropdown-menu for import and export functions
+  const dropdownMenu = document.createElement("div");
+  dropdownMenu.classList.add("dropdown-menu", "hidden"); // .hidden is controlled by CSS
+
+  dropdownMenu.innerHTML = `
+    <div class="dropdown-section">
+      <strong>export</strong>
+      <button class="dropdown-item" data-type="export-permissions">🔐 Export permissions</button>
+      <button class="dropdown-item" data-type="export-sounds">🎵 Export sounds</button>
+    </div>
+    <div class="dropdown-section">
+      <strong>import</strong>
+      <button class="dropdown-item" data-type="import-permissions">🔐 Import permissions</button>
+      <button class="dropdown-item" data-type="import-sounds">🎵 Import sounds</button>
+    </div>
+  `;
+
+  let menuOpen = false;
+
+  settingsButton.addEventListener("click", (event) => {
+    event.stopPropagation(); // prevents click bubbling
+    menuOpen = !menuOpen;
+    dropdownMenu.classList.toggle("hidden", !menuOpen);
+  });
+
+  // Click outside the menu to close it
+  document.addEventListener("click", (event) => {
+    if (menuOpen && !dropdownMenu.contains(event.target) && event.target !== settingsButton) {
+      dropdownMenu.classList.add("hidden");
+      menuOpen = false;
+    }
+  });
+
+
+  navButtons.appendChild(dropdownMenu); // Oder ein Container deiner Wahl
 
   navButtons.appendChild(settingsButton);
 
