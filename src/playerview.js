@@ -134,7 +134,6 @@ export async function setupPlayerView(container, playerName) {
           // notify everybody in the room, that the player has hit a sound
           await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
           // play the audio in the room
-          console.log(sound.audio);
           await playSoundForAll(sound.audio);
         } else { // if the GM muted everyone ... Players needs to be punished ^^
           await OBR.notification.show("You annoyed the GM, so you were muted. Give him a 🍪 to regain access.");
@@ -183,8 +182,8 @@ export async function setupPlayerView(container, playerName) {
 
     // if SOUND_TRIGGER_KEY has changed, play the audio file in everybodys browser
     const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
-    console.log("Trigger:", trigger);
     if (!trigger) return;
+    console.log("trigger:", trigger, "trigger.timestamp > lastTimestamp", trigger.timestamp, lastTimestamp)
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
