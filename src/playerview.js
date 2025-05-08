@@ -90,9 +90,9 @@ export async function setupPlayerView(container, playerName) {
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
     .map(opt => opt.replace("category: ", "")); // prepare for comparison
-    const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
+    const allCategories = ["all",[...new Set(playerSounds.map(sound => sound.category))]]; // get all category options from metadata namespace (newSoundData)
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
-    newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
+    allCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
       option.textContent = `category: ${cat}`;

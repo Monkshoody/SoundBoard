@@ -5,10 +5,9 @@ import { setupPlayerView } from './playerview.js';
 
 //ToDo
 // remove sounds with x top right
-// edit playerview for new filter (dynamic) and soundData (Namespace)
+// remove search and filter when no sound is available (see playerview)
 // edit export/import for provided sounds (export JSON of SOUNDDATA_KEY)
 // add a sound slider to increase or decrease volume for each sound
-// remove search and filter when no sound is available (see playerview)
 // I don't know what will happen if there are two GMs
 
 // Navigation und Content Struktur erstellen
