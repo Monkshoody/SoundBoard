@@ -4,9 +4,9 @@ import { setupGMView } from './gmview.js';
 import { setupPlayerView } from './playerview.js';
 
 // To-Do
-// VolumeSlider is just temporary. If webside is reloaded everything will reset to 100% Volum. I suggest to use proper files and not count to much on this feature so far.
-// safe VolumeSlider in metadata
 // play sounds for individuals
+// VolumeSlider is just temporary. If webside is reloaded everything will reset to 100% Volum. I suggest to use proper files and not count to much on this feature so far.
+// safe VolumeSlider in metadata (something is wrong there)
 // testing with multiple players and new rooms
 // I don't know what will happen if there are two GMs
 

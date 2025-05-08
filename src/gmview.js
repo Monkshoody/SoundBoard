@@ -1,11 +1,12 @@
 import OBR from "@owlbear-rodeo/sdk";
-import { loadPermissions, savePermissions, saveSoundData, loadSoundData, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
+import { loadPermissions, savePermissions, saveSoundData, loadSoundData, playSoundForAll, playSoundForPlayer, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
 const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for storing the sound data
+const PLAYERSOUND_KEY = "com.soundboard/player-key"; // OwlBear-room Namespace for individual player sounds
 
 // global soundData array for storing the sounds
 var soundData = [];
@@ -501,14 +502,14 @@ export async function setupGMView(container) {
           playerButton.innerText = player;
         
           playerButton.addEventListener('click', () => {
-            console.log("you clicked", player);
-            // Beispiel-Funktion zum Abspielen für ausgewählten Spieler (und GM)
-            //playSoundForPlayers(sound.audio, player); 
+            playSoundForPlayer(sound.audio, player); // distribute audio to player
+            const audio = new Audio(sound.audio);
+            audio.play(); // play audio for GM
           });
         
           playerSoundButton.appendChild(playerButton);
         });
-        
+
         soundCard.appendChild(playerSoundButton); 
         soundCard.appendChild(checkboxGroup); 
       }

@@ -5,6 +5,7 @@ const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namesp
 const NOTIFY_KEY = "com.soundboard/global-notification"; // OwlBear-room Namespace for global notifications
 const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlBear-room Namespace for toggeling sound permissions for players
 const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for storing the sound data
+const PLAYERSOUND_KEY = "com.soundboard/player-key"; // OwlBear-room Namespace for individual player sounds
 
 // loadPermissions will load the PERMISSIONS_KEY from the OwlBear-Room metadata
 export async function loadPermissions() {
@@ -56,6 +57,19 @@ export async function playSoundForAll(audioFile) {
   });
 }
 
+// playSoundForPlayer will dirtibute the argument "audioFile" to the "player"
+export async function playSoundForPlayer(audioFile, player) {
+  const currentMetadata = await OBR.room.getMetadata();
+  console.log("in playSoundForPlayer function");
+  await OBR.room.setMetadata({
+    ...currentMetadata,
+    [PLAYERSOUND_KEY]: {
+      audio: audioFile,
+      player: player,
+      timestamp: Date.now()
+    }
+  });
+}
 // triggerGlobalNotification will set the argument "message" in the NOTIFY_KEY to notify everybody in the room
 export async function triggerGlobalNotification(message) {
   const currentMetadata = await OBR.room.getMetadata();
