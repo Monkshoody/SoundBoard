@@ -42,9 +42,9 @@ function processDropboxLink(inputUrl) {
 }
 
 async function exportData(data, name) {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }); // grab the current permissions or soundData of the room and parse them in JSON-format
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+  let blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }); // grab the current permissions or soundData of the room and parse them in JSON-format
+  let url = URL.createObjectURL(blob);
+  let a = document.createElement("a");
   a.href = url;
   a.download = `SoundBoard-${name}.json`;
   document.body.appendChild(a);
