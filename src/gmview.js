@@ -68,6 +68,7 @@ async function importData(name) {
         await savePermissions(newPermissions);
         OBR.notification.show("import successful");
         //await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+        document.getElementById('contentArea').innerHTML = '';
         await setupGMView(document.getElementById('contentArea'));
       } else if (name == "sounds") {
         console.log("import sounds");
