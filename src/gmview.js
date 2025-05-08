@@ -347,15 +347,26 @@ export async function setupGMView(container) {
       deleteButton.classList.add('delete-button');
 
       // EventListener to delete the sound
-      deleteButton.addEventListener('click', () => {
+      deleteButton.addEventListener('click', async () => {
         // Entferne Sound aus soundData
         const index = soundData.findIndex(s => s.name === sound.name && s.category === sound.category);
         if (index !== -1) {
           console.log("INDEX:", index);
           console.log("soundData:", soundData);
-          soundData.splice(index, 1); // löschen aus Daten
-          saveSoundData(soundData);
-          // update permissions
+          soundData.splice(index, 1); // delete the sound from soundData
+          await saveSoundData(soundData);
+          // update permissions Idee:
+          /*
+          if (players.length) { 
+            players.forEach((player) => {
+                if (permissions[player]) {
+                  if (permissions[player].includes(sound.name)) {
+                    permissions[player].pop(sound.name);
+                  }
+                }
+              });
+          }
+          */
           renderSounds();             // UI neu zeichnen
         }
       });
