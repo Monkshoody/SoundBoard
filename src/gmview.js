@@ -371,17 +371,19 @@ export async function setupGMView(container) {
           console.log("players:", players);
           console.log("permissions:", permissions);
           // update permissions Idee:
-          /*
+
           if (players.length) { 
             players.forEach((player) => {
                 if (permissions[player]) {
                   if (permissions[player].includes(sound.name)) {
                     permissions[player].pop(sound.name);
+                    console.log("permissions:", permissions);
+                    savePermissions(permissions);
                   }
                 }
               });
           }
-          */
+
           renderSounds(permissions);             // UI neu zeichnen
         }
       });
