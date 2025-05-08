@@ -46,7 +46,7 @@ export async function setupGMView(container) {
 
 // initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
-  soundData = loadSoundData();
+  soundData = await loadSoundData();
   console.log(soundData);
   if (soundData == []) {
     await OBR.room.setMetadata({
