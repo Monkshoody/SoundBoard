@@ -64,20 +64,6 @@ export async function setupPlayerView(container, playerName) {
       soundContainer.innerHTML = ""; // emtying the playerview
     }
     
-    // since new sounds can be added, the filter needs to updated to possible new categories
-    const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
-    const existingCategories = existingOptions
-    .filter(opt => opt.startsWith("category: "))
-    .map(opt => opt.replace("category: ", "")); // prepare for comparison
-    const allCategories = [...new Set(newSoundData.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
-    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
-    newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
-      const option = document.createElement('option');
-      option.value = `category: ${cat}`;
-      option.textContent = `category: ${cat}`;
-      combinedSelect.appendChild(option);
-    });
-
     // like gmview filteredsounds show generelly just available sounds, sounds for which the player has authorization
     let  playerSounds = [];
     permissions[playerName].forEach(soundName => {
@@ -94,15 +80,23 @@ export async function setupPlayerView(container, playerName) {
       // filter according to combined filter
       const selected = combinedSelect.value;
       if (currentFilter !== "all") {
-        if (selected.startsWith("category: ")) {
-          const category = selected.replace("category: ", "");
-          playerSounds = playerSounds.filter(sound => sound.kategorie === category);
-        }
-        if (selected.startsWith("year: ")) {
-            const year = selected.replace("year: ", "");
-            playerSounds = playerSounds.filter(sound => sound.jahr === year);
-        }
+        const category = selected.replace("category: ", "");
+        playerSounds = playerSounds.filter(sound => sound.kategorie === category);
       }
+    });
+    
+    // since new sounds can be added, the filter needs to be updated to possible new categories
+    const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
+    const existingCategories = existingOptions
+    .filter(opt => opt.startsWith("category: "))
+    .map(opt => opt.replace("category: ", "")); // prepare for comparison
+    const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
+    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
+    newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
+      const option = document.createElement('option');
+      option.value = `category: ${cat}`;
+      option.textContent = `category: ${cat}`;
+      combinedSelect.appendChild(option);
     });
     
     // sort alphabteically to the names

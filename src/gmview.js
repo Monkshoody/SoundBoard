@@ -325,7 +325,7 @@ export async function setupGMView(container) {
     let newSoundData = await loadSoundData();
     let filteredSounds = newSoundData;
 
-    // since new sounds can be added, the filter needs to updated to possible new categories
+    // since new sounds can be added, the filter needs to be updated to possible new categories
     const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
