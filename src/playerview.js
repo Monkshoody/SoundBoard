@@ -105,7 +105,7 @@ export async function setupPlayerView(container, playerName) {
       const selected = combinedSelect.value;
       if (currentFilter !== "all") {
         const category = selected.replace("category: ", "");
-        playerSounds = playerSounds.filter(sound => sound.kategorie === category);
+        playerSounds = playerSounds.filter(sound => sound.category === category);
       }
     });
     
