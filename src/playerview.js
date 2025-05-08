@@ -110,21 +110,31 @@ export async function setupPlayerView(container, playerName) {
     // IF gives access to a new sound, the filter will be updated with a new category.
     // If the GM then revoces access to this sounds, the category remains in the dropdown menu since its in combinedSelect.options
     // since new sounds can be added, the filter needs to be updated to possible new categories
-    Array.from(combinedSelect.options).forEach(opt => {
-      if (opt.value.startsWith("category: ")) {
-        combinedSelect.removeChild(opt);
-      }
-    });
-  
-    // Schritt 2: Extrahiere alle Kategorien aus soundData
-    const categories = [...new Set(newSoundData.map(sound => sound.category))];
-  
-    // Schritt 3: Neue Kategorie-Optionen anhängen
-    categories.forEach(cat => {
+    const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
+    const existingCategories = existingOptions
+    .filter(opt => opt.startsWith("category: "))
+    .map(opt => opt.replace("category: ", "")); // prepare for comparison
+
+    const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options where the player has access to
+
+    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
+
+    const removedCategories = existingCategories.filter(cat => !allCategories.includes(cat));
+
+    newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
       option.textContent = `category: ${cat}`;
       combinedSelect.appendChild(option);
+    });
+
+    removedCategories.forEach(cat => {
+      const optionToRemove = Array.from(combinedSelect.options).find(
+        opt => opt.value === `category: ${cat}`
+      );
+      if (optionToRemove) {
+        combinedSelect.removeChild(optionToRemove);
+      }
     });
     
     // sort alphabteically to the names
