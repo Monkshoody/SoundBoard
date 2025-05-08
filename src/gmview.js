@@ -345,10 +345,10 @@ export async function setupGMView(container) {
       
       // EventListener for the soundButton to notify everybody in the room and distribute the sound to everybody
       soundButton.addEventListener('click', async () => {
-        // play the audio in the room
-        await playSoundForAll(sound.audio);
         // notify everybody in the room, that the player has hit a sound
         await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
+        // play the audio in the room
+        await playSoundForAll(sound.audio);
       });
 
       // Create the delete button (the "X")
