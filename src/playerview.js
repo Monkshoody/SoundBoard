@@ -9,28 +9,6 @@ const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for
 
 var soundData = [];
 
-function updateCategoryFilter(combinedSelect, playerSounds) {
-  // Leere das aktuelle Dropdown-Menü
-  combinedSelect.innerHTML = '';
-
-  // "all" bleibt als erste Option bestehen
-  const defaultOption = document.createElement('option');
-  defaultOption.value = "all";
-  defaultOption.textContent = "all";
-  combinedSelect.appendChild(defaultOption);
-
-  // Extrahiere alle Kategorien ohne Duplikate
-  const allCategories = [...new Set(playerSounds.map(sound => sound.category))];
-
-  // Füge pro Kategorie eine neue Option hinzu
-  allCategories.forEach(cat => {
-    const option = document.createElement('option');
-    option.value = `category: ${cat}`;
-    option.textContent = `category: ${cat}`;
-    combinedSelect.appendChild(option);
-  });
-}
-
 export async function setupPlayerView(container, playerName) {
 // search function for sounds
   let currentFilter = "all";
