@@ -5,7 +5,7 @@ import { setupPlayerView } from './playerview.js';
 
 //ToDo
 // edit export/import for provided sounds (export JSON of SOUNDDATA_KEY)
-// add a sound slider to increase or decrease volume for each sound
+// VolumeSlider is just temporary. If webside is reloaded everything will reset to 100% Volum. I suggest to use proper files and not count to much on this feature so far.
 // testing with multiple players
 // I don't know what will happen if there are two GMs
 

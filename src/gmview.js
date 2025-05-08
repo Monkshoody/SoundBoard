@@ -255,10 +255,7 @@ export async function setupGMView(container) {
 // filter for categories; Note that this is only the initiation of the filter DOM, as the filter reacts dynamically to the creation and deletion of new sounds.
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
-  const options = [
-    "all",
-    ...[...new Set(soundData.map(sound => sound.category))].map(k => `category: ${k}`) //
-  ];
+  const options = ["all"];
   options.forEach(opt => {
     const option = document.createElement('option');
     option.value = opt;
@@ -479,7 +476,7 @@ export async function setupGMView(container) {
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
-      audio.volume = volumeSlider.value; // Lautstärke übernehmen
+      audio.volume = volumeSlider.value; // Apply volume
       audio.play(); // play new audio
     }
   });
