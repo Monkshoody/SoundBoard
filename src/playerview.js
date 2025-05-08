@@ -197,7 +197,7 @@ export async function setupPlayerView(container, playerName) {
     console.log("playerSound:", playerSound, lastTimestamp);
     if (playerSound && playerSound.timestamp > lastTimestamp && playerSound.player == playerName) {
       lastTimestamp = playerSound.timestamp;
-      const audio = new Audio(trigger.audio); // updates audio
+      const audio = new Audio(playerSound.audio); // updates audio
       audio.volume = playerSound.volume; // Apply volume
       audio.play(); // play new audio
     }
