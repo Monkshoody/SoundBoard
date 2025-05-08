@@ -1,5 +1,5 @@
 import OBR from "@owlbear-rodeo/sdk";
-import { loadPermissions, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
+import { loadPermissions, playSoundForAll, triggerGlobalNotification, loadSoundData } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
@@ -64,9 +64,10 @@ export async function setupPlayerView(container, playerName) {
     
     // like gmview filteredsounds show generelly just available sounds, sounds for which the player has authorization
     let  playerSounds = [];
-    permissions[playerName].forEach(soundName => {
+    permissions[playerName].forEach(async soundName => {
+      let newSoundData = await loadSoundData();
       // find sounds for which the player has permission
-      const sound = soundData.find(s => s.name === soundName);
+      const sound = newSoundData.find(s => s.name === soundName);
       playerSounds.push(sound); // store these sounds in playerSounds
 
       // filter according to search
