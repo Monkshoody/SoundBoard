@@ -3,10 +3,9 @@ import OBR from "@owlbear-rodeo/sdk";
 import { setupGMView } from './gmview.js';
 import { setupPlayerView } from './playerview.js';
 
-//ToDo
-// edit export/import for provided sounds (export JSON of SOUNDDATA_KEY)
+// To-Do
 // VolumeSlider is just temporary. If webside is reloaded everything will reset to 100% Volum. I suggest to use proper files and not count to much on this feature so far.
-// testing with multiple players
+// testing with multiple players and new rooms
 // I don't know what will happen if there are two GMs
 
 // Navigation und Content Struktur erstellen

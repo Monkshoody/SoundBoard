@@ -186,12 +186,10 @@ export async function setupGMView(container) {
     switch (type) {
 
       case "export-permissions":
-        console.log("in export-permissions");
         let newpermissions = await loadPermissions();
         await exportData(newpermissions, "permissions"); break;
 
       case "import-permissions":
-        console.log("in import-permissions");
         const inputPermissions = document.createElement("input");
         inputPermissions.type = "file";
         inputPermissions.accept = "application/json";
@@ -206,20 +204,17 @@ export async function setupGMView(container) {
             OBR.notification.show("import successful");
             await renderSounds(newPermissions); // pass newPermissions to render GMView properly
           } catch (err) {
-            console.log("ERROR", err);
+            console.alert("ERROR", err);
             OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
           }
         };
         inputPermissions.click();
 
       case "export-sounds":
-        console.log("in export-sounds");
         soundData = await loadSoundData();
         await exportData(soundData, "soundData"); break;
 
       case "import-sounds":
-        console.log("in import-sounds")
-        console.log("in import-permissions");
         const inputSounds = document.createElement("input");
         inputSounds.type = "file";
         inputSounds.accept = "application/json";
@@ -234,7 +229,7 @@ export async function setupGMView(container) {
             OBR.notification.show("import successful");
             await renderSounds(permissions); // pass newPermissions to render GMView properly
           } catch (err) {
-            console.log("ERROR", err);
+            console.alert("ERROR", err);
             OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
           }
         };
