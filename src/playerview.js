@@ -13,8 +13,6 @@ export async function setupPlayerView(container, playerName) {
   let currentFilter = "all";
   let currentSearch = "";
 
-  soundData = await loadSoundData(); // can be deleted later since soundData will be initiated in gmview with soundData=[]
-
   // search function for sounds
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
@@ -94,13 +92,13 @@ export async function setupPlayerView(container, playerName) {
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
     .map(opt => opt.replace("category: ", "")); // prepare for comparison
-    console.log("HERE3", playerSounds);
+
     const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
-    console.log("HERE4");
+
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
-    console.log("HERE5");
+
     const removedCategories = existingCategories.filter(cat => !allCategories.includes(cat));
-    console.log("HERE6");
+
     newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
