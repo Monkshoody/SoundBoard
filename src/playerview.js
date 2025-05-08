@@ -65,7 +65,7 @@ export async function setupPlayerView(container, playerName) {
       soundContainer.style.display = '';
       soundContainer.innerHTML = ""; // emtying the playerview
     }
-    
+    console.log("HERE");
     // like gmview filteredsounds show generelly just available sounds, sounds for which the player has authorization
     let  playerSounds = [];
     permissions[playerName].forEach(soundName => {
@@ -86,7 +86,7 @@ export async function setupPlayerView(container, playerName) {
         playerSounds = playerSounds.filter(sound => sound.category === category);
       }
     });
-    
+    console.log("HERE 2");
     // IF gives access to a new sound, the filter will be updated with a new category.
     // If the GM then revoces access to this sounds, the category remains in the dropdown menu since its in combinedSelect.options
     // since new sounds can be added, the filter needs to be updated to possible new categories
@@ -94,13 +94,13 @@ export async function setupPlayerView(container, playerName) {
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
     .map(opt => opt.replace("category: ", "")); // prepare for comparison
-
+    console.log("HERE3");
     const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
-
+    console.log("HERE4");
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
-
+    console.log("HERE5");
     const removedCategories = existingCategories.filter(cat => !allCategories.includes(cat));
-
+    console.log("HERE6");
     newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
