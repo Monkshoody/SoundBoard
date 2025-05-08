@@ -113,8 +113,8 @@ export async function setupGMView(container) {
   // EventListener for the switch
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
-    let permissionsKey = await loadPermissionsKey();
-    console.log("permissionsKey", permissionsKey);
+    let newpermissionsKey = await loadPermissionsKey();
+    console.log("permissionsKey", newpermissionsKey);
     console.log("checkbox.checked", checkbox.checked);
     const currentMetadata = await OBR.room.getMetadata();
     await OBR.room.setMetadata({
