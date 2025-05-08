@@ -64,9 +64,7 @@ async function importData(name) {
     // try the parse first, since we don't know what GMs are uploading
     try {
       if (name == "permissions") {
-        console.log("inside permissions");
         const newPermissions = JSON.parse(text);
-        console.log("newPermissions", newPermissions);
         await savePermissions(newPermissions);
         OBR.notification.show("import successful");
         await renderSounds(newPermissions); // pass newPermissions to render GMView properly
@@ -74,6 +72,7 @@ async function importData(name) {
         console.log("import sounds");
       }
     } catch (err) {
+      console.log("ERROR", err);
       OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
     }
   };
