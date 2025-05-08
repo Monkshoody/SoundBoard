@@ -81,7 +81,7 @@ export async function setupPlayerView(container, playerName) {
       const selected = combinedSelect.value;
       if (currentFilter !== "all") {
         const category = selected.replace("category: ", "");
-        playerSounds = playerSounds.filter(sound => sound.category === category);
+        playerSounds = playerSounds.filter(sound => sound.kategorie === category);
       }
     });
     
@@ -92,30 +92,13 @@ export async function setupPlayerView(container, playerName) {
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
     .map(opt => opt.replace("category: ", "")); // prepare for comparison
-
-    const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options where the player has access to
-
+    const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
-
-    const removedCategories = existingCategories.filter(cat => !allCategories.includes(cat));
-    console.log("existingCategories:", existingCategories);
-    console.log("allCategories:", allCategories);
-    console.log("newCategories:", newCategories);
-    console.log("removedCategories:", removedCategories);
     newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
       option.textContent = `category: ${cat}`;
       combinedSelect.appendChild(option);
-    });
-
-    removedCategories.forEach(cat => {
-      const optionToRemove = Array.from(combinedSelect.options).find(
-        opt => opt.value === `category: ${cat}`
-      );
-      if (optionToRemove) {
-        combinedSelect.removeChild(optionToRemove);
-      }
     });
     
     // sort alphabteically to the names
