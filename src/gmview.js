@@ -41,6 +41,42 @@ function processDropboxLink(inputUrl) {
   return newUrl;
 }
 
+function exportPermissions() {
+  const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" }); // grab the current permissions of the room and parse them in JSON-format
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "SoundBoard-permissions.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importPermissions() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "application/json";
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const text = await file.text();
+    // try the parse first, since we don't know what GMs are uploading
+    try {
+      const newPermissions = JSON.parse(text);
+      await savePermissions(newPermissions);
+      OBR.notification.show("import successful");
+      await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+    } catch (err) {
+      OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
+    }
+  };
+  input.click();
+}
+
+function exportSounds() {console.log("exportSounds");}
+function importSounds() {console.log("importSounds");}
+
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
 
@@ -131,7 +167,7 @@ export async function setupGMView(container) {
   settingsButton.classList.add("nav-button");
   settingsButton.title = "import/export";
   const settingsIcon = document.createElement("img");
-  settingsIcon.src = "/public/settings.png";
+  settingsIcon.src = "./settings.png";
   settingsIcon.alt = "import/export";
   settingsIcon.classList.add("nav-icon");
   settingsButton.appendChild(settingsIcon);
@@ -169,11 +205,30 @@ export async function setupGMView(container) {
     }
   });
 
-
+  dropdownMenu.addEventListener("click", (event) => {
+    const type = event.target.getAttribute("data-type");
+    if (!type) return;
+  
+    switch (type) {
+      case "export-permissions":
+        exportPermissions(); break;
+      case "import-permissions":
+        importPermissions(); break;
+      case "export-sounds":
+        exportSounds(); break;
+      case "import-sounds":
+        importSounds(); break;
+    }
+  
+    // Optional: Menü nach Klick schließen
+    dropdownMenu.classList.add("hidden");
+    menuOpen = false;
+  });
+  
   navButtons.appendChild(dropdownMenu); // Oder ein Container deiner Wahl
 
   navButtons.appendChild(settingsButton);
-
+/*
 // export-button
   // export allows to export (player-)permissions of the room. Needfull in case you want to switch OwlBear-rooms but you don't want to tick all the checkboxes again
   const exportButton = document.createElement("button");
@@ -199,7 +254,8 @@ export async function setupGMView(container) {
   });
 
   navButtons.appendChild(exportButton);
-
+  */
+/*
 // import-button
   // import allows to import (player-)permissions to the room. We have an export, so we need an import right? RIGHT?!
   const importButton = document.createElement("button");
@@ -234,6 +290,7 @@ export async function setupGMView(container) {
   });
 
   navButtons.appendChild(importButton);
+*/
 // end of navbar
 
 // begin of contentArea 
