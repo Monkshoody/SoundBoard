@@ -59,7 +59,7 @@ export async function setupGMView(container) {
 // initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
   soundData = await loadSoundData();
-  const permissionsKey = await loadPermissionsKey(); // fetch the metadata of the SOUND_PERMISSION_KEY to keep the soundPermissions as it was.
+  let permissionsKey = await loadPermissionsKey(); // fetch the metadata of the SOUND_PERMISSION_KEY to keep the soundPermissions as it was.
   console.log(permissionsKey);
   if (soundData == []) {
     await OBR.room.setMetadata({
@@ -114,9 +114,10 @@ export async function setupGMView(container) {
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
     const currentMetadata = await OBR.room.getMetadata();
+    permissionsKey = await loadPermissionsKey();
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: !checkbox.checked
+      [SOUND_PERMISSION_KEY]: !permissionsKey
     });
     console.log("currentMetadata[SOUND_PERMISSION_KEY]:", currentMetadata[SOUND_PERMISSION_KEY]);
   });
