@@ -117,7 +117,7 @@ export async function setupPlayerView(container, playerName) {
     });
   
     // Schritt 2: Extrahiere alle Kategorien aus soundData
-    const categories = [...new Set(soundData.map(sound => sound.category))];
+    const categories = [...new Set(playerSounds.map(sound => sound.category))];
   
     // Schritt 3: Neue Kategorie-Optionen anhängen
     categories.forEach(cat => {
