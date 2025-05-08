@@ -53,34 +53,6 @@ async function exportData(data, name) {
   URL.revokeObjectURL(url);
 }
 
-async function importData(name) {
-  const input = document.createElement("input");
-  input.type = "file";
-  input.accept = "application/json";
-  input.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const text = await file.text();
-    // try the parse first, since we don't know what GMs are uploading
-    try {
-      if (name == "permissions") {
-        const newPermissions = JSON.parse(text);
-        await savePermissions(newPermissions);
-        OBR.notification.show("import successful");
-        //await renderSounds(newPermissions); // pass newPermissions to render GMView properly
-        document.getElementById('contentArea').innerHTML = '';
-        await setupGMView(document.getElementById('contentArea'));
-      } else if (name == "sounds") {
-        console.log("import sounds");
-      }
-    } catch (err) {
-      console.log("ERROR", err);
-      OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
-    }
-  };
-  input.click();
-}
-
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
 
@@ -212,20 +184,61 @@ export async function setupGMView(container) {
     if (!type) return;
   
     switch (type) {
+
       case "export-permissions":
         console.log("in export-permissions");
         let newpermissions = await loadPermissions();
         await exportData(newpermissions, "permissions"); break;
+
       case "import-permissions":
         console.log("in import-permissions");
-        await importData("permissions"); break;
+        const inputPermissions = document.createElement("input");
+        inputPermissions.type = "file";
+        inputPermissions.accept = "application/json";
+        inputPermissions.onchange = async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const text = await file.text();
+          // try the parse first, since we don't know what GMs are uploading
+          try {
+            const newPermissions = JSON.parse(text);
+            await savePermissions(newPermissions);
+            OBR.notification.show("import successful");
+            await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+          } catch (err) {
+            console.log("ERROR", err);
+            OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
+          }
+        };
+        inputPermissions.click();
+
       case "export-sounds":
         console.log("in export-sounds");
         soundData = await loadSoundData();
         await exportData(soundData, "soundData"); break;
+
       case "import-sounds":
         console.log("in import-sounds")
-        await importData("sounds"); break;
+        console.log("in import-permissions");
+        const inputSounds = document.createElement("input");
+        inputSounds.type = "file";
+        inputSounds.accept = "application/json";
+        inputSounds.onchange = async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const text = await file.text();
+          // try the parse first, since we don't know what GMs are uploading
+          try {
+            const newSounds = JSON.parse(text);
+            await saveSoundData(newSounds);
+            OBR.notification.show("import successful");
+            await renderSounds(permissions); // pass newPermissions to render GMView properly
+          } catch (err) {
+            console.log("ERROR", err);
+            OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
+          }
+        };
+        inputSounds.click();
     }
   
     // close menu after click
