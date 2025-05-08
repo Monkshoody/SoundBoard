@@ -10,10 +10,12 @@ const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for
 var soundData = [];
 
 export async function setupPlayerView(container, playerName) {
-// search function for sounds
   let currentFilter = "all";
   let currentSearch = "";
-  soundData = loadSoundData();
+
+  soundData = await loadSoundData(); // can be deleted later since soundData will be initiated in gmview with soundData=[]
+
+  // search function for sounds
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = '🔎 Search for sound name ...';
