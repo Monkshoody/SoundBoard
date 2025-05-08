@@ -111,6 +111,7 @@ export async function setupGMView(container) {
   // EventListener for the switch
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
+    console.log("checkbox.checked", checkbox.checked);
     const currentMetadata = await OBR.room.getMetadata();
     await OBR.room.setMetadata({
       ... currentMetadata,
@@ -490,7 +491,7 @@ export async function setupGMView(container) {
           label.append(` ${player}`);
           checkboxGroup.appendChild(label);
         });
-        
+
         // create small buttons each player to play a sound just for them and you
         const playerSoundButton = document.createElement('span');
         playerSoundButton.classList.add('player-Sound-button');
