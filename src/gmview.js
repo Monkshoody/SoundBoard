@@ -88,6 +88,30 @@ function processDropboxLink(inputUrl) {
   return newUrl;
 }
 
+// if GM gives adds a new sound, the filter will be updated with a new category
+// if the GM then removes this sounds, the category needs to be removed from the category list
+function updateCategoryFilter(combinedSelect, filteredSounds) {
+  // empty the dropdown menu
+  combinedSelect.innerHTML = '';
+
+  // leave "all" as default option
+  const defaultOption = document.createElement('option');
+  defaultOption.value = "all";
+  defaultOption.textContent = "all";
+  combinedSelect.appendChild(defaultOption);
+
+  // extract all categories without duplicates
+  const allCategories = [...new Set(filteredSounds.map(sound => sound.category))];
+
+  // add a new option per category
+  allCategories.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = `category: ${cat}`;
+    option.textContent = `category: ${cat}`;
+    combinedSelect.appendChild(option);
+  });
+}
+
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
 
@@ -294,16 +318,7 @@ export async function setupGMView(container) {
 // filter for categories; Note that this is only the initiation of the filter DOM, as the filter reacts dynamically to the creation and deletion of new sounds.
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
-  const options = [
-    "all",
-    ...[...new Set(soundData.map(sound => sound.category))].map(k => `category: ${k}`)
-  ];
-  options.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    combinedSelect.appendChild(option);
-  });
+  updateCategoryFilter(combinedSelect, soundData);
 
   container.appendChild(combinedSelect);
 
@@ -326,18 +341,7 @@ export async function setupGMView(container) {
     let filteredSounds = newSoundData;
 
     // since new sounds can be added, the filter needs to be updated to possible new categories
-    const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
-    const existingCategories = existingOptions
-    .filter(opt => opt.startsWith("category: "))
-    .map(opt => opt.replace("category: ", "")); // prepare for comparison
-    const allCategories = [...new Set(filteredSounds.map(sound => sound.category))]; // get all category options from metadata namespace (filteredSounds)
-    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
-    newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
-      const option = document.createElement('option');
-      option.value = `category: ${cat}`;
-      option.textContent = `category: ${cat}`;
-      combinedSelect.appendChild(option);
-    });
+    updateCategoryFilter(combinedSelect, filteredSounds);
 
 
     // sort alphabteically to the names

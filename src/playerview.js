@@ -9,20 +9,22 @@ const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for
 
 var soundData = [];
 
+// if GM gives access to a new sound, the filter will be updated with a new category
+// if the GM then revoces access to this sounds, the category needs to be removed from the category list
 function updateCategoryFilter(combinedSelect, playerSounds) {
-  // Leere das aktuelle Dropdown-Menü
+  // empty the dropdown menu
   combinedSelect.innerHTML = '';
 
-  // "all" bleibt als erste Option bestehen
+  // leave "all" as default option
   const defaultOption = document.createElement('option');
   defaultOption.value = "all";
   defaultOption.textContent = "all";
   combinedSelect.appendChild(defaultOption);
 
-  // Extrahiere alle Kategorien ohne Duplikate
+  // extract all categories without duplicates
   const allCategories = [...new Set(playerSounds.map(sound => sound.category))];
 
-  // Füge pro Kategorie eine neue Option hinzu
+  // add a new option per category
   allCategories.forEach(cat => {
     const option = document.createElement('option');
     option.value = `category: ${cat}`;
@@ -47,17 +49,7 @@ export async function setupPlayerView(container, playerName) {
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
 
-  const options = [
-    "all",
-    ...[...new Set(soundData.map(spell => spell.category))].map(k => `category: ${k}`) // categories needs to be added dynamically (see gmview 328 existingOptions ...)
-  ];
-
-  options.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    combinedSelect.appendChild(option);
-  });
+  updateCategoryFilter(combinedSelect, soundData);
 
   container.appendChild(combinedSelect);
   
@@ -107,8 +99,6 @@ export async function setupPlayerView(container, playerName) {
       }
     });
     
-    // IF gives access to a new sound, the filter will be updated with a new category.
-    // If the GM then revoces access to this sounds, the category remains in the dropdown menu since its in combinedSelect.options
     // since new sounds can be added, the filter needs to be updated to possible new categories
     updateCategoryFilter(combinedSelect, playerSounds);
     
