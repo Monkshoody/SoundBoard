@@ -136,6 +136,8 @@ export async function setupGMView(container) {
   settingsIcon.classList.add("nav-icon");
   settingsButton.appendChild(settingsIcon);
 
+  navButtons.appendChild(settingsButton);
+
 // export-button
   // export allows to export (player-)permissions of the room. Needfull in case you want to switch OwlBear-rooms but you don't want to tick all the checkboxes again
   const exportButton = document.createElement("button");
