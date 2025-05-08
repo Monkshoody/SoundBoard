@@ -120,7 +120,10 @@ export async function setupPlayerView(container, playerName) {
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
 
     const removedCategories = existingCategories.filter(cat => !allCategories.includes(cat));
-
+    console.log("existingCategories:", existingCategories);
+    console.log("allCategories:", allCategories);
+    console.log("newCategories:", newCategories);
+    console.log("removedCategories:", removedCategories);
     newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
