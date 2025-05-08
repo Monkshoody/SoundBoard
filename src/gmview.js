@@ -340,7 +340,7 @@ export async function setupGMView(container) {
 
       const soundCard = document.createElement('div');
       soundCard.classList.add('sound-card');
-    
+
       // create a sound button to play the sound
       const soundButton = document.createElement('button');
       soundButton.textContent = `${sound.name}`;
@@ -382,8 +382,18 @@ export async function setupGMView(container) {
         }
       });
 
+      // create volume-Slider
+      const volumeSlider = document.createElement('input');
+      volumeSlider.type = 'range';
+      volumeSlider.min = 0;
+      volumeSlider.max = 1;
+      volumeSlider.step = 0.01;
+      volumeSlider.value = 1; // default volume 100%
+      volumeSlider.classList.add('volume-slider');
+
       soundCard.appendChild(deleteButton);
       soundCard.appendChild(soundButton);
+      soundCard.appendChild(volumeSlider);
 
       // The Checkbox-Group is used to display checkboxes for each player, for each sound.
       // If they are ticked, the according player get's the according sound displayed in his soundBoard
@@ -469,6 +479,7 @@ export async function setupGMView(container) {
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
+      audio.volume = volumeSlider.value; // Lautstärke übernehmen
       audio.play(); // play new audio
     }
   });
