@@ -67,7 +67,8 @@ async function importData(name) {
         const newPermissions = JSON.parse(text);
         await savePermissions(newPermissions);
         OBR.notification.show("import successful");
-        await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+        //await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+        await setupGMView(document.getElementById('contentArea'));
       } else if (name == "sounds") {
         console.log("import sounds");
       }
@@ -233,69 +234,6 @@ export async function setupGMView(container) {
   
   navButtons.appendChild(dropdownMenu);
   navButtons.appendChild(settingsButton);
-/*
-// export-button
-  // export allows to export (player-)permissions of the room. Needfull in case you want to switch OwlBear-rooms but you don't want to tick all the checkboxes again
-  const exportButton = document.createElement("button");
-  exportButton.classList.add("nav-button");
-  exportButton.title = "save permissions";
-  const exportIcon = document.createElement("img");
-  exportIcon.src = "./export.png";
-  exportIcon.alt = "export";
-  exportIcon.classList.add("nav-icon");
-  exportButton.appendChild(exportIcon);
-
-  // EventListener for the export-button
-  exportButton.addEventListener("click", async () => {
-    const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" }); // grab the current permissions of the room and parse them in JSON-format
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "SoundBoard-permissions.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
-
-  navButtons.appendChild(exportButton);
-  */
-/*
-// import-button
-  // import allows to import (player-)permissions to the room. We have an export, so we need an import right? RIGHT?!
-  const importButton = document.createElement("button");
-  importButton.classList.add("nav-button");
-  importButton.title = "open permissions";
-  const importIcon = document.createElement("img");
-  importIcon.src = "./import.png";
-  importIcon.alt = "import";
-  importIcon.classList.add("nav-icon");
-  importButton.appendChild(importIcon);
-
-  // EventListener for the import-button
-  importButton.addEventListener("click", async () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "application/json";
-    input.onchange = async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const text = await file.text();
-      // try the parse first, since we don't know what GMs are uploading
-      try {
-        const newPermissions = JSON.parse(text);
-        await savePermissions(newPermissions);
-        OBR.notification.show("import successful");
-        await renderSounds(newPermissions); // pass newPermissions to render GMView properly
-      } catch (err) {
-        OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
-      }
-    };
-    input.click();
-  });
-
-  navButtons.appendChild(importButton);
-*/
 // end of navbar
 
 // begin of contentArea 
