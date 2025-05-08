@@ -368,6 +368,8 @@ export async function setupGMView(container) {
           console.log("soundData:", soundData);
           soundData.splice(index, 1); // delete the sound from soundData
           await saveSoundData(soundData);
+          console.log("players:", players);
+          console.log("permissions:", permissions);
           // update permissions Idee:
           /*
           if (players.length) { 
