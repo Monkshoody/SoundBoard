@@ -290,15 +290,28 @@ export async function setupGMView(container) {
     const existingCategories = existingOptions
     .filter(opt => opt.startsWith("category: "))
     .map(opt => opt.replace("category: ", "")); // prepare for comparison
+
     const allCategories = [...new Set(filteredSounds.map(sound => sound.category))]; // get all category options from metadata namespace (filteredSounds)
+
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
+
+    const removedCategories = existingCategories.filter(cat => !allCategories.includes(cat));
+    // if GM adds a new sound, the filter will be updated with a new category
     newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
       option.textContent = `category: ${cat}`;
       combinedSelect.appendChild(option);
     });
-
+    // If the GM removes a sound, the categories needs to updated since they could be obsolete
+    removedCategories.forEach(cat => {
+      const optionToRemove = Array.from(combinedSelect.options).find(
+        opt => opt.value === `category: ${cat}`
+      );
+      if (optionToRemove) {
+        combinedSelect.removeChild(optionToRemove);
+      }
+    });
 
     // sort alphabteically to the names
     filteredSounds.sort((a, b) => a.name.localeCompare(b.name));

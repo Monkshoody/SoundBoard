@@ -98,7 +98,7 @@ export async function setupPlayerView(container, playerName) {
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
 
     const removedCategories = existingCategories.filter(cat => !allCategories.includes(cat));
-    // if GM gives access to a new sound, the filter will be updated with a new category.
+    // if GM gives access to a new sound, the filter will be updated with a new category
     newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
       const option = document.createElement('option');
       option.value = `category: ${cat}`;
