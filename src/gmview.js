@@ -331,7 +331,7 @@ export async function setupGMView(container) {
 
     // if there are no sounds left, display a message
     if (filteredSounds.length === 0) {
-      soundsContainer.innerHTML = '<p>No sounds found</p>';
+      soundsContainer.innerHTML = '<p>no sounds found</p>';
       return; // in general not neccessary, scince filteredSounds is empty
     }
 
@@ -364,27 +364,21 @@ export async function setupGMView(container) {
         // Entferne Sound aus soundData
         const index = soundData.findIndex(s => s.name === sound.name && s.category === sound.category);
         if (index !== -1) {
-          console.log("INDEX:", index);
-          console.log("soundData:", soundData);
           soundData.splice(index, 1); // delete the sound from soundData
           await saveSoundData(soundData);
-          console.log("players:", players);
-          console.log("permissions:", permissions);
-          // update permissions Idee:
-
+          // update permissions: if GM removes a sound, the sound needs to be removed for the players as well
           if (players.length) { 
             players.forEach((player) => {
                 if (permissions[player]) {
                   if (permissions[player].includes(sound.name)) {
                     permissions[player].pop(sound.name);
-                    console.log("permissions:", permissions);
                     savePermissions(permissions);
                   }
                 }
               });
           }
 
-          renderSounds(permissions);             // UI neu zeichnen
+          renderSounds(permissions); // re-render
         }
       });
 
