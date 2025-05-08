@@ -116,7 +116,7 @@ export async function setupGMView(container) {
     const currentMetadata = await OBR.room.getMetadata();
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: checkbox.checked
+      [SOUND_PERMISSION_KEY]: !checkbox.checked
     });
     console.log("currentMetadata[SOUND_PERMISSION_KEY]:", currentMetadata[SOUND_PERMISSION_KEY]);
   });
@@ -495,7 +495,7 @@ export async function setupGMView(container) {
         });
 
         // create small buttons each player to play a sound just for them and you
-        const playerSoundButton = document.createElement('div');
+        const playerSoundButton = document.createElement('span');
         playerSoundButton.classList.add('player-Sound-button');
 
         players.forEach((player) => {
