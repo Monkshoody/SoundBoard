@@ -383,7 +383,7 @@ export async function setupGMView(container) {
       });
 
       // create volume-Slider
-      const volumeSlider = document.createElement('input');
+      volumeSlider = document.createElement('input');
       volumeSlider.type = 'range';
       volumeSlider.min = 0;
       volumeSlider.max = 1;
@@ -462,7 +462,7 @@ export async function setupGMView(container) {
 
 // check for changed metadata to trigger notification and sound
   let lastTimestamp = 0; // prevents Caching & ensures new triggering
-
+  let volumeSlider;
   OBR.room.onMetadataChange((metadata) => {
 
     // if NOTIFY_KEY has changed, send a notification to everybody in the room
