@@ -58,14 +58,14 @@ export async function playSoundForAll(audioFile) {
 }
 
 // playSoundForPlayer will dirtibute the argument "audioFile" to the "player"
-export async function playSoundForPlayer(audioFile, player) {
+export async function playSoundForPlayer(audioFile, player, volume) {
   const currentMetadata = await OBR.room.getMetadata();
-  console.log("in playSoundForPlayer function");
   await OBR.room.setMetadata({
     ...currentMetadata,
     [PLAYERSOUND_KEY]: {
       audio: audioFile,
       player: player,
+      volume: volume,
       timestamp: Date.now()
     }
   });

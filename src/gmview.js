@@ -502,8 +502,9 @@ export async function setupGMView(container) {
           playerButton.innerText = player;
         
           playerButton.addEventListener('click', () => {
-            playSoundForPlayer(sound.audio, player); // distribute audio to player
+            playSoundForPlayer(sound.audio, player, volumeSlider.value); // distribute audio to player
             const audio = new Audio(sound.audio);
+            audio.volume = volumeSlider.value; // Apply volume
             audio.play(); // play audio for GM
           });
         

@@ -191,6 +191,16 @@ export async function setupPlayerView(container, playerName) {
       audio.volume = volumeSlider.value; // Apply volume
       audio.play(); // play new audio
     }
+
+    // if PLAYERSOUND_KEY has changed, play the audio file in players browser
+    const playerSound = metadata[PLAYERSOUND_KEY]; // store the metadata for the sound trigger
+    console.log("playerSound:", playerSound, lastTimestamp);
+    if (playerSound && playerSound.timestamp > lastTimestamp && playerSound.player == playerName) {
+      lastTimestamp = playerSound.timestamp;
+      const audio = new Audio(trigger.audio); // updates audio
+      audio.volume = playerSound.volume; // Apply volume
+      audio.play(); // play new audio
+    }
     
     // re-render the soundContainer
     await renderSounds();
