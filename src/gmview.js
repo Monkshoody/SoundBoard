@@ -341,6 +341,24 @@ export async function setupGMView(container) {
         await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
       });
 
+      // Create the delete button (the "X")
+      const deleteButton = document.createElement('span');
+      deleteButton.textContent = '×'; // Unicode "X"
+      deleteButton.classList.add('delete-button');
+
+      // EventListener to delete the sound
+      deleteButton.addEventListener('click', () => {
+        // Entferne Sound aus soundData
+        const index = soundData.findIndex(s => s.name === sound.name && s.category === sound.category);
+        if (index !== -1) {
+          console.log("INDEX:", index);
+          console.log("soundData:", soundData);
+          //soundData.splice(index, 1); // löschen aus Daten
+          //renderSounds();             // UI neu zeichnen
+        }
+      });
+
+      soundCard.appendChild(deleteButton);
       soundCard.appendChild(soundButton);
 
       // The Checkbox-Group is used to display checkboxes for each player, for each sound.
