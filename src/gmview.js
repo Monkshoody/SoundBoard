@@ -118,7 +118,7 @@ export async function setupGMView(container) {
       ... currentMetadata,
       [SOUND_PERMISSION_KEY]: checkbox.checked
     });
-    console.log("metadata[SOUND_PERMISSION_KEY]:", metadata[SOUND_PERMISSION_KEY]);
+    console.log("currentMetadata[SOUND_PERMISSION_KEY]:", currentMetadata[SOUND_PERMISSION_KEY]);
   });
 
   // make it slide
@@ -507,6 +507,8 @@ export async function setupGMView(container) {
             console.log(`you clicked ${player}`);
             //playSoundForPlayers(sound.id, [player.id, currentGMId]); 
           });
+
+          playerSoundButton.appendChild(playerButton);
         });
 
         soundCard.appendChild(playerSoundButton); 
