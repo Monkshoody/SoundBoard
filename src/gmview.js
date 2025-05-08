@@ -353,8 +353,10 @@ export async function setupGMView(container) {
         if (index !== -1) {
           console.log("INDEX:", index);
           console.log("soundData:", soundData);
-          //soundData.splice(index, 1); // löschen aus Daten
-          //renderSounds();             // UI neu zeichnen
+          soundData.splice(index, 1); // löschen aus Daten
+          saveSoundData(soundData);
+          // update permissions
+          renderSounds();             // UI neu zeichnen
         }
       });
 
