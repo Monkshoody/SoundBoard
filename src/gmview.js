@@ -90,7 +90,7 @@ function processDropboxLink(inputUrl) {
 
 // if GM gives adds a new sound, the filter will be updated with a new category
 // if the GM then removes this sounds, the category needs to be removed from the category list
-function updateCategoryFilter(combinedSelect, filteredSounds) {
+function updateCategoryFilter(combinedSelect, sounds) {
   // empty the dropdown menu
   combinedSelect.innerHTML = '';
 
@@ -101,7 +101,7 @@ function updateCategoryFilter(combinedSelect, filteredSounds) {
   combinedSelect.appendChild(defaultOption);
 
   // extract all categories without duplicates
-  const allCategories = [...new Set(filteredSounds.map(sound => sound.category))];
+  const allCategories = [...new Set(sounds.map(sound => sound.category))];
 
   // add a new option per category
   allCategories.forEach(cat => {
@@ -318,7 +318,16 @@ export async function setupGMView(container) {
 // filter for categories; Note that this is only the initiation of the filter DOM, as the filter reacts dynamically to the creation and deletion of new sounds.
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
-  updateCategoryFilter(combinedSelect, soundData);
+  const options = [
+    "all",
+    ...[...new Set(soundData.map(sound => sound.category))].map(k => `category: ${k}`)
+  ];
+  options.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    combinedSelect.appendChild(option);
+  });
 
   container.appendChild(combinedSelect);
 
@@ -341,7 +350,7 @@ export async function setupGMView(container) {
     let filteredSounds = newSoundData;
 
     // since new sounds can be added, the filter needs to be updated to possible new categories
-    updateCategoryFilter(combinedSelect, filteredSounds);
+    updateCategoryFilter(combinedSelect, newSoundData);
 
 
     // sort alphabteically to the names
