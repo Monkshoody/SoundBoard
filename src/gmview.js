@@ -41,19 +41,19 @@ function processDropboxLink(inputUrl) {
   return newUrl;
 }
 
-function exportPermissions() {
-  const blob = new Blob([JSON.stringify(permissions, null, 2)], { type: "application/json" }); // grab the current permissions of the room and parse them in JSON-format
+async function exportData(data, name) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }); // grab the current permissions or soundData of the room and parse them in JSON-format
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "SoundBoard-permissions.json";
+  a.download = `SoundBoard-${name}.json`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
 
-function importPermissions() {
+async function importData(name) {
   const input = document.createElement("input");
   input.type = "file";
   input.accept = "application/json";
@@ -63,19 +63,21 @@ function importPermissions() {
     const text = await file.text();
     // try the parse first, since we don't know what GMs are uploading
     try {
-      const newPermissions = JSON.parse(text);
-      await savePermissions(newPermissions);
-      OBR.notification.show("import successful");
-      await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+      if (name == "permissions") {
+        const newPermissions = JSON.parse(text);
+        await savePermissions(newPermissions);
+        OBR.notification.show("import successful");
+        await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+      }
+      if (name == "sounds") {
+        console.log("import sounds");
+      }
     } catch (err) {
       OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
     }
   };
   input.click();
 }
-
-function exportSounds() {console.log("exportSounds");}
-function importSounds() {console.log("importSounds");}
 
 // main function for the Game-Masters-View
 export async function setupGMView(container) {
@@ -178,14 +180,12 @@ export async function setupGMView(container) {
 
   dropdownMenu.innerHTML = `
     <div class="dropdown-section">
-      <strong>export</strong>
-      <button class="dropdown-item" data-type="export-permissions">🔐 Export permissions</button>
-      <button class="dropdown-item" data-type="export-sounds">🎵 Export sounds</button>
+      <button class="dropdown-item" data-type="export-permissions">🔐 export permissions</button>
+      <button class="dropdown-item" data-type="export-sounds">🎵 export sounds</button>
     </div>
     <div class="dropdown-section">
-      <strong>import</strong>
-      <button class="dropdown-item" data-type="import-permissions">🔐 Import permissions</button>
-      <button class="dropdown-item" data-type="import-sounds">🎵 Import sounds</button>
+      <button class="dropdown-item" data-type="import-permissions">🔐 import permissions</button>
+      <button class="dropdown-item" data-type="import-sounds">🎵 import sounds</button>
     </div>
   `;
 
@@ -205,28 +205,33 @@ export async function setupGMView(container) {
     }
   });
 
-  dropdownMenu.addEventListener("click", (event) => {
+  dropdownMenu.addEventListener("click", async (event) => {
     const type = event.target.getAttribute("data-type");
     if (!type) return;
   
     switch (type) {
       case "export-permissions":
-        exportPermissions(); break;
+        console.log("in export-permissions");
+        permissions = await loadPermissions();
+        await exportData(permissions, "permissions"); break;
       case "import-permissions":
-        importPermissions(); break;
+        console.log("in import-permissions");
+        await importData("permissions"); break;
       case "export-sounds":
-        exportSounds(); break;
+        console.log("in export-sounds");
+        soundData = await loadSoundData();
+        await exportData(soundData, "soundData"); break;
       case "import-sounds":
-        importSounds(); break;
+        console.log("import-sounds")
+        await importData("sounds"); break;
     }
   
-    // Optional: Menü nach Klick schließen
+    // close menu after click
     dropdownMenu.classList.add("hidden");
     menuOpen = false;
   });
   
-  navButtons.appendChild(dropdownMenu); // Oder ein Container deiner Wahl
-
+  navButtons.appendChild(dropdownMenu);
   navButtons.appendChild(settingsButton);
 /*
 // export-button
