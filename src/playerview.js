@@ -65,11 +65,13 @@ export async function setupPlayerView(container, playerName) {
     }
 
     // like gmview filteredsounds show generelly just available sounds, sounds for which the player has authorization
-    let  playerSounds = [];
+    let playerSounds = [];
+    let filterSounds = [];
     permissions[playerName].forEach(soundName => {
       // find sounds for which the player has permission
       const sound = newSoundData.find(s => s.name === soundName);
       playerSounds.push(sound); // store these sounds in playerSounds
+      filterSounds.push(sound);
 
       // filter according to search
       if (currentSearch.trim() !== "") {
@@ -93,7 +95,7 @@ export async function setupPlayerView(container, playerName) {
     .filter(opt => opt.startsWith("category: "))
     .map(opt => opt.replace("category: ", "")); // prepare for comparison
 
-    const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
+    const allCategories = [...new Set(filterSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
 
     const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
 
