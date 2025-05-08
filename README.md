@@ -1,15 +1,25 @@
+Important Notice: The VolumeSlider is just temporary. If the Webside is reloaded everything will reset to 100% Volum. I suggest to use proper files and not count to much on this feature so far.
 # SoundBoard
-SoundBoard Extension for OwlBear Rodeo
 
-![Logo](public/logo.png)
+SoundBoard Extension for OwlBear Rodeo to play custom sounds in the room.
 
-Notice! The VolumeSlider is just temporary. If the Webside is reloaded everything will reset to 100% Volum. I suggest to use proper files and not count to much on this feature so far.
+## Installing
 
-[GM View](public/docu/Initial_GMview.png)
+Copy and add `https://soundboard-ecb.pages.dev/manifest.json` to your extensions in your Owlbear Rodeo profile.
 
-[Dropbox](public/docu/DropBox_share.png)
+## How it Works
 
-[adding](public/docu/adding_sounds.png)
+The SoundBoard allows the GM to add DropBox links and play them for their players. You can add noises, sounds, music, etc. All you need is a DropBox account and the corresponding sounds. Personaly I'd reccomend this page https://pixabay.com/de/sound-effects/ to find new soundeffects.
+
+Clicking the <img src="https://github.com/Monkshoody/SoundBoard/tree/main/public/docu/icon_white.png#gh-dark-mode-only" width=20 alt="SoundBoard Icon Light"><img src="https://github.com/Monkshoody/SoundBoard/tree/main/public/docu/icon_black.png#gh-light-mode-only" width=20 alt="SoundBoard Icon Dark"> icon at the top of the page will open the SoundBoard.
+
+![GM View](public/docu/Initial_GMview.png)
+
+Some Text here!
+
+![Dropbox](public/docu/DropBox_share.png)
+
+![adding](public/docu/adding_sounds.png)
 
 1. For sure at some point you as GM will be annoyed by alle the players hitting sounds. If this happens you can just mute them out. Notice that reloading the OwlBear Website as GM will reactivate this function, so the players are again allowed to play sounds. (Maybe I'll fix that later)
 

@@ -39,6 +39,10 @@ export async function saveSoundData(soundData) {
   });
 }
 
+export async function loadPermissionsKey() {
+  const metadata = await OBR.room.getMetadata();
+  return metadata[SOUND_PERMISSION_KEY] || true;
+}
 // playSoundForAll will dirtibute the argument "audioFile" to all players in the room
 export async function playSoundForAll(audioFile) {
   const currentMetadata = await OBR.room.getMetadata();

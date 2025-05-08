@@ -225,6 +225,20 @@ h1 {
   font-size: 14px;
 }
 
+.player-button {
+  margin: 2px;
+  padding: 2px 6px;
+  font-size: 12px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.player-button:hover {
+  background-color: #666;
+}
+
 .audio-toggle-wrapper {
   display: flex;
   align-items: center;
