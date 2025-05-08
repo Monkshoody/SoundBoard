@@ -508,7 +508,8 @@ export async function setupGMView(container) {
         
           playerSoundButton.appendChild(playerButton);
         });
-        soundCard.appendChild(playerSoundButton);
+        
+        soundCard.appendChild(playerSoundButton); 
         soundCard.appendChild(checkboxGroup); 
       }
 
