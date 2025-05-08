@@ -492,16 +492,16 @@ export async function setupGMView(container) {
         });
 
         // create small buttons each player to play a sound just for them and you
-        const playerSoundButton = document.createElement('span');
+        const playerSoundButton = document.createElement('div');
         playerSoundButton.classList.add('player-Sound-button');
 
         players.forEach((player) => {
           const playerButton = document.createElement('button');
           playerButton.classList.add('player-button');
-          playerButton.innerText = player.name;
+          playerButton.innerText = player;
         
           playerButton.addEventListener('click', () => {
-            console.log("you clicked", player.name);
+            console.log("you clicked", player);
             // Beispiel-Funktion zum Abspielen für ausgewählten Spieler (und GM)
             //playSoundForPlayers(sound.audio, player); 
           });
