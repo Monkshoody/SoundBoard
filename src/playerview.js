@@ -13,7 +13,7 @@ export async function setupPlayerView(container, playerName) {
 // search function for sounds
   let currentFilter = "all";
   let currentSearch = "";
-
+  soundData = loadSoundData();
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = '🔎 Search for sound name ...';
@@ -27,7 +27,7 @@ export async function setupPlayerView(container, playerName) {
 
   const options = [
     "all",
-    ...[...new Set(soundData.map(spell => spell.category))].map(k => `category: ${k}`) // categories needs to be added dynamically (see gmview 328 existingOptions ...)
+    ...[...new Set(soundData.map(sound => sound.category))].map(k => `category: ${k}`) // categories needs to be added dynamically (see gmview 328 existingOptions ...)
   ];
 
   options.forEach(opt => {
