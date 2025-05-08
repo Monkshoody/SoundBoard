@@ -367,7 +367,7 @@ export async function setupGMView(container) {
               });
           }
           */
-          renderSounds();             // UI neu zeichnen
+          renderSounds(permissions);             // UI neu zeichnen
         }
       });
 
