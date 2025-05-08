@@ -49,7 +49,17 @@ export async function setupPlayerView(container, playerName) {
   const combinedSelect = document.createElement('select');
   combinedSelect.classList.add('combined-filter');
 
-  updateCategoryFilter(combinedSelect, soundData);
+  const options = [
+    "all",
+    ...[...new Set(soundData.map(spell => spell.category))].map(k => `category: ${k}`) // categories needs to be added dynamically (see gmview 328 existingOptions ...)
+  ];
+
+  options.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    combinedSelect.appendChild(option);
+  });
 
   container.appendChild(combinedSelect);
   
