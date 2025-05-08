@@ -1,5 +1,5 @@
 import OBR from "@owlbear-rodeo/sdk";
-import { loadPermissions, savePermissions, saveSoundData, loadSoundData, loadPermissionsKey, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
+import { loadPermissions, savePermissions, saveSoundData, loadSoundData, playSoundForAll, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
@@ -59,18 +59,16 @@ export async function setupGMView(container) {
 // initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
   soundData = await loadSoundData();
-  let permissionsKey = await loadPermissionsKey(); // fetch the metadata of the SOUND_PERMISSION_KEY to keep the soundPermissions as it was.
-  console.log(permissionsKey);
   if (soundData == []) {
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: permissionsKey, // initiate the SOUND_PERMISSION_KEY as true (see permissions.json), so on default players are allowed to play sounds
+      [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
       [SOUNDDATA_KEY]: soundData // initiate the SOUNDDATA_KEY as empty array, so on default no sounds are available. SOUNDDATA_KEY will be updated accoring to soundData array
     });
   } else {
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: permissionsKey, // initiate the SOUND_PERMISSION_KEY as true (see permissions.json), so on default players are allowed to play sounds
+      [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
     });
   }
 
@@ -114,12 +112,10 @@ export async function setupGMView(container) {
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
     const currentMetadata = await OBR.room.getMetadata();
-    console.log("checkbox.checked", checkbox.checked);
     await OBR.room.setMetadata({
       ... currentMetadata,
       [SOUND_PERMISSION_KEY]: checkbox.checked
     });
-    console.log("currentMetadata[SOUND_PERMISSION_KEY]:", currentMetadata[SOUND_PERMISSION_KEY]);
   });
 
   // make it slide
@@ -494,7 +490,7 @@ export async function setupGMView(container) {
           label.append(` ${player}`);
           checkboxGroup.appendChild(label);
         });
-
+        
         // create small buttons each player to play a sound just for them and you
         const playerSoundButton = document.createElement('span');
         playerSoundButton.classList.add('player-Sound-button');
