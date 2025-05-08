@@ -8,54 +8,7 @@ const SOUND_PERMISSION_KEY = "com.soundboard/sound-enabled-for-players"; // OwlB
 const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for storing the sound data
 
 // global soundData array for storing the sounds
-//var soundData = [];
-//right now for testcases
-var soundData = [
-  {
-    "name": "Alohomora",
-    "category": "Zauberkunst",
-    "audio": "https://www.dropbox.com/scl/fi/nrxteuyazmatma686cxfd/Alohomora.wav?rlkey=w3apwnwb3to2wqc2y8t0z8ooi&st=e55u98zi&raw=1"
-  },
-  {
-    "name": "Lumos",
-    "category": "Zauberkunst",
-    "audio": "https://www.dropbox.com/scl/fi/j6f9d0vdjqxdnp0webvb5/Lumos.wav?rlkey=i7yxbmwno2vfyls8row5wiw0w&st=m758xuir&raw=1"
-  },
-  {
-    "name": "Expelliarmus",
-    "category": "Verwandlung",
-    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
-  },
-  {
-    "name": "sfsdffdf",
-    "category": "Verwandlung",
-    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
-  },
-  {
-    "name": "Expelliafdsa<sdfsrmus",
-    "category": "Verwandlung",
-    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
-  },
-  {
-    "name": "fhgfhhmjf",
-    "category": "Verwandlung",
-    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
-  },
-  {
-    "name": "saseztrht",
-    "category": "Verwandlung",
-    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
-  },  {
-    "name": "htthr",
-    "category": "Verwandlung",
-    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
-  },
-  {
-    "name": "garghghjklkglokigh",
-    "category": "Verwandlung",
-    "audio": "https://www.dropbox.com/scl/fi/6vj8gnyk70bn1jsvq5ugq/Expelliarmus_entwaffnen.wav?rlkey=s4djq492sufoujxfje7j3jqw8&st=kdmqmrvc&raw=1"
-  }
-];
+var soundData = [];
 
 var players = []; // global players array including names of all players in the room
 
@@ -93,11 +46,19 @@ export async function setupGMView(container) {
 
 // initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
-  await OBR.room.setMetadata({
-    ... currentMetadata,
-    [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
-    [SOUNDDATA_KEY]: soundData // initiate the SOUNDDATA_KEY as empty array, so on default no sounds are available. SOUNDDATA_KEY will be updated accoring to soundData array
-  });
+  soundData = loadSoundData();
+  if (soundData == []) {
+    await OBR.room.setMetadata({
+      ... currentMetadata,
+      [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
+      [SOUNDDATA_KEY]: soundData // initiate the SOUNDDATA_KEY as empty array, so on default no sounds are available. SOUNDDATA_KEY will be updated accoring to soundData array
+    });
+  } else {
+    await OBR.room.setMetadata({
+      ... currentMetadata,
+      [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
+    });
+  }
 
   // permissions defines who is able to see and play a sound. GM can checkbox the users to provide access to a sound.
   // Thus, permissions is an array containing all players and the accoring sound access
@@ -322,8 +283,7 @@ export async function setupGMView(container) {
     soundsContainer.innerHTML = '';
 
     // loud new soundData from the room namespace for it could be updated
-    let newSoundData = await loadSoundData();
-    let filteredSounds = newSoundData;
+    let filteredSounds = await loadSoundData();
 
     // since new sounds can be added, the filter needs to be updated to possible new categories
     const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
