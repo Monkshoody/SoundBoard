@@ -225,6 +225,13 @@ h1 {
   font-size: 14px;
 }
 
+.player-Sound-button {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
 .player-button {
   margin: 2px;
   padding: 2px 6px;

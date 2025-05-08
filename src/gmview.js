@@ -118,6 +118,7 @@ export async function setupGMView(container) {
       ... currentMetadata,
       [SOUND_PERMISSION_KEY]: checkbox.checked
     });
+    console.log("metadata[SOUND_PERMISSION_KEY]:", metadata[SOUND_PERMISSION_KEY]);
   });
 
   // make it slide
