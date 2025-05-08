@@ -212,8 +212,8 @@ export async function setupGMView(container) {
     switch (type) {
       case "export-permissions":
         console.log("in export-permissions");
-        permissions = await loadPermissions();
-        await exportData(permissions, "permissions"); break;
+        let newpermissions = await loadPermissions();
+        await exportData(newpermissions, "permissions"); break;
       case "import-permissions":
         console.log("in import-permissions");
         await importData("permissions"); break;
@@ -222,7 +222,7 @@ export async function setupGMView(container) {
         soundData = await loadSoundData();
         await exportData(soundData, "soundData"); break;
       case "import-sounds":
-        console.log("import-sounds")
+        console.log("in import-sounds")
         await importData("sounds"); break;
     }
   
