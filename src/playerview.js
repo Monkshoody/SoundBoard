@@ -9,22 +9,20 @@ const SOUNDDATA_KEY = "com.soundboard/sound-data"; // OwlBear-room Namespace for
 
 var soundData = [];
 
-// if GM gives access to a new sound, the filter will be updated with a new category
-// if the GM then revoces access to this sounds, the category needs to be removed from the category list
 function updateCategoryFilter(combinedSelect, playerSounds) {
-  // empty the dropdown menu
+  // Leere das aktuelle Dropdown-Menü
   combinedSelect.innerHTML = '';
 
-  // leave "all" as default option
+  // "all" bleibt als erste Option bestehen
   const defaultOption = document.createElement('option');
   defaultOption.value = "all";
   defaultOption.textContent = "all";
   combinedSelect.appendChild(defaultOption);
 
-  // extract all categories without duplicates
+  // Extrahiere alle Kategorien ohne Duplikate
   const allCategories = [...new Set(playerSounds.map(sound => sound.category))];
 
-  // add a new option per category
+  // Füge pro Kategorie eine neue Option hinzu
   allCategories.forEach(cat => {
     const option = document.createElement('option');
     option.value = `category: ${cat}`;
@@ -109,8 +107,21 @@ export async function setupPlayerView(container, playerName) {
       }
     });
     
+    // IF gives access to a new sound, the filter will be updated with a new category.
+    // If the GM then revoces access to this sounds, the category remains in the dropdown menu since its in combinedSelect.options
     // since new sounds can be added, the filter needs to be updated to possible new categories
-    updateCategoryFilter(combinedSelect, playerSounds);
+    const existingOptions = Array.from(combinedSelect.options).map(opt => opt.value); // get all already existing category options from combinedSelect
+    const existingCategories = existingOptions
+    .filter(opt => opt.startsWith("category: "))
+    .map(opt => opt.replace("category: ", "")); // prepare for comparison
+    const allCategories = [...new Set(playerSounds.map(sound => sound.category))]; // get all category options from metadata namespace (newSoundData)
+    const newCategories = allCategories.filter(cat => !existingCategories.includes(cat)); // compare both lists existingCategories and allCategories to get new categories
+    newCategories.forEach(cat => { // create for each new category an option in the dropdown menu
+      const option = document.createElement('option');
+      option.value = `category: ${cat}`;
+      option.textContent = `category: ${cat}`;
+      combinedSelect.appendChild(option);
+    });
     
     // sort alphabteically to the names
     playerSounds.sort((a, b) => a.name.localeCompare(b.name));
