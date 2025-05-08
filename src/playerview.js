@@ -49,7 +49,9 @@ export async function setupPlayerView(container, playerName) {
   async function renderSounds() {
     // get updated permissions
     const permissions = await loadPermissions();
-    
+    // get updated soundData
+    let newSoundData = await loadSoundData();
+
     // clear everything (filter, search, etc.) if there aren't any permissions
     if (!permissions[playerName] || permissions[playerName].length === 0) {
       searchInput.style.display = 'none';
@@ -64,9 +66,8 @@ export async function setupPlayerView(container, playerName) {
     
     // like gmview filteredsounds show generelly just available sounds, sounds for which the player has authorization
     let  playerSounds = [];
-    permissions[playerName].forEach(async soundName => {
-      let newSoundData = await loadSoundData();
-      // find sounds for which the player has permission
+    permissions[playerName].forEach(soundName => {
+            // find sounds for which the player has permission
       const sound = newSoundData.find(s => s.name === soundName);
       playerSounds.push(sound); // store these sounds in playerSounds
 
