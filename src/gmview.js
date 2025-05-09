@@ -414,11 +414,9 @@ export async function setupGMView(container) {
 
       volumeSlider.addEventListener('input', (event) => {
         const newVolume = parseFloat(event.target.value);
-        console.log('Neue Lautstärke:', newVolume);
-        console.log("HERE:", sound);
         const index = soundData.findIndex(s => s.name === sound.name && s.category === sound.category);
-        console.log("soundData:", soundData[index], soundData[index].volume);
-        //saveSoundData
+        soundData[index].volume = newVolume;
+        saveSoundData(soundData);
       });
 
       // create a sound button to play the sound
