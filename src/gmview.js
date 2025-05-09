@@ -61,6 +61,7 @@ export async function setupGMView(container) {
   const currentMetadata = await OBR.room.getMetadata();
   soundData = await loadSoundData();
   let permissionsKey = await loadPermissionsKey();
+  console.log("permissionsKey:", permissionsKey);
   if (permissionsKey == null) {permissionsKey = true;}
   if (soundData == []) {
     await OBR.room.setMetadata({
