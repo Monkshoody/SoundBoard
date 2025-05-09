@@ -1,4 +1,3 @@
-Important Notice: The VolumeSlider is just temporary. If the Webside is reloaded everything will reset to 100% Volum. I suggest to use proper files and not count to much on this feature so far.
 # SoundBoard
 
 SoundBoard Extension for OwlBear Rodeo to play custom sounds in the room.
@@ -21,7 +20,7 @@ Some Text here!
 
 ![adding](public/docu/adding_sounds.png)
 
-1. For sure at some point you as GM will be annoyed by alle the players hitting sounds. If this happens you can just mute them out. Notice that reloading the OwlBear Website as GM will reactivate this function, so the players are again allowed to play sounds. (Maybe I'll fix that later)
+1. For sure at some point you as GM will be annoyed by alle the players hitting sounds. If this happens you can just mute them out. 
 
 2. The settings-wheel provides usefull import and export functions for the extension. At first there is "export permissions", where you can export the individual permissions for the players. E.g. Spy has access to "cracking branch" and "Spellcast" and Wizard has access to "Spellcast", then you can export these permissions and import them for another room. Second, there is "export sounds", where you can export the stored sounds. E.g. You as GM have imported ten sounds and now, since you have done all the work, you don't want to do it again for the next party. Then simply export your sounds and import them in the other room.
 Note! You don't have to make backups of your sounds and permissions since they are stored in the metadata of you room. So these functions are only neccessary if you want to change OwlBear rooms with your party or transfer your settings to other rooms.
@@ -30,7 +29,7 @@ Note! You don't have to make backups of your sounds and permissions since they a
 
 4. I don't know how much sounds you want to use, but over the time it can increase a lot. Therefore, searching and filtering would be neccessary i guess.
 
-5. Here you can see your already imported sounds together with a Volume-Slider. The Slider is individual for all Players, so everyone can set them for themselfs. (Mind the Notice in the beginning of the Readme!) If you hit a sound it will play in the whole room, so everyone will hear it. The same belogns to the players. If you as GM provided access to a sound and a player clicks the button everyone in the room will hear it (and now you know why the "mute player"-Slide is so important ^^). Additionally, you can delete sounds if you don't need them anymore by clicking the little "x" in the top right corner of each sound-button.
+5. Here you can see your already imported sounds together with a Volume-Slider. The Slider is individual for all sounds, so the GM can set them in general. If you hit a sound it will play in the whole room, so everyone will hear it. The same belogns to the players. if you as GM provided access to a sound and a player clicks the button everyone in the room will hear it (and now you know why the "mute player"-Slide is so important ^^). Additionally, you can delete sounds if you don't need them anymore by clicking the little "x" in the top right corner of each sound-button. Caution! permission export -> sound löschen -> permissions import error!
 
 
 
