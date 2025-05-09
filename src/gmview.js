@@ -109,7 +109,7 @@ export async function setupGMView(container) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.id = "audio-toggle";
-  checkbox.checked = permissionsKey; // set the slider as it is defined in the namespace
+  checkbox.checked = !permissionsKey; // set the slider as it is defined in the namespace
 
   // EventListener for the switch
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
@@ -117,7 +117,7 @@ export async function setupGMView(container) {
     const currentMetadata = await OBR.room.getMetadata();
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: checkbox.checked
+      [SOUND_PERMISSION_KEY]: !checkbox.checked
     });
   });
 
@@ -206,7 +206,7 @@ export async function setupGMView(container) {
             const newPermissions = JSON.parse(text);
             await savePermissions(newPermissions);
             // throw an error if newPermissions contain permissions of a sound which is not in the soundData!
-            
+
             OBR.notification.show("import successful");
             await renderSounds(newPermissions); // pass newPermissions to render GMView properly
           } catch (err) {
