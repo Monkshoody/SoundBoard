@@ -58,15 +58,11 @@ Fill in the fields → click “➕ add sound” → off you go.
 The more sounds you have, the more useful this feature becomes.
 
 5. Sound overview & controls:
-5.1 🎚️ Each sound has its own volume control.
-5.2 ▶️ Click on a sound → everyone hears it.
-5.3 👤 Click on a player name → only that player (and you) hears it.
-5.4 ☑️ Checkboxes → control who can play which sound.
-5.5 ❌ Small "x" → delete sound. ⚠️ *Caution! see Important note of step 2*
-
-Here you can see your already imported sounds together with a Volume-Slider. The Slider (5.2) is individual for all sounds, so the GM can set them in general. If you click a sound (5.1) it will play in the whole room, so everyone will hear it. The same belogns to the players. If you as GM provided access to a sound and a player clicks the button everyone in the room will hear it (and now you know why the "mute player"-Slide (1.) is so important ^^). Additionally, you can delete sounds by clicking the little "x" in the top right corner of each sound-button. 
-If you don't want a sound to play in the whole room but for one player specifically, you can hit the player name (5.3). E.g. you want the Spy to hear a cracking branch? Hit the "Spy" button (5.3) below the volume slider (5.2) and you (as GM) and the Spy will hear this sound.
-If you want to provide access to a sound to one or more of your players you can do that by ticking the checkboxes (5.4). E.g. you want to allow the Wizard to play the "spellcast" sound? Tick the checkbox and the Wizard will see this sound in his soundboard. Note that if a player clicks a sound, everyone in the room will hear it.
+**5.1** 🎚️ Each sound has its own volume control.<br>
+**5.2** ▶️ Click on a sound → everyone hears it.<br>
+**5.3** 👤 Click on a player name → only that player (and you) hears it.<br>
+**5.4** ☑️ Checkboxes → control who can play which sound.<br>
+**5.5** ❌ Small "x" → delete sound. ⚠️ *See Important note of step 2.*<br>
 
 ### 👀 Player View
 
