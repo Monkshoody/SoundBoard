@@ -190,7 +190,8 @@ export async function setupGMView(container) {
 
       case "export-permissions":
         let newpermissions = await loadPermissions();
-        await exportData(newpermissions, "permissions"); break;
+        await exportData(newpermissions, "permissions");
+        break;
 
       case "import-permissions":
         const inputPermissions = document.createElement("input");
@@ -212,10 +213,12 @@ export async function setupGMView(container) {
           }
         };
         inputPermissions.click();
+        break;
 
       case "export-sounds":
         soundData = await loadSoundData();
-        await exportData(soundData, "soundData"); break;
+        await exportData(soundData, "soundData");
+        break;
 
       case "import-sounds":
         const inputSounds = document.createElement("input");
@@ -237,6 +240,7 @@ export async function setupGMView(container) {
           }
         };
         inputSounds.click();
+        break;
     }
   
     // close menu after click
@@ -399,11 +403,6 @@ export async function setupGMView(container) {
       const soundCard = document.createElement('div');
       soundCard.classList.add('sound-card');
 
-      // create a sound button to play the sound
-      const soundButton = document.createElement('button');
-      soundButton.textContent = `${sound.name}`;
-      soundButton.classList.add('sound-button');
-
       // create volume-Slider
       volumeSlider = document.createElement('input');
       volumeSlider.type = 'range';
@@ -412,13 +411,25 @@ export async function setupGMView(container) {
       volumeSlider.step = 0.01;
       volumeSlider.value = sound.volume; // default volume 100%
       volumeSlider.classList.add('volume-slider');
-      
+
+      volumeSlider.addEventListener('input', (event) => {
+        const newVolume = parseFloat(event.target.value);
+        console.log('Neue Lautstärke:', newVolume);
+        console.log("HERE:", soundData[sound].volume);
+        //saveSoundData
+      });
+
+      // create a sound button to play the sound
+      const soundButton = document.createElement('button');
+      soundButton.textContent = `${sound.name}`;
+      soundButton.classList.add('sound-button');
+
       // EventListener for the soundButton to notify everybody in the room and distribute the sound to everybody
       soundButton.addEventListener('click', async () => {
         // notify everybody in the room, that the player has hit a sound
         await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
         // play the audio in the room
-        await playSoundForAll(sound.audio, volumeSlider.value);
+        await playSoundForAll(sound.audio, sound.volume);
       });
 
       // Create the delete button (the "X")
