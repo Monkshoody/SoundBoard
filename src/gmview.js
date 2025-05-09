@@ -415,7 +415,7 @@ export async function setupGMView(container) {
       volumeSlider.addEventListener('input', (event) => {
         const newVolume = parseFloat(event.target.value);
         console.log('Neue Lautstärke:', newVolume);
-        console.log("HERE:", soundData[sound].volume);
+        console.log("HERE:", sound);
         //saveSoundData
       });
 
