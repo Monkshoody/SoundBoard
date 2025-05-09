@@ -206,12 +206,14 @@ export async function setupGMView(container) {
             const newPermissions = JSON.parse(text);
             // throw an error if newPermissions contain permissions of a sound which is not in the soundData!
             console.log("newPermissions", newPermissions);
-            newPermissions.forEach(player => console.log("PLAYER", player));
+            newPermissions.forEach(player => {
+              console.log("PLAYER", player);
+            });
             await savePermissions(newPermissions);
             OBR.notification.show("import successful");
             await renderSounds(newPermissions); // pass newPermissions to render GMView properly
           } catch (err) {
-            console.alert("ERROR", err);
+            console.error("ERROR", err);
             OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
           }
         };
@@ -238,7 +240,7 @@ export async function setupGMView(container) {
             OBR.notification.show("import successful");
             await renderSounds(permissions); // pass newPermissions to render GMView properly
           } catch (err) {
-            console.alert("ERROR", err);
+            console.error("ERROR", err);
             OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
           }
         };
