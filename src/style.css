@@ -97,7 +97,7 @@ h1 {
 }
 
 .addInput[type="text"] {
-  padding: 1em;
+  padding: 1px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
