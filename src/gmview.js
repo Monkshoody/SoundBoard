@@ -61,7 +61,6 @@ export async function setupGMView(container) {
   const currentMetadata = await OBR.room.getMetadata();
   soundData = await loadSoundData();
   let permissionsKey = await loadPermissionsKey();
-  console.log("permissionsKey:", permissionsKey);
   if (permissionsKey == undefined) {permissionsKey = true;}
   if (soundData == []) {
     await OBR.room.setMetadata({
@@ -111,20 +110,15 @@ export async function setupGMView(container) {
   checkbox.type = "checkbox";
   checkbox.id = "audio-toggle";
   checkbox.checked = permissionsKey; // set the slider as it is defined in the namespace
-  console.log("permissionsKey:",permissionsKey);
 
   // EventListener for the switch
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
     const currentMetadata = await OBR.room.getMetadata();
-    console.log("currentMetadata:", currentMetadata);
-    console.log("CHECKBOX", checkbox.checked);
     await OBR.room.setMetadata({
       ... currentMetadata,
       [SOUND_PERMISSION_KEY]: checkbox.checked
     });
-    const metad = await OBR.room.getMetadata();
-    console.log("metad:", metad);
   });
 
   // make it slide
@@ -285,10 +279,11 @@ export async function setupGMView(container) {
     const category = categoryInput.value.trim();
     const audioName = audioInput.value.trim();
     const audio = processDropboxLink(audioName);
+    const volume = 1;
     if (audio === null) {audioInput.value = "";}
 
     if (name && category && audio) {
-      const newSound = { name, category, audio };
+      const newSound = { name, category, audio, volume };
       soundData.push(newSound);
       saveSoundData(soundData);
 
@@ -415,7 +410,7 @@ export async function setupGMView(container) {
       volumeSlider.min = 0;
       volumeSlider.max = 1;
       volumeSlider.step = 0.01;
-      volumeSlider.value = 1; // default volume 100%
+      volumeSlider.value = sound.volume; // default volume 100%
       volumeSlider.classList.add('volume-slider');
       
       // EventListener for the soundButton to notify everybody in the room and distribute the sound to everybody
