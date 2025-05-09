@@ -103,6 +103,9 @@ h1 {
   font-size: 1rem;
   transition: border 0.2s, box-shadow 0.2s;
   width: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1ch;
 }
 
 .addInput[type="text"]:focus {
@@ -182,8 +185,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 2px;
 }
 
 .delete-button {
