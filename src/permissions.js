@@ -43,15 +43,16 @@ export async function saveSoundData(soundData) {
 export async function loadPermissionsKey() {
   const metadata = await OBR.room.getMetadata();
   console.log(metadata);
-  return metadata[SOUND_PERMISSION_KEY] || true;
+  return metadata[SOUND_PERMISSION_KEY] || null;
 }
 // playSoundForAll will dirtibute the argument "audioFile" to all players in the room
-export async function playSoundForAll(audioFile) {
+export async function playSoundForAll(audioFile, volume) {
   const currentMetadata = await OBR.room.getMetadata();
   await OBR.room.setMetadata({
     ...currentMetadata,
     [SOUND_TRIGGER_KEY]: {
       audio: audioFile, // safe the name of the audio file to be played in the room/browser
+      volume: volume,
       timestamp: Date.now()  // update the timestamp so the onMetadataChange in gmview.js and playerview.js will trigger
     }
   });

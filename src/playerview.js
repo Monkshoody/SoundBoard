@@ -141,17 +141,7 @@ export async function setupPlayerView(container, playerName) {
         }
       });
 
-      // create volume-Slider
-      volumeSlider = document.createElement('input');
-      volumeSlider.type = 'range';
-      volumeSlider.min = 0;
-      volumeSlider.max = 1;
-      volumeSlider.step = 0.01;
-      volumeSlider.value = 1; // default volume 100%
-      volumeSlider.classList.add('volume-slider');
-
       card.appendChild(button);
-      card.appendChild(volumeSlider);
       soundContainer.appendChild(card);
     });
   }
@@ -171,7 +161,6 @@ export async function setupPlayerView(container, playerName) {
 
 // check for changed metadata to trigger sound
   let lastTimestamp = 0; // prevents Caching & ensures new triggering
-  let volumeSlider;
   OBR.room.onMetadataChange(async (metadata) => {
 
     // if NOTIFY_KEY has changed, send a notification to everybody in the room
@@ -188,7 +177,7 @@ export async function setupPlayerView(container, playerName) {
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
-      audio.volume = volumeSlider.value; // Apply volume
+      audio.volume = trigger.value; // apply volume
       audio.play(); // play new audio
     }
 
@@ -198,7 +187,7 @@ export async function setupPlayerView(container, playerName) {
     if (playerSound && playerSound.timestamp > lastTimestamp && playerSound.player == playerName) {
       lastTimestamp = playerSound.timestamp;
       const audio = new Audio(playerSound.audio); // updates audio
-      audio.volume = playerSound.volume; // Apply volume
+      audio.volume = playerSound.volume; // apply volume
       audio.play(); // play new audio
     }
     

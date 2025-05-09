@@ -1,5 +1,5 @@
 import OBR from "@owlbear-rodeo/sdk";
-import { loadPermissions, savePermissions, saveSoundData, loadSoundData, playSoundForAll, playSoundForPlayer, triggerGlobalNotification } from "./permissions.js";
+import { loadPermissions, savePermissions, saveSoundData, loadSoundData, loadPermissionsKey, playSoundForAll, playSoundForPlayer, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
@@ -60,16 +60,18 @@ export async function setupGMView(container) {
 // initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
   soundData = await loadSoundData();
+  let permissionsKey = await loadPermissionsKey();
+  if (permissionsKey == []) {permissionsKey = true;}
   if (soundData == []) {
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
+      [SOUND_PERMISSION_KEY]: permissionsKey, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
       [SOUNDDATA_KEY]: soundData // initiate the SOUNDDATA_KEY as empty array, so on default no sounds are available. SOUNDDATA_KEY will be updated accoring to soundData array
     });
   } else {
     await OBR.room.setMetadata({
       ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: true, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
+      [SOUND_PERMISSION_KEY]: permissionsKey, // initiate the SOUND_PERMISSION_KEY as true, so on default players are allowed to play sounds
     });
   }
 
@@ -400,13 +402,22 @@ export async function setupGMView(container) {
       const soundButton = document.createElement('button');
       soundButton.textContent = `${sound.name}`;
       soundButton.classList.add('sound-button');
+
+      // create volume-Slider
+      volumeSlider = document.createElement('input');
+      volumeSlider.type = 'range';
+      volumeSlider.min = 0;
+      volumeSlider.max = 1;
+      volumeSlider.step = 0.01;
+      volumeSlider.value = 1; // default volume 100%
+      volumeSlider.classList.add('volume-slider');
       
       // EventListener for the soundButton to notify everybody in the room and distribute the sound to everybody
       soundButton.addEventListener('click', async () => {
         // notify everybody in the room, that the player has hit a sound
         await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
         // play the audio in the room
-        await playSoundForAll(sound.audio);
+        await playSoundForAll(sound.audio, volumeSlider.value);
       });
 
       // Create the delete button (the "X")
@@ -416,7 +427,6 @@ export async function setupGMView(container) {
 
       // EventListener to delete the sound
       deleteButton.addEventListener('click', async () => {
-        // Entferne Sound aus soundData
         const index = soundData.findIndex(s => s.name === sound.name && s.category === sound.category);
         if (index !== -1) {
           soundData.splice(index, 1); // delete the sound from soundData
@@ -436,15 +446,6 @@ export async function setupGMView(container) {
           renderSounds(permissions); // re-render
         }
       });
-
-      // create volume-Slider
-      volumeSlider = document.createElement('input');
-      volumeSlider.type = 'range';
-      volumeSlider.min = 0;
-      volumeSlider.max = 1;
-      volumeSlider.step = 0.01;
-      volumeSlider.value = 1; // default volume 100%
-      volumeSlider.classList.add('volume-slider');
 
       soundCard.appendChild(deleteButton);
       soundCard.appendChild(soundButton);
