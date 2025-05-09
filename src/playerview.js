@@ -135,7 +135,7 @@ export async function setupPlayerView(container, playerName) {
           // notify everybody in the room, that the player has hit a sound
           await triggerGlobalNotification(`${playerName} played the sound "${sound.name}"!`);
           // play the audio in the room
-          await playSoundForAll(sound.audio);
+          await playSoundForAll(sound.audio, sound.volume);
         } else { // if the GM muted everyone ... Players needs to be punished ^^
           await OBR.notification.show("You annoyed the GM, so you were muted. Give him a 🍪 to regain access.");
         }
