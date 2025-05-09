@@ -205,10 +205,15 @@ export async function setupGMView(container) {
           try {
             const newPermissions = JSON.parse(text);
             // throw an error if newPermissions contain permissions of a sound which is not in the soundData!
-            console.log("newPermissions", newPermissions);
-            newPermissions.forEach(player => {
-              console.log("PLAYER", player);
-            });
+            const availableSounds = soundData.map(s => s.name); // Liste der verfügbaren Sound-Namen
+            const cleanedPermissions = {};
+            for (const player in newPermissions) {
+              const permittedSounds = newPermissions[player].filter(sound => availableSounds.includes(sound));
+              if (permittedSounds.length > 0) {
+                cleanedPermissions[player] = permittedSounds;
+              }
+            }
+            console.log(cleanedPermissions);
             await savePermissions(newPermissions);
             OBR.notification.show("import successful");
             await renderSounds(newPermissions); // pass newPermissions to render GMView properly
