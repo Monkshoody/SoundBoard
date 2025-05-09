@@ -214,9 +214,9 @@ export async function setupGMView(container) {
               }
             }
             console.log(cleanedPermissions);
-            await savePermissions(newPermissions);
+            await savePermissions(cleanedPermissions);
             OBR.notification.show("import successful");
-            await renderSounds(newPermissions); // pass newPermissions to render GMView properly
+            await renderSounds(cleanedPermissions); // pass newPermissions to render GMView properly
           } catch (err) {
             console.error("ERROR", err);
             OBR.notification.show("Error importing file"); // ...since we don't know what GMs are uploading
