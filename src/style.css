@@ -106,7 +106,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 1ch;
-  margin-bottom: 1rem
+  margin-bottom: 2px;
 }
 
 .addInput[type="text"]:focus {
@@ -128,7 +128,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 1ch;
-  margin-bottom: 1rem
+  margin-bottom: 2px;
 }
 
 .add-button:hover {
