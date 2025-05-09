@@ -97,7 +97,7 @@ h1 {
 }
 
 .addInput[type="text"] {
-  padding: auto;
+  padding: 0.5rem 0.75rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
@@ -105,7 +105,8 @@ h1 {
   width: auto;
   display: flex;
   justify-content: space-between;
-  gap: 3ch;
+  gap: 1ch;
+  margin-bottom: 1rem
 }
 
 .addInput[type="text"]:focus {
@@ -115,7 +116,7 @@ h1 {
 }
 
 .add-button {
-  padding: auto;
+  padding: 0.5rem 0.75rem;
   border: 1px solid #ccc;
   /*background-color: #2d2d2d;*/
   /*color: white;*/
@@ -126,8 +127,8 @@ h1 {
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  gap: 3ch;
-  
+  gap: 1ch;
+  margin-bottom: 1rem
 }
 
 .add-button:hover {
