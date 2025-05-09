@@ -4,11 +4,12 @@ An extension for Owlbear Rodeo that allows you to play custom sounds directly in
 
 ## 🚀 Installing
 
-Simply add the following link to your Owlbear Rodeo profile under “Extensions”: https://soundboard-ecb.pages.dev/manifest.json
+Simply add the following link to your Owlbear Rodeo profile under “Extensions”:<br>
+https://soundboard-ecb.pages.dev/manifest.json<br><br>
 
 ## ❓ Why do I need this?
 
-You might be wondering, "Why another soundboard? I already have [Tracks](https://extensions.owlbear.rodeo/tracks) and [Djinni Music player](https://extensions.owlbear.rodeo/djinni-music-player)! Yeah that's right and as a GM I love those two as I belive in the 60/40 rule of sound and imagination ([the power of sounds](https://www.tiktok.com/@bardsofnewyork/video/7431326761033403678)). But they have their limitations.
+You might be wondering, "Why another soundboard? I already have [Tracks](https://extensions.owlbear.rodeo/tracks) and [Djinni Music player](https://extensions.owlbear.rodeo/djinni-music-player)! Yeah that's right and as a GM I love those two as I belive in the 60/40 rule of sound and imagination ([the power of sounds](https://www.tiktok.com/@bardsofnewyork/video/7431326761033403678)). But they have their limitations.<br><br>
 
 ### Example 1
 
@@ -18,12 +19,12 @@ You might be wondering, "Why another soundboard? I already have [Tracks](https:/
 *On their way of finding a child in huge castle your party walks by a locked door. One of the party members is pretty good in hearing noises or sensing people, so you want him to hear a whimper or sob.* Now you can pass that sound just to this player in hope he will sensor it and ask the others if they heard it.
 ### Combinable:
 
-Additionally, there is no need to pause the background music! The SoundBoard automatically mixes the sound into the music playing – for an even more immersive gaming experience.
+Additionally, there is no need to pause the background music! The SoundBoard automatically mixes the sound into the music playing – for an even more immersive gaming experience.<br><br>
 
 ## ⚙️ How it Works
 
-The SoundBoard allows game masters to add sound links (currently only via Dropbox) and play them specifically.
-Recommendation for sound effects: pixabay.com/sound-effects
+The SoundBoard allows game masters to add sound links (currently only via Dropbox) and play them specifically.<br>
+Recommendation for sound effects: pixabay.com/sound-effects<br><br>
 
 ### 🥸 Initial Game Masters View
 
@@ -31,13 +32,14 @@ Clicking the <img src="https://raw.githubusercontent.com/Monkshoody/SoundBoard/t
 
 ![GM View](public/docu/Initial_GMview.png)
 
-You can see by default there are noch initial sounds set, so it belongs all to you as GM to add or import new sounds. To do so, all you need is a shared DropBox link of a sound. (Maybe I'll expand this in the future to other Services, but for now only DropBox is supported.)
+You can see by default there are noch initial sounds set, so it belongs all to you as GM to add or import new sounds. To do so, all you need is a shared DropBox link of a sound.<br>
+(Maybe I'll expand this in the future to other Services, but for now only DropBox is supported.)
 
 ![Dropbox](public/docu/DropBox_share.png)
 
 1. Copy a shared Dropbox link to your desired sound.
 2. Paste it into the SoundBoard – including the name and category.
-3. Click "➕ add sound" – done!
+3. Click "➕ add sound" – done!<br><br>
 
 ### 🧙 GM View
 
@@ -62,22 +64,22 @@ The more sounds you have, the more useful this feature becomes.
 **5.2** ▶️ Click on a sound → everyone hears it.<br>
 **5.3** 👤 Click on a player name → only that player (and you) hears it.<br>
 **5.4** ☑️ Checkboxes → control who can play which sound.<br>
-**5.5** ❌ Small "x" → delete sound. ⚠️ *See Important note of step 2.*<br>
+**5.5** ❌ Small "x" → delete sound. ⚠️ *See Important note of step 2.*<br><br>
 
 ### 👀 Player View
 
-Players only see the sounds they have been granted access to. They can play them back, making them audible throughout the room.
-![Player View](public/docu/Player_view.png)
+Players only see the sounds they have been granted access to. They can play them back, making them audible throughout the room.<br>
+![Player View](public/docu/Player_view.png)<br>
 
 ## 🛠️ Troubleshooting
 
-Problems? Questions? Ideas?
-Message me directly on [DiscordChannel](https://discord.gg/UY8AXjhzhe)
-Or comment on the GitHub repository
-Pull requests are always welcome! I tried my very best to commend properly.
+Problems? Questions? Ideas?<br>
+Message me directly on [DiscordChannel](https://discord.gg/UY8AXjhzhe)<br>
+Or comment on the GitHub repository<br>
+Pull requests are always welcome! I tried my very best to commend properly.<br>
 
 
-Thanks for using the SoundBoard – I hope it adds even more atmosphere and fun to your group.
+Thanks for using the SoundBoard – I hope it adds even more atmosphere and fun to your group.<br>
 Happy leading!
 
 © 2025 Monkshoody
