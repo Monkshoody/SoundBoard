@@ -47,12 +47,11 @@ export async function setupPlayerView(container, playerName) {
   async function renderSounds() {
     // get updated permissions
     const permissions = await loadPermissions();
-    console.log("PERMISSIONS:", permissions);
     // get updated soundData
     let newSoundData = await loadSoundData();
 
     // clear everything (filter, search, etc.) if there aren't any permissions
-    if (!permissions[playerName] || permissions[playerName].length === 0) {
+    if (permissions == {} || !permissions[playerName] || permissions[playerName].length === 0) {
       searchInput.style.display = 'none';
       combinedSelect.style.display = 'none';
       soundContainer.innerHTML = "<p>no sounds available</p>";
