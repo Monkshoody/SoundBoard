@@ -177,7 +177,7 @@ export async function setupPlayerView(container, playerName) {
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
-      audio.volume = trigger.value; // apply volume
+      audio.volume = trigger.volume; // apply volume
       audio.play(); // play new audio
     }
 
