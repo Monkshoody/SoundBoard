@@ -110,11 +110,14 @@ export async function setupGMView(container) {
   checkbox.type = "checkbox";
   checkbox.id = "audio-toggle";
   checkbox.checked = permissionsKey; // set the slider as it is defined in the namespace
+  console.log("permissionsKey:",permissionsKey);
 
   // EventListener for the switch
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
     const currentMetadata = await OBR.room.getMetadata();
+    console.log("currentMetadata:", currentMetadata);
+    console.log("CHECKBOX", checkbox.checked);
     await OBR.room.setMetadata({
       ... currentMetadata,
       [SOUND_PERMISSION_KEY]: checkbox.checked
