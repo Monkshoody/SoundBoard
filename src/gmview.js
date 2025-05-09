@@ -416,6 +416,8 @@ export async function setupGMView(container) {
         const newVolume = parseFloat(event.target.value);
         console.log('Neue Lautstärke:', newVolume);
         console.log("HERE:", sound);
+        const index = soundData.findIndex(s => s.name === sound.name && s.category === sound.category);
+        console.log("soundData:", soundData[index], soundData[index].volume);
         //saveSoundData
       });
 
