@@ -122,6 +122,8 @@ export async function setupGMView(container) {
       ... currentMetadata,
       [SOUND_PERMISSION_KEY]: checkbox.checked
     });
+    const metad = await OBR.room.getMetadata();
+    console.log("metad:", metad);
   });
 
   // make it slide
