@@ -47,6 +47,7 @@ export async function setupPlayerView(container, playerName) {
   async function renderSounds() {
     // get updated permissions
     const permissions = await loadPermissions();
+    console.log("PERMISSIONS:", permissions);
     // get updated soundData
     let newSoundData = await loadSoundData();
 
