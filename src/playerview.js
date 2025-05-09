@@ -173,7 +173,6 @@ export async function setupPlayerView(container, playerName) {
     // if SOUND_TRIGGER_KEY has changed, play the audio file in everybodys browser
     const trigger = metadata[SOUND_TRIGGER_KEY]; // store the metadata for the sound trigger
     if (!trigger) return;
-    console.log("trigger:", trigger, "trigger.timestamp > lastTimestamp", trigger.timestamp, lastTimestamp)
     if (trigger.timestamp > lastTimestamp) { // if new triggert
       lastTimestamp = trigger.timestamp; // update timestamp
       const audio = new Audio(trigger.audio); // updates audio
@@ -183,7 +182,6 @@ export async function setupPlayerView(container, playerName) {
 
     // if PLAYERSOUND_KEY has changed, play the audio file in players browser
     const playerSound = metadata[PLAYERSOUND_KEY]; // store the metadata for the sound trigger
-    console.log("playerSound:", playerSound, lastTimestamp);
     if (playerSound && playerSound.timestamp > lastTimestamp && playerSound.player == playerName) {
       lastTimestamp = playerSound.timestamp;
       const audio = new Audio(playerSound.audio); // updates audio
