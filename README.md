@@ -9,7 +9,7 @@ https://soundboard-ecb.pages.dev/manifest.json<br><br>
 
 ## ❓ Why do I need this?
 
-You might be wondering, "Why another soundboard? I already have [Tracks](https://extensions.owlbear.rodeo/tracks) and [Djinni Music player](https://extensions.owlbear.rodeo/djinni-music-player)! Yeah that's right and as a GM I love those two as I belive in the 60/40 rule of sound and imagination ([the power of sounds](https://www.tiktok.com/@bardsofnewyork/video/7431326761033403678)). But they have their limitations.<br><br>
+You might be wondering, "Why another soundboard? I already have [Tracks](https://extensions.owlbear.rodeo/tracks) and [Djinni Music player](https://extensions.owlbear.rodeo/djinni-music-player)! Yeah that's right and as a GM I love those two as I belive in the 60/40 rule of sound and imagination ([the power of sounds](https://www.tiktok.com/@bardsofnewyork/video/7431326761033403678)). But they have their limitations.<br>
 
 ### Example 1
 
@@ -30,10 +30,10 @@ Recommendation for sound effects: pixabay.com/sound-effects<br><br>
 
 Clicking the <img src="https://raw.githubusercontent.com/Monkshoody/SoundBoard/tree/main/public/docu/icon_white.png#gh-dark-mode-only" width=20 alt="SoundBoard Icon Light"><img src="https://raw.githubusercontent.com//Monkshoody/SoundBoard/tree/main/public/docu/icon_black.png#gh-light-mode-only" width=20 alt="SoundBoard Icon Dark"> icon at the top of the page will open the SoundBoard.
 
-![GM View](public/docu/Initial_GMview.png)
+![GM View](public/docu/Initial_GMview.png)<br>
 
-You can see by default there are noch initial sounds set, so it belongs all to you as GM to add or import new sounds. To do so, all you need is a shared DropBox link of a sound.<br>
-(Maybe I'll expand this in the future to other Services, but for now only DropBox is supported.)
+By default there are noch initial sounds, so it belongs to you as GM to add or import new sounds. To do so, all you need is a shared DropBox link of a sound.<br>
+(Maybe I'll expand this in the future to other Services, but for now only DropBox is supported.)<br>
 
 ![Dropbox](public/docu/DropBox_share.png)
 
