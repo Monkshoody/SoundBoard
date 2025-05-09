@@ -97,7 +97,7 @@ h1 {
 }
 
 .addInput[type="text"] {
-  padding: 1px;
+  padding: 3px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
@@ -113,7 +113,7 @@ h1 {
 }
 
 .add-button {
-  padding: auto;
+  padding: 3px;
   border: 1px solid #ccc;
   /*background-color: #2d2d2d;*/
   /*color: white;*/
@@ -122,6 +122,7 @@ h1 {
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 .add-button:hover {
