@@ -1,5 +1,5 @@
 import OBR from "@owlbear-rodeo/sdk";
-import { loadPermissions, savePermissions, saveSoundData, loadSoundData, loadPermissionsKey, playSoundForAll, playSoundForPlayer, triggerGlobalNotification } from "./permissions.js";
+import { loadPermissions, savePermissions, saveSoundData, loadSoundData, loadSoundPermissions, saveSoundPermissions, playSoundForAll, playSoundForPlayer, triggerGlobalNotification } from "./permissions.js";
 
 const PERMISSIONS_KEY = "com.soundboard/permissions"; // OwlBear-room Namespace for distributing permissions to sounds
 const SOUND_TRIGGER_KEY = "com.soundboard/sound-trigger"; // OwlBear-room Namespace for distributing audio
@@ -71,7 +71,7 @@ export async function setupGMView(container) {
 // initiate metadata for the OwlBear namespace
   const currentMetadata = await OBR.room.getMetadata();
   soundData = await loadSoundData();
-  let permissionsKey = await loadPermissionsKey();
+  let permissionsKey = await loadSoundPermissions();
   if (permissionsKey == undefined) {permissionsKey = true;}
   if (soundData == []) {
     await OBR.room.setMetadata({
@@ -125,11 +125,7 @@ export async function setupGMView(container) {
   // EventListener for the switch
   // if the switch is toggled SOUND_PERMISSION_KEY will be set to true or false accordingly
   checkbox.addEventListener("change", async () => {
-    const currentMetadata = await OBR.room.getMetadata();
-    await OBR.room.setMetadata({
-      ... currentMetadata,
-      [SOUND_PERMISSION_KEY]: !checkbox.checked
-    });
+    await saveSoundPermissions(!checkbox.checked);
   });
 
   // make it slide

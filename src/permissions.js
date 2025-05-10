@@ -40,10 +40,21 @@ export async function saveSoundData(soundData) {
   });
 }
 
-export async function loadPermissionsKey() {
+export async function loadSoundPermissions() {
   const metadata = await OBR.room.getMetadata();
   return metadata[SOUND_PERMISSION_KEY];
 }
+
+export async function saveSoundPermissions(check) {
+  const currentMetadata = await OBR.room.getMetadata();
+  await OBR.room.setMetadata({
+    ...currentMetadata,
+    [SOUND_PERMISSION_KEY]: check, // set check to SOUND_PERMISSION_KEY
+    [SOUND_TRIGGER_KEY]: { timestamp: 0 }, // reset the timesamp so the OBR.room.onMetadataChange in gmview und playerview won't trigger
+    [NOTIFY_KEY]: { timestamp: 0 } // same for NOTIFY_KEY
+  });
+}
+
 // playSoundForAll will dirtibute the argument "audioFile" to all players in the room
 export async function playSoundForAll(audioFile, volume) {
   const currentMetadata = await OBR.room.getMetadata();
