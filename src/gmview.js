@@ -286,7 +286,7 @@ export async function setupGMView(container) {
 
   const audioInput = document.createElement('input');
   audioInput.type = 'text';
-  audioInput.placeholder = 'DropBox link';
+  audioInput.placeholder = 'DropBox or GitHub link';
   audioInput.classList.add('addInput');
 
   const addButton = document.createElement('button');
