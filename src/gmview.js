@@ -20,27 +20,38 @@ async function updatePlayers(players) {
   return players;
 }
 
-// parse input Links 
-function processDropboxLink(inputUrl) {
+// parse input Links
+function processLink(inputUrl) {
+  // check for DropBox links
   const dropboxRegex = /^https:\/\/www\.dropbox\.com\/scl\/fi\/[\w\d]+\/[\w\d%-]+\.\w+\?.*/;
 
-  if (!dropboxRegex.test(inputUrl)) {
-    OBR.notification.show("Please enter a valid Dropbox link", "INFO");
-    return null;
+  if (dropboxRegex.test(inputUrl)) {
+    // Remove any existing dl=0 or dl=1
+    let newUrl = inputUrl.replace(/([?&])dl=\d/, '');
+
+    // Append raw=1 correctly (depending on whether parameters are already present)
+    if (newUrl.includes('?')) {
+      newUrl += '&raw=1';
+    } else {
+      newUrl += '?raw=1';
+    }
+    return newUrl;
   }
 
-  // Remove any existing dl=0 or dl=1
-  let newUrl = inputUrl.replace(/([?&])dl=\d/, '');
+  // check for GitHub links
+  const githubRegex = /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/;
 
-  // Append raw=1 correctly (depending on whether parameters are already present)
-  if (newUrl.includes('?')) {
-    newUrl += '&raw=1';
-  } else {
-    newUrl += '?raw=1';
+  const githubMatch = inputUrl.match(githubRegex);
+  if (githubMatch) {
+    const [, user, repo, branch, path] = githubMatch;
+    return `https://github.com/${user}/${repo}/raw/refs/heads/${branch}/${path}`;
   }
 
-  return newUrl;
+  // any other type of link is not allowed
+  OBR.notification.show("Please enter a valid Dropbox or GitHub link", "INFO");
+  return null;
 }
+
 
 async function exportData(data, name) {
   let blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }); // grab the current permissions or soundData of the room and parse them in JSON-format
@@ -291,7 +302,7 @@ export async function setupGMView(container) {
     const name = nameInput.value.trim();
     const category = categoryInput.value.trim();
     const audioName = audioInput.value.trim();
-    const audio = processDropboxLink(audioName);
+    const audio = processLink(audioName);
     const volume = 1;
     if (audio === null) {audioInput.value = "";}
 
