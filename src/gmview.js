@@ -47,6 +47,12 @@ function processLink(inputUrl) {
     return `https://github.com/${user}/${repo}/raw/refs/heads/${branch}/${path}`;
   }
 
+  // Cloudflare Pages
+  const cloudflareRegex = /^https:\/\/[\w-]+\.pages\.dev\/.+\.\w+$/;
+  if (cloudflareRegex.test(inputUrl)) {
+    return inputUrl; // Pass directly through, as already raw
+  }
+
   // any other type of link is not allowed
   OBR.notification.show("Please enter a valid Dropbox or GitHub link", "INFO");
   return null;

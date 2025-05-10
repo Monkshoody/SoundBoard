@@ -23,7 +23,7 @@ Additionally, there is no need to pause the background music! The SoundBoard aut
 
 ## ⚙️ How it Works
 
-The SoundBoard allows game masters to add sound links (currently only via Dropbox) and play them specifically.<br>
+The SoundBoard allows game masters to add sound links (currently only via Dropbox and GitHub) and play them specifically.<br>
 Recommendation for sound effects: pixabay.com/sound-effects<br><br>
 
 ### 🥸 Initial Game Masters View
@@ -33,7 +33,7 @@ Clicking the <img src="https://raw.githubusercontent.com/Monkshoody/SoundBoard/t
 ![GM View](public/docu/Initial_GMview.png)<br>
 
 By default there are noch initial sounds, so it belongs to you as GM to add or import new sounds. To do so, all you need is a shared DropBox link of a sound.<br>
-(Maybe I'll expand this in the future to other Services, but for now only DropBox is supported.)<br>
+(Maybe I'll expand this in the future to other Services, but for now only DropBox and GitHub are supported.)<br>
 
 ![Dropbox](public/docu/DropBox_share.png)
 
